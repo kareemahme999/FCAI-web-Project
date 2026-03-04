@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account</title>
     <!--icon-->
     <link rel="icon" type="image/icon" href="../../Pictures/dribbble.svg">
@@ -11,32 +12,77 @@
 </head>
 <body>
 
-    <header>
+<header>
+
+    <div >
+
+        <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
+        <ul>
+            <li><a  href="index.html"><i class="bi bi-house"></i>Home</a></li>
+            <li><a href="Books.html"><i class="bi bi-grid"></i>books</a></li>
+            <li><a href="About.html"><i class="bi bi-info-circle"></i>About</a></li>
+            <li><a href="Contact.html"><i class="bi bi-envelope"></i>Contact</a></li>
+        </ul>
+
+    </div>
+
+    <div>
+        <form>
+            <input type="search" placeholder="Search books,authors...">
+
+        </form>
+        <button><a href="Search.html"><i class="bi bi-search"></i></a></button>
+        <button><a href="my_list.html"><i class="fa-regular fa-bookmark"></i></a></button>
+        <button><a href="Cart.html"><i class="bi bi-bag"></i></a></button>
+        <button><a href="User_profile.html"><i class="fa-regular fa-circle-user"></i></a></button>
+
+    </div>
+</header>
+
+<main>
 
 
 
-    </header>
 
+    <div class="form">
+        <div class="box-login">
+            <h2><i>Login</i><span> - Webdevelop</span></h2>
+            <div class="input">
+                <input type="text" id="username" class="inp">
+                <label for="username"><i class="fa fa-user"></i> Username</label>
+            </div>
+            <div class="input">
+                <input type="password" id="password" class="inp">
+                <label for="password"><i class="fa fa-key"></i> Password</label>
+            </div>
+            <div class="opt">
+                <button id="forgot-pass">Forgot password?</button>
+                <label for="remember">Remember me</label>
+                <input type="checkbox" id="remember">
+            </div>
+            <button class="submit">Login <i class="fa fa-sign-in"></i></button>
+            <span>Don't have an account? <button id="to-reg">Sign up</button></span>
+        </div>
 
-
-
-
-    <main>
-
-
-
-
-    </main>
-
-
-
-    <footer>
-
-
-
-
-    </footer>
-
+        <div class="box-register">
+            <h2><span>Webdevelop - </span><i>Register</i></h2>
+            <div class="input">
+                <input type="text" id="reg-email" class="inp">
+                <label for="reg-email"><i class="fa fa-envelope"></i> Email</label>
+            </div>
+            <div class="input">
+                <input type="text" id="reg-username" class="inp">
+                <label for="reg-username"><i class="fa fa-user"></i> Username</label>
+            </div>
+            <div class="input">
+                <input type="password" id="reg-password" class="inp">
+                <label for="reg-password"><i class="fa fa-key"></i> Password</label>
+            </div>
+            <button class="submit">Register</button>
+            <span>Already have an account? <button id="to-log">Login <i class="fa fa-sign-in"></i></button></span>
+        </div>
+    </div>
+</main>
 
 
 
