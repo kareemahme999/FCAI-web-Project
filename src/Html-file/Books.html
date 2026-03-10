@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
  <meta charset="UTF-8">
+ <meta name="description" content="book store where you can buy and reading">
     <title>Book Store</title>
 
     <link rel="icon" type="image/icon" href="../../Pictures/dribbble.svg">
@@ -52,24 +53,9 @@
         <option>Newest</option>
         <option>Bestselling</option>
       </select>
-      <button class="view-btn active" id="gridBtn" title="Grid View" onclick="setView('grid')">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="1" y="1" width="5.5" height="5.5" rx="0.5"/>
-          <rect x="9.5" y="1" width="5.5" height="5.5" rx="0.5"/>
-          <rect x="1" y="9.5" width="5.5" height="5.5" rx="0.5"/>
-          <rect x="9.5" y="9.5" width="5.5" height="5.5" rx="0.5"/>
-        </svg>
-      </button>
-      <button class="view-btn" id="listBtn" title="List View" onclick="setView('list')">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
-          <line x1="1" y1="3.5" x2="15" y2="3.5"/>
-          <line x1="1" y1="8"   x2="15" y2="8"/>
-          <line x1="1" y1="12.5" x2="15" y2="12.5"/>
-        </svg>
-      </button>
    </div>
     </header>
-    <h2>GENRE</h2>
+    <h2>Book Type</h2>
   <ul>
     <li><input type="checkbox" /> All Books</li>
     <li><input type="checkbox" /> Fiction</li>
@@ -88,11 +74,12 @@
 
   <hr />
 
-  <p>Showing <strong>48</strong> of 2,340 books</p>
 
   <ul>
 
     <li>
+      <img src="E:\Cairo university\web project\38.TheMidnightLibrary.jpg" alt="TheMidnightLibrary" width="100">
+      <br/>
       <strong>The Midnight Library</strong><br />
       Author: Matt Haig<br />
       Genre: Fiction<br />
@@ -100,8 +87,10 @@
       Price: <s>$21.00</s> $18.99<br />
       Badge: Bestseller
     </li>
-
+<br/>
     <li>
+      <img src="lessons.jpg" alt="Lessons in Chemistry" width="100">
+      <br/>
       <strong>Lessons in Chemistry</strong><br />
       Author: Bonnie Garmus<br />
       Genre: Literary Fiction<br />
@@ -109,8 +98,10 @@
       Price: $22.00<br />
       Badge: New
     </li>
-
+<br/>
     <li>
+      <img src="E:\Cairo university\web project\atomic-habits-james-clear-irustima.jpg" alt="Atomic Habits" width="100">
+      <br/>
       <strong>Atomic Habits</strong><br />
       Author: James Clear<br />
       Genre: Self-Help<br />
@@ -118,8 +109,10 @@
       Price: <s>$27.00</s> $19.99<br />
       Badge: Bestseller
     </li>
-
+<br/>
     <li>
+      <img src="E:\Cairo university\web project\Dune.jpg" alt="Dune" width="100">
+      <br/>
       <strong>Dune</strong><br />
       Author: Frank Herbert<br />
       Genre: Sci-Fi<br />
@@ -127,8 +120,10 @@
       Price: $16.99<br />
       Badge: New
     </li>
-
+<br/>
     <li>
+      <img src="E:\Cairo university\web project\foundation.jpg" alt="Foundation" width="100">
+      <br/>
       <strong>Foundation</strong><br />
       Author: Isaac Asimov<br />
       Genre: Sci-Fi<br />
@@ -136,8 +131,10 @@
       Price: <s>$20.00</s> $14.99<br />
       Badge: Classic
     </li>
-
+<br/>
     <li>
+      <img src="E:\Cairo university\web project\sapiens.jpg" alt="Sapiens" width="100">
+      <br/>
       <strong>Sapiens</strong><br />
       Author: Yuval Noah Harari<br />
       Genre: History<br />
@@ -145,8 +142,10 @@
       Price: $21.99<br />
       Badge: Bestseller
     </li>
-
+<br/>
     <li>
+      <img src="E:\Cairo university\web project\the alchemist.jpg" alt="The Alchemist" width="100">
+      <br/>
       <strong>The Alchemist</strong><br />
       Author: Paulo Coelho<br />
       Genre: Fiction<br />
@@ -154,8 +153,10 @@
       Price: <s>$18.00</s> $13.99<br />
       Badge: Sale
     </li>
-
+<br/>
     <li>
+      <img src="E:\Cairo university\web project\think again.jpg" alt="Think Again" width="100">
+      <br/>
       <strong>Think Again</strong><br />
       Author: Adam Grant<br />
       Genre: Psychology<br />
@@ -165,12 +166,6 @@
     </li>
 
   </ul>
-  <br />
-  <a href="#">&laquo;</a>
-  <a href="#"><strong>1</strong></a>
-  <a href="#">2</a>
-  <a href="#">3</a>
-  <a href="#">&raquo;</a>
 
 
 <script src="../JavaScript-file/Books.js"></script>
