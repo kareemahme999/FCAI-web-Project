@@ -14,157 +14,171 @@
     <link rel="stylesheet" href="../Css-file/Home.css">
 </head>
 <body>
- <header>
+<header class="header">
 
-        <div >
+    <div class="F-header">
 
-            <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
-            <ul>
-                <li><a  href="index.html"><i class="bi bi-house"></i>Home</a></li>
-                <li><a href="Books.html"><i class="bi bi-grid"></i>books</a></li>
-                <li><a href="About.html"><i class="bi bi-info-circle"></i>About</a></li>
-                <li><a href="Contact.html"><i class="bi bi-envelope"></i>Contact</a></li>
-            </ul>
+        <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
+        <ul>
+            <li><a id="home"  href="index.html"><i class="bi bi-house"></i>Home</a></li>
+            <li><a href="Books.html"><i class="bi bi-grid"></i>books</a></li>
+            <li><a href="About.html"><i class="bi bi-info-circle"></i>About</a></li>
+            <li><a href="Contact.html"><i class="bi bi-envelope"></i>Contact</a></li>
+        </ul>
 
-        </div>
-
-        <div>
-            <form>
-                <input type="search" placeholder="Search books,authors...">
-
-            </form>
-            <button><a href="Search.html"><i class="bi bi-search"></i></a></button>
-            <button><a href="my_list.html"><i class="fa-regular fa-bookmark"></i></a></button>
-            <button><a href="Cart.html"><i class="bi bi-bag"></i></a></button>
-            <button><a href="User_profile.html"><i class="fa-regular fa-circle-user"></i></a></button>
-
-        </div>
-         <div>
-      <span>Collection</span>
-      <h1>All <em>Books</em></h1>
     </div>
-   <div>
-      <!-- Sort dropdown -->
-      <select class="sort-select" id="sortSelect">
-        <option>Sort: Featured</option>
-        <option>Price: Low to High</option>
-        <option>Price: High to Low</option>
-        <option>Newest</option>
-        <option>Bestselling</option>
-      </select>
-   </div>
-    </header>
+
+    <div class="L-header">
+        <form>
+            <input type="search" placeholder="Search books,authors...">
+
+        </form>
+        <button><a href="Search.html"><i class="bi bi-search"></i></a></button>
+        <button><a href="my_list.html"><i class="fa-regular fa-bookmark"></i></a></button>
+        <button><a href="Cart.html"><i class="bi bi-bag"></i></a></button>
+        <button><a href="User_profile.html"><i class="fa-regular fa-circle-user"></i></a></button>
+
+
+
+    </div>
+</header>
+
+
+
+
+
+
+
+<main>
+
+    <div>
+        <span>Collection</span>
+        <h1>All <em>Books</em></h1>
+    </div>
+    <div>
+        <!-- Sort dropdown -->
+        <select class="sort-select" id="sortSelect">
+            <option>Sort: Featured</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest</option>
+            <option>Bestselling</option>
+        </select>
+    </div>
     <h2>Book Type</h2>
-  <ul>
-    <li><input type="checkbox" /> All Books</li>
-    <li><input type="checkbox" /> Fiction</li>
-    <li><input type="checkbox" /> Science</li>
-    <li><input type="checkbox" /> History</li>
-    <li><input type="checkbox" /> Psychology</li>
-    <li><input type="checkbox" /> Sci-Fi</li>
-    <li><input type="checkbox" /> Travel</li>
-  </ul>
+    <ul>
+        <li><input type="checkbox" /> All Books</li>
+        <li><input type="checkbox" /> Fiction</li>
+        <li><input type="checkbox" /> Science</li>
+        <li><input type="checkbox" /> History</li>
+        <li><input type="checkbox" /> Psychology</li>
+        <li><input type="checkbox" /> Sci-Fi</li>
+        <li><input type="checkbox" /> Travel</li>
+    </ul>
 
-  <h2>AVAILABILITY</h2>
-  <ul>
-    <li><input type="checkbox" /> In Stock</li>
-    <li><input type="checkbox" /> Pre-Order</li>
-  </ul>
+    <h2>AVAILABILITY</h2>
+    <ul>
+        <li><input type="checkbox" /> In Stock</li>
+        <li><input type="checkbox" /> Pre-Order</li>
+    </ul>
 
-  <hr />
+    <hr />
 
 
-  <ul>
+    <ul>
 
-    <li>
-      <img src="E:\Cairo university\web project\38.TheMidnightLibrary.jpg" alt="TheMidnightLibrary" width="100">
-      <br/>
-      <strong>The Midnight Library</strong><br />
-      Author: Matt Haig<br />
-      Genre: Fiction<br />
-      Rating: ★★★★★<br />
-      Price: <s>$21.00</s> $18.99<br />
-      Badge: Bestseller
-    </li>
-<br/>
-    <li>
-      <img src="lessons.jpg" alt="Lessons in Chemistry" width="100">
-      <br/>
-      <strong>Lessons in Chemistry</strong><br />
-      Author: Bonnie Garmus<br />
-      Genre: Literary Fiction<br />
-      Rating: ★★★★★<br />
-      Price: $22.00<br />
-      Badge: New
-    </li>
-<br/>
-    <li>
-      <img src="E:\Cairo university\web project\atomic-habits-james-clear-irustima.jpg" alt="Atomic Habits" width="100">
-      <br/>
-      <strong>Atomic Habits</strong><br />
-      Author: James Clear<br />
-      Genre: Self-Help<br />
-      Rating: ★★★★★<br />
-      Price: <s>$27.00</s> $19.99<br />
-      Badge: Bestseller
-    </li>
-<br/>
-    <li>
-      <img src="E:\Cairo university\web project\Dune.jpg" alt="Dune" width="100">
-      <br/>
-      <strong>Dune</strong><br />
-      Author: Frank Herbert<br />
-      Genre: Sci-Fi<br />
-      Rating: ★★★★★<br />
-      Price: $16.99<br />
-      Badge: New
-    </li>
-<br/>
-    <li>
-      <img src="E:\Cairo university\web project\foundation.jpg" alt="Foundation" width="100">
-      <br/>
-      <strong>Foundation</strong><br />
-      Author: Isaac Asimov<br />
-      Genre: Sci-Fi<br />
-      Rating: ★★★★★<br />
-      Price: <s>$20.00</s> $14.99<br />
-      Badge: Classic
-    </li>
-<br/>
-    <li>
-      <img src="E:\Cairo university\web project\sapiens.jpg" alt="Sapiens" width="100">
-      <br/>
-      <strong>Sapiens</strong><br />
-      Author: Yuval Noah Harari<br />
-      Genre: History<br />
-      Rating: ★★★★☆<br />
-      Price: $21.99<br />
-      Badge: Bestseller
-    </li>
-<br/>
-    <li>
-      <img src="E:\Cairo university\web project\the alchemist.jpg" alt="The Alchemist" width="100">
-      <br/>
-      <strong>The Alchemist</strong><br />
-      Author: Paulo Coelho<br />
-      Genre: Fiction<br />
-      Rating: ★★★★★<br />
-      Price: <s>$18.00</s> $13.99<br />
-      Badge: Sale
-    </li>
-<br/>
-    <li>
-      <img src="E:\Cairo university\web project\think again.jpg" alt="Think Again" width="100">
-      <br/>
-      <strong>Think Again</strong><br />
-      Author: Adam Grant<br />
-      Genre: Psychology<br />
-      Rating: ★★★★☆<br />
-      Price: $17.99<br />
-      Badge: New
-    </li>
+        <li>
+            <img src="E:\Cairo university\web project\38.TheMidnightLibrary.jpg" alt="TheMidnightLibrary" width="100">
+            <br/>
+            <strong>The Midnight Library</strong><br />
+            Author: Matt Haig<br />
+            Genre: Fiction<br />
+            Rating: ★★★★★<br />
+            Price: <s>$21.00</s> $18.99<br />
+            Badge: Bestseller
+        </li>
+        <br/>
+        <li>
+            <img src="lessons.jpg" alt="Lessons in Chemistry" width="100">
+            <br/>
+            <strong>Lessons in Chemistry</strong><br />
+            Author: Bonnie Garmus<br />
+            Genre: Literary Fiction<br />
+            Rating: ★★★★★<br />
+            Price: $22.00<br />
+            Badge: New
+        </li>
+        <br/>
+        <li>
+            <img src="E:\Cairo university\web project\atomic-habits-james-clear-irustima.jpg" alt="Atomic Habits" width="100">
+            <br/>
+            <strong>Atomic Habits</strong><br />
+            Author: James Clear<br />
+            Genre: Self-Help<br />
+            Rating: ★★★★★<br />
+            Price: <s>$27.00</s> $19.99<br />
+            Badge: Bestseller
+        </li>
+        <br/>
+        <li>
+            <img src="E:\Cairo university\web project\Dune.jpg" alt="Dune" width="100">
+            <br/>
+            <strong>Dune</strong><br />
+            Author: Frank Herbert<br />
+            Genre: Sci-Fi<br />
+            Rating: ★★★★★<br />
+            Price: $16.99<br />
+            Badge: New
+        </li>
+        <br/>
+        <li>
+            <img src="E:\Cairo university\web project\foundation.jpg" alt="Foundation" width="100">
+            <br/>
+            <strong>Foundation</strong><br />
+            Author: Isaac Asimov<br />
+            Genre: Sci-Fi<br />
+            Rating: ★★★★★<br />
+            Price: <s>$20.00</s> $14.99<br />
+            Badge: Classic
+        </li>
+        <br/>
+        <li>
+            <img src="E:\Cairo university\web project\sapiens.jpg" alt="Sapiens" width="100">
+            <br/>
+            <strong>Sapiens</strong><br />
+            Author: Yuval Noah Harari<br />
+            Genre: History<br />
+            Rating: ★★★★☆<br />
+            Price: $21.99<br />
+            Badge: Bestseller
+        </li>
+        <br/>
+        <li>
+            <img src="E:\Cairo university\web project\the alchemist.jpg" alt="The Alchemist" width="100">
+            <br/>
+            <strong>The Alchemist</strong><br />
+            Author: Paulo Coelho<br />
+            Genre: Fiction<br />
+            Rating: ★★★★★<br />
+            Price: <s>$18.00</s> $13.99<br />
+            Badge: Sale
+        </li>
+        <br/>
+        <li>
+            <img src="E:\Cairo university\web project\think again.jpg" alt="Think Again" width="100">
+            <br/>
+            <strong>Think Again</strong><br />
+            Author: Adam Grant<br />
+            Genre: Psychology<br />
+            Rating: ★★★★☆<br />
+            Price: $17.99<br />
+            Badge: New
+        </li>
 
-  </ul>
+    </ul>
+
+</main>
+
 
 
 <script src="../JavaScript-file/Books.js"></script>

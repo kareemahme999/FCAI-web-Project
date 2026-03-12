@@ -1,2 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+
+}
+:root{
+    --bg: #0a0a0f;
+    --bg2: #0f0f1a;
+    --bg3: #141425;
+    --card: #12121e;
+    --card2: #1a1a2e;
+    --border: #FFFFFF11;
+    --border2: rgba(255, 255, 255, 0.12);
+    --gold: #d4a843;
+    --gold2: #f0c866;
+    --glow: rgba(212, 168, 67, 0.18);
+    --blue: #4f8ef7;
+    --blue-glow: rgba(79, 142, 247, 0.15);
+    --text: #e8e4dc;
+    --text2: #a09880;
+    --text3: #6a6058;
+    --danger: #e05252;
+    --success: #52c07a;
+}
+body{
+    position: relative;
+}
+/*header*****************************************************************************/
+.header{
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    background: rgba(245, 242, 236, 0.9);
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    height: 70px;
+    align-items: center !important;
+}
+.F-header{
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+
+}
+.F-header h1{
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 15px 0 0;
+
+}
+.F-header ul{
+    padding: 10px
+}
+.F-header ul li{
+    display: inline-flex;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 5px;
+    cursor: pointer;
+    text-decoration: none;
+
+}
+.F-header ul li :hover{
+    background: var(--glow);
+    color:var(--gold) ;
+}
+
+#home{
+    background: var(--glow);
+    color:var(--gold) ;
+}
+
+.F-header ul li a{
+    font-size: 14px;
+    text-decoration: none;
+    color:var(--text2) ;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 8px 20px;
+}
+.L-header{
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
+.L-header button{
+    border-radius: 8px;
+    border: 1px solid rgba(116, 112, 112, 0.82);
+    background:transparent ;
+    padding: 8px 9px;
+
+}
+.L-header button:hover{
+    border: 1px solid var(--gold  );
+    background: var(--glow);
+
+}
+.L-header button a {
+    color: var(--text2);
+}
+.L-header button:hover a{
+    color: var(--gold);
+}
+
+.L-header form input {
+
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 8px 16px;
+    outline: none;
+}
+.L-header form input:focus {
+    box-shadow:  1px 1px 10px var(--gold);
+
+}
+.L-header form input::placeholder {
+    font-family: 'Syne', sans-serif;
+    color: var(--text2);
+    font-size: 12px;
+    padding:0;
+}
+/**************************************************************************************/
+
+/**************************************************************************************/
+
+
+
+
+
+
+
 
 

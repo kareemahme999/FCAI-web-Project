@@ -27,6 +27,7 @@
 body{
     position: relative;
 }
+/*header*****************************************************************************/
 .header{
     display: inline-flex;
     justify-content: space-between;
@@ -90,13 +91,13 @@ body{
 
 .L-header button{
     border-radius: 8px;
-    border: 1px solid var(--bg);
+    border: 1px solid rgba(116, 112, 112, 0.82);
     background:transparent ;
     padding: 8px 9px;
 
 }
 .L-header button:hover{
-    border: 1px solid var(--gold    );
+    border: 1px solid var(--gold  );
     background: var(--glow);
 
 }
@@ -108,10 +109,31 @@ body{
 }
 
 .L-header form input {
-    border:  1px solid var(--gold);
-    border-radius: 5px;
-    padding: 8px 30px;
+
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 8px 16px;
+    outline: none;
+}
+.L-header form input:focus {
+    box-shadow:  1px 1px 10px var(--gold);
 
 }
+.L-header form input::placeholder {
+    font-family: 'Syne', sans-serif;
+    color: var(--text2);
+    font-size: 12px;
+    padding:0;
+}
+/**************************************************************************************/
+
+/**************************************************************************************/
+
+
+
+
+
+
+
 
 
