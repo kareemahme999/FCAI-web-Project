@@ -48,5 +48,346 @@
 
 
 
+    
+<!-- ============================================================================================================================================================================================================== -->
+                                                <!-- ===========================================================By Mohamed Abdelmaqsoud=================================  -->
+<!-- ============================================================================================================================================================================================================== -->
+
+
+
+     <!-- ══════════════════════════════════════
+     BOOK DETAIL PAGE
+══════════════════════════════════════ -->
+  <div class="detail-page-wrap">
+
+    <!-- Back Button -->
+    <button class="btn-folio-ghost mb-4" onclick="history.back()">
+      <i class="bi bi-arrow-left me-2"></i>Back to Books
+    </button>
+
+    <!-- Main Detail Section -->
+    <div class="row g-5 mb-5">
+
+      <!-- Cover Column -->
+      <div class="col-md-4 text-center">
+        <div class="detail-cover mx-auto" id="detail-cover" style="background:linear-gradient(145deg,#2d3142,#4f5d75);">
+          <div class="book-cover-spine"></div>
+          <div class="d-flex align-items-center justify-content-center h-100">
+            <div class="book-cover-text" id="detail-cover-title" style="font-size:20px;padding:32px;">The Midnight
+              Library</div>
+          </div>
+          <div class="book-cover-author-label" id="detail-cover-author">Matt Haig</div>
+        </div>
+        <div class="d-flex gap-2 justify-content-center mt-4">
+          <button class="btn-folio-ghost" onclick="showToast('🔖 Saved to My List!')">
+            <i class="bi bi-bookmark me-1"></i>Save
+          </button>
+          <button class="btn-folio-ghost" onclick="showToast('🔗 Link copied!')">
+            <i class="bi bi-share me-1"></i>Share
+          </button>
+        </div>
+      </div>
+
+      <!-- Info Column -->
+      <div class="col-md-8">
+        <!-- Badges + Genre -->
+        <div class="d-flex gap-2 align-items-center mb-3">
+          <span class="badge-gold" id="detail-badge">Bestseller</span>
+          <span style="font-size:11px;color:var(--text3);letter-spacing:0.15em;text-transform:uppercase;"
+            id="detail-genre">Fiction</span>
+        </div>
+
+        <!-- Title & Author -->
+        <h1 class="detail-title" id="detail-title">The Midnight Library</h1>
+        <div class="detail-author" id="detail-author">by Matt Haig</div>
+
+        <!-- Rating -->
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <div class="stars">★★★★★</div>
+          <span style="font-size:13px;color:var(--text2);">4.8 · 2,341 reviews</span>
+        </div>
+
+        <!-- Price -->
+        <div class="detail-price mb-4">
+          <span class="old-price me-2" id="detail-old">$24.00</span>
+          <span id="detail-price">$18.99</span>
+        </div>
+
+        <!-- Description -->
+        <p class="detail-desc mb-4" id="detail-desc">
+          Between life and death there is a library, and within that library, the shelves go on forever.
+          Every book provides a chance to try another life you could have lived. To see how things would be
+          if you had made other choices... Would you have done anything different, if you had the chance to
+          undo your regrets?
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="d-flex gap-3 flex-wrap mb-4">
+          <button class="btn-folio-primary" onclick="addToCart(); showToast('📚 Added to cart!')">
+            <i class="bi bi-bag-plus me-2"></i>Add to Cart
+          </button>
+          <button class="btn-folio-outline" onclick="showToast('🔖 Saved to My List!')">
+            <i class="bi bi-bookmark me-2"></i>Save to List
+          </button>
+        </div>
+
+        <!-- Meta Info -->
+        <div class="detail-meta">
+          <div class="meta-item">
+            <div class="meta-val" id="meta-pages">320</div>
+            <div class="meta-key">Pages</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-val" id="meta-year">2020</div>
+            <div class="meta-key">Published</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-val" id="meta-lang">EN</div>
+            <div class="meta-key">Language</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TABS ── -->
+    <div class="border-bottom" style="border-color:var(--border)!important;">
+      <div class="d-flex">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-desc')">Description</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-reviews')">Reviews</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-related')">Related Books</button>
+      </div>
+    </div>
+
+    <!-- Tab: Description -->
+    <div class="tab-content active" id="tab-desc">
+      <p style="color:var(--text2);line-height:1.9;font-size:15px;max-width:720px;">
+        Nora Seed finds herself in the Midnight Library. Faced with the possibility of changing her life for
+        a new one, following a different career, undoing old breakups, realizing her dreams of becoming a
+        glaciologist; she must search within herself as she travels through the Midnight Library to decide
+        what is truly fulfilling in life, and what makes it worth living in the first place.
+      </p>
+    </div>
+
+    <!-- Tab: Reviews -->
+    <div class="tab-content" id="tab-reviews">
+      <div class="review-card">
+        <div class="d-flex gap-3 mb-3">
+          <div class="reviewer-avatar">S</div>
+          <div>
+            <div style="font-weight:600;color:var(--text);">Sarah M.</div>
+            <div class="stars" style="font-size:11px;">★★★★★</div>
+          </div>
+          <span class="ms-auto" style="font-size:12px;color:var(--text3);">2 days ago</span>
+        </div>
+        <p style="color:var(--text2);font-size:14px;line-height:1.7;">
+          Absolutely beautiful. One of those books that makes you think about all the choices you've made.
+        </p>
+      </div>
+      <div class="review-card">
+        <div class="d-flex gap-3 mb-3">
+          <div class="reviewer-avatar" style="background:linear-gradient(135deg,#4f8ef7,#7ab3ff);">J</div>
+          <div>
+            <div style="font-weight:600;color:var(--text);">James K.</div>
+            <div class="stars" style="font-size:11px;">★★★★★</div>
+          </div>
+          <span class="ms-auto" style="font-size:12px;color:var(--text3);">1 week ago</span>
+        </div>
+        <p style="color:var(--text2);font-size:14px;line-height:1.7;">
+          Read it in one sitting. Matt Haig writes with such empathy and wisdom.
+        </p>
+      </div>
+      <!-- Add Review Form -->
+      <div class="folio-card p-4 mt-4">
+        <h6
+          style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:16px;">
+          Write a Review</h6>
+        <div class="mb-3">
+          <div
+            style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text2);margin-bottom:8px;">
+            Your Rating</div>
+          <div style="font-size:24px;cursor:pointer;color:var(--gold);" id="star-rating">☆☆☆☆☆</div>
+        </div>
+        <textarea class="folio-input mb-3" rows="4" placeholder="Share your thoughts on this book…"
+          style="resize:vertical;"></textarea>
+        <button class="btn-folio-primary" onclick="showToast('⭐ Review submitted!')">
+          <i class="bi bi-send me-2"></i>Submit Review
+        </button>
+      </div>
+    </div>
+
+    <!-- Tab: Related Books -->
+    <div class="tab-content" id="tab-related">
+      <div class="row g-4" id="related-grid"></div>
+    </div>
+
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container"></div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // ── BOOK DATA ──────────────────────────────────────────
+    const BOOKS = [
+      { id: 1, title: 'The Midnight Library', author: 'Matt Haig', genre: 'Fiction', price: 18.99, oldPrice: 24, color: 'linear-gradient(145deg,#2d3142,#4f5d75)', badge: 'Bestseller', badgeType: 'gold', rating: 5, pages: 320, year: 2020, lang: 'EN', desc: 'Between life and death there is a library, and within that library, the shelves go on forever. Every book provides a chance to try another life you could have lived.' },
+      { id: 2, title: 'Lessons in Chemistry', author: 'Bonnie Garmus', genre: 'Literary Fiction', price: 22.00, oldPrice: null, color: 'linear-gradient(145deg,#6b2737,#9b4456)', badge: 'New', badgeType: 'new', rating: 5, pages: 400, year: 2022, lang: 'EN', desc: 'A chemist turned cooking show host in the 1960s challenges the status quo.' },
+      { id: 3, title: 'Atomic Habits', author: 'James Clear', genre: 'Self-Help', price: 19.99, oldPrice: 27, color: 'linear-gradient(145deg,#3d5a3e,#5e8b61)', badge: 'Bestseller', badgeType: 'gold', rating: 5, pages: 320, year: 2018, lang: 'EN', desc: 'Tiny changes, remarkable results. Transform your habits.' },
+      { id: 4, title: 'Dune', author: 'Frank Herbert', genre: 'Sci-Fi', price: 16.99, oldPrice: null, color: 'linear-gradient(145deg,#5c4a1e,#8b6914)', badge: 'New', badgeType: 'new', rating: 5, pages: 688, year: 1965, lang: 'EN', desc: 'A sweeping tale of politics, religion, and ecology on desert planet Arrakis.' },
+      { id: 5, title: 'Foundation', author: 'Isaac Asimov', genre: 'Sci-Fi', price: 14.99, oldPrice: 20, color: 'linear-gradient(145deg,#2f3f5b,#3d6b8a)', badge: 'Classic', badgeType: 'gold', rating: 5, pages: 244, year: 1951, lang: 'EN', desc: 'The fall of a galactic empire and the plan to preserve knowledge.' },
+      { id: 6, title: 'Sapiens', author: 'Yuval Noah Harari', genre: 'History', price: 21.99, oldPrice: null, color: 'linear-gradient(145deg,#4a3020,#7a5035)', badge: 'Bestseller', badgeType: 'gold', rating: 4, pages: 512, year: 2011, lang: 'EN', desc: 'A brief history of humankind from Stone Age to present.' },
+      { id: 7, title: 'The Alchemist', author: 'Paulo Coelho', genre: 'Fiction', price: 13.99, oldPrice: 18, color: 'linear-gradient(145deg,#7a5a10,#b08820)', badge: 'Sale', badgeType: 'sale', rating: 5, pages: 208, year: 1988, lang: 'EN', desc: "A shepherd boy's journey to find his personal legend." },
+      { id: 8, title: 'Think Again', author: 'Adam Grant', genre: 'Psychology', price: 17.99, oldPrice: null, color: 'linear-gradient(145deg,#1a3a4a,#2a6a8a)', badge: 'New', badgeType: 'new', rating: 4, pages: 307, year: 2021, lang: 'EN', desc: "The power of knowing what you don't know." },
+    ];
+
+    // ── Get book ID from URL query string: Book_Details.html?id=1
+    const urlParams = new URLSearchParams(window.location.search);
+    const bookId = parseInt(urlParams.get('id')) || 1;
+    const book = BOOKS.find(b => b.id === bookId) || BOOKS[0];
+
+    // ── Populate page with book data ──
+    function loadBook(b) {
+      document.title = `FOLIO — ${b.title}`;
+      document.getElementById('detail-cover').style.background = b.color;
+      document.getElementById('detail-cover-title').textContent = b.title;
+      document.getElementById('detail-cover-author').textContent = b.author;
+      document.getElementById('detail-title').textContent = b.title;
+      document.getElementById('detail-author').textContent = 'by ' + b.author;
+      document.getElementById('detail-genre').textContent = b.genre;
+      document.getElementById('detail-desc').textContent = b.desc || '';
+      document.getElementById('detail-price').textContent = '$' + b.price.toFixed(2);
+      document.getElementById('detail-old').textContent = b.oldPrice ? '$' + b.oldPrice.toFixed(2) : '';
+      document.getElementById('detail-badge').textContent = b.badge || '';
+      document.getElementById('detail-badge').className = b.badgeType === 'gold' ? 'badge-gold' : b.badgeType === 'new' ? 'badge-new' : 'badge-sale';
+      document.getElementById('meta-pages').textContent = b.pages;
+      document.getElementById('meta-year').textContent = b.year;
+      document.getElementById('meta-lang').textContent = b.lang;
+      renderRelated(b.id);
+    }
+
+    // ── Related Books ──
+    function badgeHTML(b, type) {
+      if (!b) return '';
+      const cls = type === 'gold' ? 'badge-gold' : type === 'new' ? 'badge-new' : 'badge-sale';
+      return `<span class="position-absolute" style="top:10px;right:10px;z-index:2;"><span class="${cls}">${b}</span></span>`;
+    }
+    function starsHTML(r) {
+      return '<span class="stars">' + '★'.repeat(r) + '☆'.repeat(5 - r) + '</span>';
+    }
+
+    function renderRelated(currentId) {
+      const related = BOOKS.filter(b => b.id !== currentId).slice(0, 4);
+      document.getElementById('related-grid').innerHTML = related.map(b => `
+    <div class="col-sm-6 col-md-3">
+      <div class="folio-card h-100 book-card-wrap" onclick="loadBookById(${b.id})">
+        <div class="p-3">
+          <div class="book-cover position-relative" style="background:${b.color};">
+            <div class="book-cover-spine"></div>
+            ${badgeHTML(b.badge, b.badgeType)}
+            <div class="book-cover-text">${b.title}</div>
+            <div class="book-cover-author-label">${b.author}</div>
+          </div>
+        </div>
+        <div class="px-3 pb-3">
+          <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">${b.genre}</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--text);line-height:1.2;">${b.title}</div>
+          <div style="font-size:13px;color:var(--text2);margin-bottom:10px;">${b.author}</div>
+          ${starsHTML(b.rating)}
+          <div class="d-flex align-items-center justify-content-between mt-2">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);">$${b.price.toFixed(2)}</span>
+            <button class="nav-icon-btn" onclick="event.stopPropagation(); showToast('📚 Added to cart!');" title="Add to cart"><i class="bi bi-bag-plus"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+    }
+
+    function loadBookById(id) {
+      const b = BOOKS.find(x => x.id === id);
+      if (!b) return;
+      loadBook(b);
+      // Reset tabs to first tab
+      document.querySelectorAll('.tab-btn').forEach((t, i) => t.classList.toggle('active', i === 0));
+      document.querySelectorAll('.tab-content').forEach((t, i) => t.classList.toggle('active', i === 0));
+      window.scrollTo(0, 0);
+      showToast(`📖 Viewing: ${b.title}`);
+    }
+
+    // ── Cart ──
+    let cartCount = 2;
+    function addToCart() {
+      cartCount++;
+      document.getElementById('cart-badge').textContent = cartCount;
+    }
+
+    // ── Tabs ──
+    function switchTab(btn, tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    // ── Toast ──
+    function showToast(msg) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'toast-folio';
+      toast.textContent = msg;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 3100);
+    }
+
+    // ── Theme Toggle ──
+    function toggleTheme() {
+      const isLight = document.body.classList.toggle('light');
+      const thumb = document.getElementById('theme-thumb');
+      thumb.textContent = isLight ? '☀️' : '🌙';
+      localStorage.setItem('folio-theme', isLight ? 'light' : 'dark');
+      showToast(isLight ? '☀️ Light mode on' : '🌙 Dark mode on');
+    }
+    (function () {
+      const saved = localStorage.getItem('folio-theme');
+      if (saved === 'light') {
+        document.body.classList.add('light');
+        const thumb = document.getElementById('theme-thumb');
+        if (thumb) thumb.textContent = '☀️';
+      }
+    })();
+
+    // ── Star Rating interaction ──
+    const starRating = document.getElementById('star-rating');
+    if (starRating) {
+      let selected = 0;
+      starRating.addEventListener('mousemove', e => {
+        const rect = starRating.getBoundingClientRect();
+        const pos = (e.clientX - rect.left) / rect.width;
+        const hovered = Math.ceil(pos * 5);
+        starRating.textContent = '★'.repeat(hovered) + '☆'.repeat(5 - hovered);
+      });
+      starRating.addEventListener('mouseleave', () => {
+        starRating.textContent = '★'.repeat(selected) + '☆'.repeat(5 - selected);
+      });
+      starRating.addEventListener('click', e => {
+        const rect = starRating.getBoundingClientRect();
+        const pos = (e.clientX - rect.left) / rect.width;
+        selected = Math.ceil(pos * 5);
+        starRating.textContent = '★'.repeat(selected) + '☆'.repeat(5 - selected);
+        showToast(`You rated this ${selected} star${selected > 1 ? 's' : ''}`);
+      });
+    }
+
+    // ── Init ──
+    loadBook(book);
+  </script>
+
+    
+
+
+    
+
+
+
 </body>
 </html>
