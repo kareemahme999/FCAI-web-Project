@@ -4,6 +4,7 @@
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
 
+
 }
 :root{
     --bg: #f5f2ec;
@@ -142,6 +143,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    /*flex-wrap: wrap;*/
     gap: 24px;
     width: 100%;
 }
