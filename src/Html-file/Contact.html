@@ -1,93 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
-    <link rel="icon" type="image/icon" href="../../Pictures/dribbble.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
-
-    <script src="../JavaScript-file/Contact.js"></script>
-  <style></style>
-  <link rel="stylesheet" href="../Css-file/Contact.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FOLIO — Contact Us</title>
+    <link rel="stylesheet" href="../Css-file/Contact.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
+
 <header class="header">
-
     <div class="F-header">
-
-        <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
+        <h1><i class="bi bi-dribbble"></i> FOLIO.</h1>
         <ul>
-            <li><a href="index.html"><i class="bi bi-house"></i>Home</a></li>
-            <li><a href="Books.html"><i class="bi bi-grid"></i>books</a></li>
-            <li><a href="About.html"><i class="bi bi-info-circle"></i>About</a></li>
-            <li><a id="Contact" href="Contact.html"><i class="bi bi-envelope"></i>Contact</a></li>
+            <li><a href="index.html"><i class="bi bi-house"></i> Home</a></li>
+            <li><a href="Books.html"><i class="bi bi-grid"></i> Books</a></li>
+            <li><a href="About.html"><i class="bi bi-info-circle"></i> About</a></li>
+            <li><a href="Contact.html" id="contact-active"><i class="bi bi-envelope"></i> Contact</a></li>
         </ul>
-
     </div>
-
     <div class="L-header">
         <form>
-            <input type="search" placeholder="Search books,authors...">
-
+            <input type="search" placeholder="Search books, authors..." />
         </form>
         <button><a href="Search.html"><i class="bi bi-search"></i></a></button>
         <button><a href="my_list.html"><i class="fa-regular fa-bookmark"></i></a></button>
         <button><a href="Cart.html"><i class="bi bi-bag"></i></a></button>
         <button><a href="User_profile.html"><i class="fa-regular fa-circle-user"></i></a></button>
-
-
-
     </div>
 </header>
 
-<div>
-  <div>
-    <div>Get In Touch</div>
-    <h2>Contact <em>Us</em></h2>
-    <p>We'd love to hear from you. Drop us a message and we'll get back within 24 hours.</p>
-    <div>
-      <div>
+<main class="contact-page">
+
+    <div class="eyebrow">Get In Touch</div>
+    <h1 class="title">Contact <em>Us</em></h1>
+    <p class="intro">We'd love to hear from you. Drop us a message and we'll get back within 24 hours.</p>
+
+    <div class="grid">
+
+        <!-- Left: Info + Map -->
         <div>
-          <div>Visit Us</div><div>123 Book Street, Literary Quarter<br>New York, NY 10001</div>
-          <div>Call Us</div><div>+1 (555) 123-4567</div><div>Mon–Fri, 9am–6pm EST</div></div></div>
-          <div>Email Us</div><div>[email&nbsp;protected]</a></div><div>We reply within 24 hours</div>
-          <div>Store Hours</div><div>Mon–Sat: 9am – 9pm<br>Sunday: 11am – 6pm</div>
-        <div>Interactive map</div>
-      <div>
-        <div>
-          <h5>Send a Message</h5>
-          <div>
-            <div>Your Name</div><input class="folio-input" placeholder="Alex Reader"></div>
-            <div><div>Email Address</div><input placeholder="alex@example.com"></div>
-            <div>
-              <div>Subject</div>
-              <select>
-                <option>General Inquiry</option>
-                <option>Order Support</option>
-                <option>Book Recommendation</option>
-                <option>Partnership</option>
-                <option>Press &amp; Media</option>
-              </select>
+            <div class="info-card">
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <div>
+                        <div class="info-title">Visit Us</div>
+                        <div class="info-detail">123 Book Street, Literary Quarter<br>Cairo, NY 10001</div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="bi bi-telephone-fill"></i>
+                    </div>
+                    <div>
+                        <div class="info-title">Call Us</div>
+                        <div class="info-detail">+20 1558003416</div>
+                        <div class="info-sub">Mon–Fri, 9am–6pm EST</div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="bi bi-envelope-fill"></i>
+                    </div>
+                    <div>
+                        <div class="info-title">Email Us</div>
+                        <div class="info-detail">kareemahmed4795@gmail.com</div>
+                        <div class="info-sub">We reply within 24 hours</div>
+                    </div>
+                </div>
+
+                <div class="info-item" style="padding-bottom: 0;">
+                    <div class="info-icon">
+                        <i class="bi bi-clock-fill"></i>
+                    </div>
+                    <div>
+                        <div class="info-title">Store Hours</div>
+                        <div class="info-detail">Mon–Sat: 9am – 9pm<br>Sunday: 11am – 6pm</div>
+                    </div>
+                </div>
+
             </div>
-            <div>Message</div><textarea class="folio-input" rows="6" placeholder="Tell us how we can help you…"></textarea></div>
-            <div><button onclick="showToast('✉️ Message sent! We\'ll reply within 24hrs.')"><i class="bi bi-send me-2"></i>Send Message</button></div>
-          </div>
+
+            <div class="map">
+                <i class="bi bi-map" style="font-size: 48px; opacity: 0.25;"></i>
+                <span>Interactive map</span>
+            </div>
         </div>
-      </div>
+
+        <!-- Right: Contact Form -->
+        <div class="form-card">
+            <div class="form-title">Send a Message</div>
+
+            <div class="form-row">
+                <div>
+                    <label class="label" for="name">Your Name</label>
+                    <input class="input" id="name" type="text" placeholder="Alex Reader" />
+                </div>
+                <div>
+                    <label class="label" for="email">Email Address</label>
+                    <input class="input" id="email" type="email" placeholder="alex@example.com" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="label" for="subject">Subject</label>
+                <select class="input" id="subject">
+                    <option>General Inquiry</option>
+                    <option>Order Support</option>
+                    <option>Book Recommendation</option>
+                    <option>Partnership</option>
+                    <option>Press &amp; Media</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="label" for="message">Message</label>
+                <textarea class="input" id="message" placeholder="Tell us how we can help you…"></textarea>
+            </div>
+
+            <button class="send-btn" onclick="sendMessage()">
+                <i class="bi bi-send"></i> Send Message
+            </button>
+        </div>
+
     </div>
-  </div>
-</div>
+</main>
+
+<div id="toast-box"></div>
 
 
-
-
-
-
-
-<script src="../JavaScript-file/Contact.js"></script>
 
 </body>
 </html>
