@@ -24,6 +24,9 @@
     --danger: #e05252;
     --success: #52c07a;
 }
+
+
+/* mohamed abdelmaqsoud */
 *,
 *::before,
 *::after {
@@ -43,7 +46,12 @@ body {
   font-size: 15px;
   min-height: 100vh;
 }
+/* end of mohamed abdelmaqsoud */
 
+
+body {
+position: relative;
+}
 /*header*****************************************************************************/
 .header{
     display: inline-flex;
