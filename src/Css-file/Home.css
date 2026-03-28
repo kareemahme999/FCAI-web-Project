@@ -1249,6 +1249,7 @@ footer > div:last-child p {
         gap: 20px;
     }
 
+
     footer > div:last-child {
         flex-direction: column;
         gap: 8px;
