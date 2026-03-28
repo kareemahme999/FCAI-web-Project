@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="icon" type="image/icon" href="../../Pictures/dribbble.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <script src="../JavaScript-file/my_list.js"></script>
+  <style></style>
+  <link rel="stylesheet" href="../Css-file/my_list.css">
+</head>
+
+
+<body>
+
+<header class="header">
+
+    <div class="F-header">
+
+        <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
+        <ul>
+            <li><a  href="index.html"><i class="bi bi-house"></i>Home</a></li>
+            <li><a href="Books.html"><i class="bi bi-grid"></i>books</a></li>
+            <li><a href="About.html"><i class="bi bi-info-circle"></i>About</a></li>
+            <li><a href="Contact.html"><i class="bi bi-envelope"></i>Contact</a></li>
+        </ul>
+
+    </div>
+
+    <div class="L-header">
+        <form>
+            <input type="search" placeholder="Search books,authors...">
+
+        </form>
+        <button><a href="Search.html"><i class="bi bi-search"></i></a></button>
+        <button><a href="my_list.html"><i class="fa-regular fa-bookmark"></i></a></button>
+        <button><a href="Cart.html"><i class="bi bi-bag"></i></a></button>
+        <button><a href="User_profile.html"><i class="fa-regular fa-circle-user"></i></a></button>
+
+
+
+    </div>
+</header>
+
+
+
+<div class="container">
+
+    <!-- Form to add book -->
+    <div class="book-form">
+        <h2>Add New Book</h2>
+        <label for="book-title">Book Title:</label>
+        <input type="text" id="book-title" placeholder="Enter book title">
+
+        <label for="book-author">Author:</label>
+        <input type="text" id="book-author" placeholder="Enter author name">
+
+        <label for="book-genre">Genre:</label>
+        <select id="book-genre">
+            <option value="">Select Genre</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Literary Fiction">Literary Fiction</option>
+            <option value="Self-Help">Self-Help</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="History">History</option>
+        </select>
+
+        <label for="book-pages">Total Pages:</label>
+        <input type="number" id="book-pages" placeholder="Enter total pages">
+
+      
+        <button>Add Book</button>
+    </div>
+
+    <!-- Books added by this admin -->
+    <div class="book-list">
+        <h2>Books Added by Jane Smith</h2>
+
+        <!-- Example books -->
+        <div class="book-item">
+            <h3>The Midnight Library</h3>
+            <p><strong>Author:</strong> Matt Haig</p>
+            <p><strong>Genre:</strong> Fiction</p>
+            <p><strong>Pages:</strong> 320</p>
+            <p><strong>Readers:</strong> 120</p>
+            <p><strong>Purchases:</strong> 50</p>
+        </div>
+
+        <div class="book-item">
+            <h3>Lessons in Chemistry</h3>
+            <p><strong>Author:</strong> Bonnie Garmus</p>
+            <p><strong>Genre:</strong> Literary Fiction</p>
+            <p><strong>Pages:</strong> 300</p>
+            <p><strong>Readers:</strong> 80</p>
+            <p><strong>Purchases:</strong> 35</p>
+        </div>
+
+        <div class="book-item">
+            <h3>Atomic Habits</h3>
+            <p><strong>Author:</strong> James Clear</p>
+            <p><strong>Genre:</strong> Self-Help</p>
+            <p><strong>Pages:</strong> 250</p>
+            <p><strong>Readers:</strong> 200</p>
+            <p><strong>Purchases:</strong> 75</p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
