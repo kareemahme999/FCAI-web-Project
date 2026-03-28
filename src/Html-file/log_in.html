@@ -44,50 +44,88 @@
 
     </div>
 </header>
-
-
 <main>
-    <div class="form">
-        <div class="box-login">
+    <div class="form" id="main-form">
+
+        <!-- ── LOGIN BOX ── -->
+        <div class="box-login" id="box-login">
             <h2><i>Login</i></h2>
+
             <div class="input">
-                <input type="text" id="username" class="inp" required>
+                <input type="text" id="username" required>
                 <label for="username"><i class="fa fa-user"></i> Username</label>
             </div>
+
             <div class="input">
-                <input type="password" id="password" class="inp" required>
-                <label for="password"><i class="fa fa-key"></i> Password</label>
+                <input type="password" id="password" required>
+                <label for="password"><i class="fa fa-lock"></i> Password</label>
             </div>
+
             <div class="opt">
-                <button id="forgot-pass">Forgot password?</button>
-                <label for="remember">Remember me</label>
-                <input type="checkbox" id="remember">
+                <button onclick="forgotPass()">Forgot password?</button>
+                <label for="remember">
+                    <input type="checkbox" id="remember"> Remember me
+                </label>
             </div>
-            <button class="submit">Login <i class="fa fa-sign-in"></i></button>
-            <span>Don't have an account? <button id="to-reg">Sign up</button></span>
+
+            <!-- Admin checkbox -->
+            <div class="admin-check-row">
+                <label for="is-admin" class="admin-check-label">
+                    <input type="checkbox" id="is-admin" onchange="toggleAdminFields()">
+                    <i class="bi bi-shield-lock-fill"></i>
+                    Login as Admin
+                </label>
+            </div>
+
+            <!-- Admin credentials — hidden until checkbox is ticked -->
+            <div class="admin-fields" id="admin-fields">
+                <div class="input">
+                    <input type="text" id="admin-username">
+                    <label for="admin-username"><i class="bi bi-person-badge"></i> Admin Username</label>
+                </div>
+                <div class="input">
+                    <input type="password" id="admin-password">
+                    <label for="admin-password"><i class="bi bi-key-fill"></i> Admin Password</label>
+                </div>
+            </div>
+
+            <button class="submit" onclick="handleLogin()">
+                Login <i class="fa fa-sign-in"></i>
+            </button>
+
+            <span>Don't have an account? <button onclick="switchToRegister()">Sign up</button></span>
         </div>
 
-        <div class="box-register">
-            <h2><span>Webdevelop - </span><i>Register</i></h2>
+        <!-- ── REGISTER BOX ── -->
+        <div class="box-register" id="box-register">
+            <h2><span>FOLIO —</span><i>Register</i></h2>
+
             <div class="input">
-                <input type="email" id="reg-email" class="inp" required>
+                <input type="email" id="reg-email" required>
                 <label for="reg-email"><i class="fa fa-envelope"></i> Email</label>
             </div>
+
             <div class="input">
-                <input type="text" id="reg-username" class="inp" required>
+                <input type="text" id="reg-username" required>
                 <label for="reg-username"><i class="fa fa-user"></i> Username</label>
             </div>
+
             <div class="input">
-                <input type="password" id="reg-password" class="inp" required>
-                <label for="reg-password"><i class="fa fa-key"></i> Password</label>
+                <input type="password" id="reg-password" required>
+                <label for="reg-password"><i class="fa fa-lock"></i> Password</label>
             </div>
-            <button class="submit">Register</button>
-            <span>Already have an account? <button id="to-log">Login <i class="fa fa-sign-in"></i></button></span>
+
+            <button class="submit" onclick="handleRegister()">
+                Create Account
+            </button>
+
+            <span>Already have an account? <button onclick="switchToLogin()">Login <i class="fa fa-sign-in"></i></button></span>
         </div>
+
     </div>
 </main>
 
-
+<div id="toast-box"></div>
 <script src="../JavaScript-file/log_in.js"></script>
 
 </body>

@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Syne:wght@400;500;600;700;800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Syne', Arial, Helvetica, sans-serif;
     box-sizing: border-box;
-
 }
-:root{
+
+:root {
     --bg: #f5f2ec;
     --bg2: #ede9e0;
     --bg3: #e8e3d8;
@@ -21,172 +23,227 @@
     --text3: #a89880;
     --danger: #cc3c3c;
     --success: #3a9e62;
+    --radius: 12px;
 }
-body{
-    position: relative;
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
 }
-/*header*****************************************************************************/
-.header{
-    display: inline-flex;
+
+/* ── HEADER ── */
+.header {
+    display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
-    background: rgba(245, 242, 236, 0.9);
-    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.06);
+    background: rgba(245, 242, 236, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.08);
     position: sticky;
     top: 0;
     height: 70px;
     z-index: 999;
-    align-items: center !important;
+    padding: 0 20px;
 }
-.F-header{
-    display: inline-flex;
-    justify-content: space-between;
-    padding: 20px;
+
+.F-header {
+    display: flex;
     align-items: center;
-
+    gap: 8px;
 }
-.F-header h1{
-    font-size: 30px;
+
+.F-header h1 {
+    font-size: 26px;
     font-weight: 700;
-    margin: 0 15px 0 0;
+    margin-right: 12px;
+    white-space: nowrap;
+    color: var(--text);
+}
 
+.F-header ul {
+    list-style: none;
+    display: flex;
+    gap: 2px;
+    padding: 0;
 }
-.F-header ul{
-    padding: 10px
-}
-.F-header ul li{
+
+.F-header ul li {
     display: inline-flex;
-    letter-spacing: 0.12em;
+}
+
+.F-header ul li a {
+    font-size: 13px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 8px 5px;
-    cursor: pointer;
     text-decoration: none;
-
-}
-.F-header ul li :hover{
-    background: var(--glow);
-    color:var(--gold) ;
-}
-
-#home{
-    background: var(--glow);
-    color:var(--gold) ;
-}
-
-.F-header ul li a{
-    font-size: 14px;
-    text-decoration: none;
-    color:var(--text2) ;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    padding: 8px 20px;
-}
-.L-header{
-    display: inline-flex;
-    justify-content: space-between;
-    padding: 20px;
-    gap: 20px;
-}
-
-.L-header button{
-    border-radius: 8px;
-    border: 1px solid rgba(116, 112, 112, 0.82);
-    background:transparent ;
-    padding: 8px 9px;
-
-}
-.L-header button:hover{
-    border: 1px solid var(--gold  );
-    background: var(--glow);
-
-}
-.L-header button a {
     color: var(--text2);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 7px 14px;
+    transition: all 0.2s;
+    white-space: nowrap;
 }
-.L-header button:hover a{
+
+.F-header ul li a:hover {
+    background: var(--glow);
     color: var(--gold);
 }
 
-.L-header form input {
+#home {
+    background: var(--glow);
+    color: var(--gold) !important;
+}
 
+.L-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.L-header form input {
     border: 1px solid var(--border2);
     border-radius: 8px;
-    padding: 8px 16px;
+    padding: 8px 14px;
     outline: none;
-}
-.L-header form input:focus {
-    box-shadow:  1px 1px 10px var(--gold);
-
-}
-.L-header form input::placeholder {
     font-family: 'Syne', sans-serif;
-    color: var(--text2);
     font-size: 12px;
-    padding:0;
+    color: var(--text2);
+    background: var(--card);
+    width: 180px;
+    transition: box-shadow 0.2s;
 }
-/**************************************************************************************/
 
-/**************************************************************************************/
+.L-header form input:focus {
+    box-shadow: 0 0 0 3px var(--glow);
+}
 
+.L-header form input::placeholder {
+    color: var(--text3);
+}
+
+.L-header button {
+    border-radius: 8px;
+    border: 1px solid rgba(116, 112, 112, 0.6);
+    background: transparent;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.L-header button:hover {
+    border-color: var(--gold);
+    background: var(--glow);
+}
+
+.L-header button a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+.L-header button:hover a {
+    color: var(--gold);
+}
+
+/* ── MAIN ── */
 main {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 70px);
     background: var(--bg);
-    font-family: sans-serif;
-    color: var(--text);
-    overflow: hidden;
+    padding: 32px 16px;
 }
 
+/* ── FORM CARD ── */
 .form {
     position: relative;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
-    max-width: 450px;
-    height: 65vh;
-    min-height: 480px;
-    border-radius: 40px;
+    width: 100%;
+    max-width: 440px;
+    /* height grows automatically when admin fields appear */
+    min-height: 520px;
+    border-radius: 28px;
     background: var(--card);
     border: 1px solid var(--border);
-    box-shadow: 0 10px 30px var(--glow); /* ظل خفيف باللون الذهبي */
+    box-shadow: 0 12px 40px var(--glow);
+    transition: min-height 0.4s ease;
 }
 
+/* taller when admin fields are visible */
+.form.admin-mode {
+    min-height: 660px;
+}
+
+/* ── LOGIN / REGISTER PANELS ── */
 .box-login, .box-register {
     position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
     width: 100%;
     height: 100%;
-    padding: 20px;
-    transition: 0.6s ease-in-out;
+    padding: 32px 24px;
+    transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1),
+    opacity  0.55s ease;
 }
 
 .box-register {
     transform: translateX(100%);
+    opacity: 0;
 }
 
-.form h2 {
-    padding-bottom: 20px;
-    font-size: 32px;
-    color: var(--text);
+.box-register.active {
+    transform: translateX(0);
+    opacity: 1;
 }
+
+.box-login.hidden {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+/* ── HEADINGS ── */
+.form h2 {
+    padding-bottom: 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    color: var(--text);
+    text-align: center;
+}
+
 .form h2 span {
-    font-size: 20px;
+    font-size: 14px;
     font-weight: normal;
     color: var(--text3);
-}
-.form h2 i {
-    color: var(--gold);
-    font-style: normal;
+    font-family: 'Syne', sans-serif;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
+.form h2 i {
+    color: var(--gold);
+    font-style: italic;
+}
+
+/* ── INPUTS ── */
 .input {
     position: relative;
     display: flex;
@@ -196,20 +253,22 @@ main {
 
 .input input {
     width: 100%;
-    height: 45px;
-    border: 2px solid var(--border2);
+    height: 48px;
+    border: 1.5px solid var(--border2);
     border-radius: 12px;
-    padding-left: 15px;
-    font-size: 16px;
+    padding: 0 15px;
+    font-size: 15px;
+    font-family: 'Syne', sans-serif;
     background: var(--bg2);
     color: var(--text);
     outline: none;
-    transition: 0.3s;
+    transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
 }
 
 .input input:focus {
     border-color: var(--gold);
     background: var(--card);
+    box-shadow: 0 0 0 3px var(--glow);
 }
 
 .input label {
@@ -220,23 +279,36 @@ main {
     color: var(--text2);
     transition: 0.3s all;
     pointer-events: none;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 14px;
 }
 
 .input input:focus ~ label,
 .input input:valid ~ label {
-    transform: translateY(-40px) translateX(-10px);
-    font-size: 14px;
+    top: 0;
+    transform: translateY(-110%) translateX(-4px);
+    font-size: 11px;
     color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
+/* ── OPTIONS ROW ── */
 .opt {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 85%;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--text2);
+    gap: 8px;
+}
+
+.opt label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
 }
 
 .opt button {
@@ -244,37 +316,116 @@ main {
     border: none;
     color: var(--gold);
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: 'Syne', sans-serif;
+    padding: 0;
+    transition: opacity 0.2s;
 }
+
+.opt button:hover { opacity: 0.75; }
 
 .opt input[type="checkbox"] {
-    margin-left: 5px;
     cursor: pointer;
     accent-color: var(--gold);
+    width: 15px;
+    height: 15px;
 }
 
+/* ── ADMIN CHECKBOX ROW ── */
+.admin-check-row {
+    width: 85%;
+}
+
+.admin-check-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    cursor: pointer;
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 9px 14px;
+    background: var(--bg2);
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+    user-select: none;
+}
+
+.admin-check-label:hover {
+    border-color: var(--gold);
+    background: var(--glow);
+    color: var(--gold);
+}
+
+.admin-check-label input[type="checkbox"] {
+    accent-color: var(--gold);
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.admin-check-label i {
+    color: var(--gold);
+    font-size: 15px;
+}
+
+/* ── ADMIN FIELDS (hidden until checkbox ticked) ── */
+.admin-fields {
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+    width: 85%;
+    padding: 16px;
+    border: 1px dashed rgba(184, 132, 42, 0.4);
+    border-radius: 14px;
+    background: rgba(184, 132, 42, 0.04);
+    animation: fadeSlideIn 0.35s ease;
+}
+
+.admin-fields.show {
+    display: flex;
+}
+
+.admin-fields .input {
+    width: 100%;
+}
+
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SUBMIT ── */
 .submit {
     width: 75%;
-    height: 45px;
+    height: 48px;
     border-radius: 25px;
     border: none;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: bold;
-    background: var(--gold);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.05em;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
     cursor: pointer;
-    transition: 0.3s;
-    margin-top: 10px;
+    transition: all 0.25s;
+    margin-top: 4px;
 }
 
 .submit:hover {
-    background: var(--gold2);
-    box-shadow: 0 4px 15px var(--glow);
+    box-shadow: 0 6px 20px rgba(184, 132, 42, 0.4);
+    transform: translateY(-2px);
 }
 
-.form span {
-    font-size: 14px;
-    margin-top: 10px;
+.submit:active { transform: translateY(0); }
+
+/* ── SWITCH TEXT ── */
+.box-login > span,
+.box-register > span {
+    font-size: 13px;
     color: var(--text2);
 }
 
@@ -282,9 +433,91 @@ main {
     background: none;
     border: none;
     color: var(--gold);
-    font-weight: bold;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
     cursor: pointer;
     text-decoration: underline;
+    font-size: 13px;
+    transition: opacity 0.2s;
 }
 
+.form span button:hover { opacity: 0.75; }
 
+/* ── TOAST ── */
+#toast-box {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background: var(--card2);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--gold);
+    border-radius: 10px;
+    padding: 13px 18px;
+    font-size: 13px;
+    color: var(--text);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+    animation: slideIn 0.3s ease, fadeOut 0.4s ease 2.6s forwards;
+    min-width: 220px;
+}
+
+.toast.toast-error { border-left-color: var(--danger); }
+
+@keyframes slideIn {
+    from { transform: translateX(50px); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+}
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateX(30px); }
+}
+
+/* ── RESPONSIVE: Tablet ── */
+@media (max-width: 900px) {
+    .F-header ul    { display: none; }
+    .L-header form  { display: none; }
+}
+
+/* ── RESPONSIVE: Mobile ── */
+@media (max-width: 600px) {
+    .header         { padding: 0 14px; }
+    .F-header h1    { font-size: 20px; }
+    .L-header       { gap: 6px; }
+    .L-header button{ padding: 7px 8px; }
+
+    main {
+        padding: 20px 12px 40px;
+        align-items: flex-start;
+    }
+
+    .form {
+        border-radius: 20px;
+        min-height: 500px;
+    }
+
+    .form.admin-mode { min-height: 680px; }
+
+    .input,
+    .admin-check-row,
+    .admin-fields { width: 92%; }
+
+    .opt    { width: 92%; flex-wrap: wrap; }
+    .submit { width: 86%; }
+
+    .form h2 { font-size: 28px; }
+
+    #toast-box { bottom: 14px; right: 14px; left: 14px; }
+    .toast { min-width: unset; width: 100%; }
+}
+
+/* ── RESPONSIVE: Very small ── */
+@media (max-width: 380px) {
+    .F-header h1 { font-size: 17px; }
+    .form h2     { font-size: 24px; }
+    .L-header    { gap: 4px; }
+}
