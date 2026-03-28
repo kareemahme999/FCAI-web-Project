@@ -30,7 +30,6 @@
         <button><a href="User_profile.html"><i class="fa-regular fa-circle-user"></i></a></button>
     </div>
 </header>
-
 <main class="contact-page">
 
     <div class="eyebrow">Get In Touch</div>
@@ -74,7 +73,7 @@
                     </div>
                 </div>
 
-                <div class="info-item" style="padding-bottom: 0;">
+                <div class="info-item">
                     <div class="info-icon">
                         <i class="bi bi-clock-fill"></i>
                     </div>
@@ -99,10 +98,12 @@
                 <div>
                     <label class="label" for="name">Your Name</label>
                     <input class="input" id="name" type="text" placeholder="Alex Reader" />
+                    <span class="error-msg" id="name-error">Please enter your name.</span>
                 </div>
                 <div>
                     <label class="label" for="email">Email Address</label>
                     <input class="input" id="email" type="email" placeholder="alex@example.com" />
+                    <span class="error-msg" id="email-error">Please enter a valid email address.</span>
                 </div>
             </div>
 
@@ -120,6 +121,7 @@
             <div class="form-group">
                 <label class="label" for="message">Message</label>
                 <textarea class="input" id="message" placeholder="Tell us how we can help you…"></textarea>
+                <span class="error-msg" id="message-error">Please write your message.</span>
             </div>
 
             <button class="send-btn" onclick="sendMessage()">
@@ -131,7 +133,6 @@
 </main>
 
 <div id="toast-box"></div>
-
 
 
 </body>

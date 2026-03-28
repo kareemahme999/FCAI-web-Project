@@ -3,7 +3,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Syne', Arial, Helvetica, sans-serif;
     box-sizing: border-box;
 }
 
@@ -27,51 +27,64 @@
 }
 
 body {
-    position: relative;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
 }
 
-/*header*****************************************************************************/
+/* ── HEADER ── */
 .header {
-    display: inline-flex;
+    display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     background: rgba(245, 242, 236, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 1px 20px rgba(0, 0, 0, 0.08);
     position: sticky;
     top: 0;
     height: 70px;
-    align-items: center !important;
     z-index: 99;
+    padding: 0 20px;
 }
 
 .F-header {
-    display: inline-flex;
-    justify-content: space-between;
-    padding: 20px;
+    display: flex;
     align-items: center;
+    gap: 8px;
 }
 
 .F-header h1 {
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 700;
-    margin: 0 15px 0 0;
+    margin-right: 12px;
+    white-space: nowrap;
+    color: var(--text);
 }
 
 .F-header ul {
-    padding: 10px;
     list-style: none;
+    display: flex;
+    gap: 2px;
+    padding: 0;
 }
 
 .F-header ul li {
     display: inline-flex;
-    letter-spacing: 0.12em;
+}
+
+.F-header ul li a {
+    font-size: 13px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 8px 5px;
-    cursor: pointer;
     text-decoration: none;
+    color: var(--text2);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 7px 14px;
+    transition: all 0.2s;
+    white-space: nowrap;
 }
 
 .F-header ul li a:hover {
@@ -80,38 +93,52 @@ body {
 }
 
 #contact-active {
-    background: var(--glow);
+    background: var(--glow) !important;
     color: var(--gold) !important;
 }
 
-.F-header ul li a {
-    font-size: 14px;
-    text-decoration: none;
-    color: var(--text2);
-    border: 1px solid transparent;
-    border-radius: 5px;
-    padding: 8px 20px;
-    transition: all 0.2s;
+.L-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
-.L-header {
-    display: inline-flex;
-    justify-content: space-between;
-    padding: 20px;
-    gap: 20px;
-    align-items: center;
+.L-header form input {
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 8px 14px;
+    outline: none;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    color: var(--text2);
+    background: var(--card);
+    width: 180px;
+    transition: box-shadow 0.2s;
+}
+
+.L-header form input:focus {
+    box-shadow: 0 0 0 3px var(--glow);
+}
+
+.L-header form input::placeholder {
+    color: var(--text3);
 }
 
 .L-header button {
     border-radius: 8px;
-    border: 1px solid rgba(116, 112, 112, 0.82);
+    border: 1px solid rgba(116, 112, 112, 0.6);
     background: transparent;
-    padding: 8px 9px;
+    padding: 8px 10px;
     cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .L-header button:hover {
-    border: 1px solid var(--gold);
+    border-color: var(--gold);
     background: var(--glow);
 }
 
@@ -119,30 +146,16 @@ body {
     color: var(--text2);
     text-decoration: none;
     font-size: 15px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
 }
 
 .L-header button:hover a {
     color: var(--gold);
 }
 
-.L-header form input {
-    border: 1px solid var(--border2);
-    border-radius: 8px;
-    padding: 8px 16px;
-    outline: none;
-}
-
-.L-header form input:focus {
-    box-shadow: 1px 1px 10px var(--gold);
-}
-
-.L-header form input::placeholder {
-    font-family: 'Syne', sans-serif;
-    color: var(--text2);
-    font-size: 12px;
-    padding: 0;
-}
-/**************************************************************************************/
+/* ── CONTACT PAGE ── */
 .contact-page {
     padding: 60px 5vw 80px;
 }
@@ -165,6 +178,7 @@ body {
     width: 32px;
     height: 1px;
     background: var(--gold);
+    flex-shrink: 0;
 }
 
 .title {
@@ -204,13 +218,24 @@ body {
     padding: 32px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 0;
 }
 
 .info-item {
     display: flex;
     gap: 16px;
     align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.info-item:first-child {
+    padding-top: 0;
+}
+
+.info-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 .info-icon {
@@ -308,7 +333,7 @@ body {
 }
 
 .input {
-    background: var(--card);
+    background: var(--bg);
     border: 1px solid var(--border2);
     border-radius: 8px;
     padding: 12px 16px;
@@ -317,27 +342,55 @@ body {
     font-size: 14px;
     outline: none;
     width: 100%;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .input:focus {
     border-color: var(--gold);
+    box-shadow: 0 0 0 3px var(--glow);
+}
+
+.input.error {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgba(204, 60, 60, 0.1);
 }
 
 .input::placeholder {
     color: var(--text3);
 }
 
+.error-msg {
+    font-size: 11px;
+    color: var(--danger);
+    margin-top: 5px;
+    display: none;
+}
+
+.error-msg.show {
+    display: block;
+}
+
+select.input {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b5f4a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+    cursor: pointer;
+}
+
 textarea.input {
     resize: vertical;
     min-height: 140px;
+    line-height: 1.6;
 }
 
 .send-btn {
     background: linear-gradient(135deg, var(--gold), var(--gold2));
-    color: var(--bg);
+    color: #fff;
     border: none;
-    padding: 12px 28px;
+    padding: 13px 28px;
     border-radius: 8px;
     font-family: 'Syne', sans-serif;
     font-size: 13px;
@@ -347,11 +400,20 @@ textarea.input {
     transition: all 0.2s;
     text-transform: uppercase;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .send-btn:hover {
-    opacity: 0.88;
-    box-shadow: 0 0 24px rgba(212, 168, 67, 0.35);
+    opacity: 0.9;
+    box-shadow: 0 4px 24px rgba(212, 168, 67, 0.4);
+    transform: translateY(-1px);
+}
+
+.send-btn:active {
+    transform: translateY(0);
 }
 
 /* ── TOAST ── */
@@ -376,7 +438,10 @@ textarea.input {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     animation: slideIn 0.3s ease, fadeOut 0.4s ease 2.6s forwards;
     min-width: 240px;
+}
 
+.toast.toast-error {
+    border-left-color: var(--danger);
 }
 
 @keyframes slideIn {
@@ -388,18 +453,79 @@ textarea.input {
     to { opacity: 0; transform: translateX(30px); }
 }
 
-/* ── RESPONSIVE ── */
+/* ── RESPONSIVE: Tablet ── */
 @media (max-width: 900px) {
     .grid {
         grid-template-columns: 1fr;
     }
+
+    .F-header ul {
+        display: none;
+    }
+
+    .L-header form {
+        display: none;
+    }
 }
 
+/* ── RESPONSIVE: Mobile ── */
 @media (max-width: 600px) {
+    .header {
+        padding: 0 14px;
+    }
+
+    .F-header h1 {
+        font-size: 20px;
+    }
+
+    .contact-page {
+        padding: 32px 16px 60px;
+    }
+
+    .intro {
+        margin-bottom: 32px;
+        font-size: 14px;
+    }
+
     .form-row {
         grid-template-columns: 1fr;
     }
-    .contact-page { padding: 40px 1.2rem 60px; }
-    .form-card { padding: 24px; }
-    .info-card { padding: 24px; }
+
+    .form-card {
+        padding: 22px 18px;
+    }
+
+    .info-card {
+        padding: 22px 18px;
+    }
+
+    .map {
+        height: 160px;
+    }
+
+    #toast-box {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+    }
+
+    .toast {
+        min-width: unset;
+        width: 100%;
+    }
+}
+
+/* ── RESPONSIVE: Very small ── */
+@media (max-width: 380px) {
+    .F-header h1 {
+        font-size: 17px;
+    }
+
+    .L-header {
+        gap: 5px;
+    }
+
+    .L-header button {
+        padding: 7px 8px;
+    }
 }
