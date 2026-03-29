@@ -130,7 +130,19 @@ body{
 /**************************************************************************************/
 
 .about-page {
-    padding: 60px 5vw 80px;
+    padding-top: 60px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 60px;
+}
+
+.story-section {
+    background: linear-gradient(135deg, var(--bg3), var(--card2));
+    border-bottom: 1px solid var(--border);
+    padding-left: 50px;
+    padding-top: 70px;
+    padding-bottom: 50px;
+    overflow: hidden;   
 }
 
 .eyebrow {
@@ -156,6 +168,7 @@ body{
 .title {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 4vw, 52px);
+    max-width: 500px;
     font-weight: 700;
     line-height: 1.1;
     color: var(--text);
@@ -167,9 +180,9 @@ body{
 
 .intro {
     color: var(--text2);
-    font-size: 15px;
+    font-size: 16px;
     margin: 16px 0 48px;
-    max-width: 480px;
+    max-width: 1000px;
     line-height: 1.8;
 }
 
@@ -183,10 +196,12 @@ body{
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
+    height: 150px;
+    width: 400px;
     padding: 32px;
     display: flex;
     flex-direction: column;
-    gap: 24px;  
+    gap: 15px;  
 }
 
 .stats:hover {
@@ -197,19 +212,19 @@ body{
 }
 
 .stats-h1 {
-    align-items: center;
+    display: flex;
+    justify-content: center;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
+    font-size: 40px;
     font-weight: 700;
     color: var(--gold);
 }
 
 .stats-desc {
-    align-items: center;
+    display: flex;
     justify-content: center;
     color: var(--text2);
     font-size: 14px;
-    line-height: 1.7;
 }
 
 .values-row {
@@ -235,12 +250,11 @@ body{
     transform: translateY(-3px);
 }
 
-.value title {
+.value-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px;
     font-weight: 700;
     color: var(--text);
-    margin-bottom: 10px;
 }
 
 .value-desc {
@@ -295,7 +309,7 @@ body{
 }
 
 .team-member-role {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--gold2);
 }
 
