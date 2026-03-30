@@ -1,114 +1,532 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="icon" type="image/icon" href="../../Pictures/dribbble.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
-    <script src="../JavaScript-file/my_list.js"></script>
-  <style></style>
-  <link rel="stylesheet" href="../Css-file/my_list.css">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>FOLIO — Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../Css-file/admin.css"></link>
 </head>
+<body class="bisec">
 
+<div id="toasts"></div>
 
-<body>
-
-<header class="header">
-
-    <div class="F-header">
-
-        <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
-        <ul>
-            <li><a  href="index.html"><i class="bi bi-house"></i>Home</a></li>
-            <li><a href="Books.html"><i class="bi bi-grid"></i>books</a></li>
-            <li><a href="About.html"><i class="bi bi-info-circle"></i>About</a></li>
-            <li><a href="Contact.html"><i class="bi bi-envelope"></i>Contact</a></li>
-        </ul>
-
-    </div>
-
-    <div class="L-header">
-        <form>
-            <input id="search" type="search" placeholder="Search books,authors...">
-            <label for="search" style="color:#ffd636; padding:3px 3px 3px 3px ; border: solid 1px #ffd636; border-radius: 5px  " ><i class="bi bi-search"></i></label>
-
-        </form>
-        <button><a href="my_list.html"><i class="fa-regular fa-bookmark"></i></a></button>
-        <button><a href="Cart.html"><i class="bi bi-bag"></i></a></button>
-        <button><a href="User_profile.html"><i class="fa-regular fa-circle-user"></i></a></button>
-
-
-
-    </div>
-</header>
-
-
-
-<div class="container">
-
-    <!-- Form to add book -->
-    <div class="book-form">
-        <h2>Add New Book</h2>
-        <label for="book-title">Book Title:</label>
-        <input type="text" id="book-title" placeholder="Enter book title">
-
-        <label for="book-author">Author:</label>
-        <input type="text" id="book-author" placeholder="Enter author name">
-
-        <label for="book-genre">Genre:</label>
-        <select id="book-genre">
-            <option value="">Select Genre</option>
-            <option value="Fiction">Fiction</option>
-            <option value="Literary Fiction">Literary Fiction</option>
-            <option value="Self-Help">Self-Help</option>
-            <option value="Sci-Fi">Sci-Fi</option>
-            <option value="History">History</option>
-        </select>
-
-        <label for="book-pages">Total Pages:</label>
-        <input type="number" id="book-pages" placeholder="Enter total pages">
-
-      
-        <button>Add Book</button>
-    </div>
-
-    <!-- Books added by this admin -->
-    <div class="book-list">
-        <h2>Books Added by Jane Smith</h2>
-
-        <!-- Example books -->
-        <div class="book-item">
-            <h3>The Midnight Library</h3>
-            <p><strong>Author:</strong> Matt Haig</p>
-            <p><strong>Genre:</strong> Fiction</p>
-            <p><strong>Pages:</strong> 320</p>
-            <p><strong>Readers:</strong> 120</p>
-            <p><strong>Purchases:</strong> 50</p>
+<div class="modal-bg" id="modal-book">
+    <div class="modal-box">
+        <div class="d-flex justify-content-between align-items-start mb-1">
+            <div>
+                <div class="modal-title">Add New <em class="gold-italic">Book</em></div>
+                <div class="modal-sub">Fill in the details to list a new title</div>
+            </div>
+            <button class="btn-ghost" onclick="closeModal('modal-book')"><i class="bi bi-x-lg"></i></button>
         </div>
-
-        <div class="book-item">
-            <h3>Lessons in Chemistry</h3>
-            <p><strong>Author:</strong> Bonnie Garmus</p>
-            <p><strong>Genre:</strong> Literary Fiction</p>
-            <p><strong>Pages:</strong> 300</p>
-            <p><strong>Readers:</strong> 80</p>
-            <p><strong>Purchases:</strong> 35</p>
+        <div class="row g-3">
+            <div class="col-12"><label class="lbl">Book Title</label><input class="inp" placeholder="e.g. The Midnight Library"/></div>
+            <div class="col-md-6"><label class="lbl">Author</label><input class="inp" placeholder="Author name"/></div>
+            <div class="col-md-6"><label class="lbl">ISBN</label><input class="inp" placeholder="978-0-..."/></div>
+            <div class="col-md-6">
+                <label class="lbl">Genre</label>
+                <select class="sel"><option>Fiction</option><option>Non-Fiction</option><option>Science</option><option>History</option><option>Sci-Fi</option><option>Psychology</option></select>
+            </div>
+            <div class="col-md-6"><label class="lbl">Price ($)</label><input class="inp" type="number" placeholder="0.00"/></div>
+            <div class="col-md-6"><label class="lbl">Stock</label><input class="inp" type="number" placeholder="0"/></div>
+            <div class="col-md-6">
+                <label class="lbl">Status</label>
+                <select class="sel"><option>Active</option><option>Draft</option><option>Out of Stock</option></select>
+            </div>
+            <div class="col-12"><label class="lbl">Description</label><textarea class="inp" rows="3" placeholder="Short synopsis..."></textarea></div>
+            <div class="col-12 d-flex gap-2 justify-content-end mt-2">
+                <button class="btn-out" onclick="closeModal('modal-book')">Cancel</button>
+                <button class="btn-main" onclick="closeModal('modal-book');toast('✅ Book added successfully')"><i class="bi bi-plus-lg"></i>Add Book</button>
+            </div>
         </div>
-
-        <div class="book-item">
-            <h3>Atomic Habits</h3>
-            <p><strong>Author:</strong> James Clear</p>
-            <p><strong>Genre:</strong> Self-Help</p>
-            <p><strong>Pages:</strong> 250</p>
-            <p><strong>Readers:</strong> 200</p>
-            <p><strong>Purchases:</strong> 75</p>
-        </div>
-
     </div>
-
 </div>
 
+<div class="modal-bg" id="modal-user">
+    <div class="modal-box">
+        <div class="d-flex justify-content-between align-items-start mb-1">
+            <div>
+                <div class="modal-title">New <em class="gold-italic">User</em></div>
+                <div class="modal-sub">Register a new user account</div>
+            </div>
+            <button class="btn-ghost" onclick="closeModal('modal-user')"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <div class="row g-3">
+            <div class="col-md-6"><label class="lbl">First Name</label><input class="inp" placeholder="John"/></div>
+            <div class="col-md-6"><label class="lbl">Last Name</label><input class="inp" placeholder="Doe"/></div>
+            <div class="col-12"><label class="lbl">Email</label><input class="inp" type="email" placeholder="user@example.com"/></div>
+            <div class="col-md-6">
+                <label class="lbl">Role</label>
+                <select class="sel"><option>Customer</option><option>Editor</option><option>Admin</option></select>
+            </div>
+            <div class="col-md-6">
+                <label class="lbl">Status</label>
+                <select class="sel"><option>Active</option><option>Suspended</option></select>
+            </div>
+            <div class="col-12 d-flex gap-2 justify-content-end mt-2">
+                <button class="btn-out" onclick="closeModal('modal-user')">Cancel</button>
+                <button class="btn-main" onclick="closeModal('modal-user');toast('✅ User created successfully')"><i class="bi bi-person-plus"></i>Create User</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="side" id="side">
+        <div class="side-head">
+            <div class="side-logo">FOLIO<span>.</span></div>
+            <div class="side-tag"><i class="bi bi-shield-check"></i> Admin Panel</div>
+        </div>
+        <nav class="side-nav">
+            <div class="nav-group">Overview</div>
+            <a class="nav-link on" onclick="goTo('dashboard')"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+            <a class="nav-link" onclick="goTo('analytics')"><i class="bi bi-graph-up-arrow"></i> Analytics</a>
+
+            <div class="nav-group">Catalogue</div>
+            <a class="nav-link" onclick="goTo('books')"><i class="bi bi-book"></i> Books <span class="nav-badge gold-bg">12K</span></a>
+            <a class="nav-link" onclick="goTo('books')"><i class="bi bi-tags"></i> Categories</a>
+            <a class="nav-link" onclick="goTo('books')"><i class="bi bi-star"></i> Reviews <span class="nav-badge">4</span></a>
+
+            <div class="nav-group">Commerce</div>
+            <a class="nav-link" onclick="goTo('orders')"><i class="bi bi-bag-check"></i> Orders <span class="nav-badge">7</span></a>
+            <a class="nav-link" onclick="goTo('orders')"><i class="bi bi-arrow-return-left"></i> Returns</a>
+            <a class="nav-link" onclick="goTo('orders')"><i class="bi bi-percent"></i> Promotions</a>
+
+            <div class="nav-group">People</div>
+            <a class="nav-link" onclick="goTo('users')"><i class="bi bi-people"></i> Users</a>
+            <a class="nav-link" onclick="goTo('users')"><i class="bi bi-envelope"></i> Newsletters</a>
+
+            <div class="nav-group">System</div>
+            <a class="nav-link" onclick="goTo('settings')"><i class="bi bi-gear"></i> Settings</a>
+            <a class="nav-link" onclick="toast('📋 Audit log exported')"><i class="bi bi-clipboard-data"></i> Audit Log</a>
+        </nav>
+        <div class="side-foot">
+            <div class="user-row">
+                <div class="avatar">K</div>
+                <div>
+                    <div class="user-name">Kareem Ahmed</div>
+                    <div class="user-role">Super Admin</div>
+                </div>
+                <i class="bi bi-three-dots-vertical ms-auto text3-color side-more-icon"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <div class="topbar">
+            <div class="d-flex align-items-center gap-2">
+                <button class="top-btn d-lg-none me-2" onclick="document.getElementById('side').classList.toggle('on')">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="top-title" id="top-title">Dashboard <span>Overview</span></div>
+            </div>
+            <div class="top-right">
+                <input class="top-search d-none d-md-block" placeholder="Search anything…"/>
+                <button class="top-btn" onclick="toast('🔔 3 new notifications')">
+                    <i class="bi bi-bell"></i>
+                    <span class="notif-dot"></span>
+                </button>
+                <button class="top-btn" onclick="toast('📤 Report exported')"><i class="bi bi-download"></i></button>
+                <div class="topbar-divider"></div>
+                <div class="avatar avatar-sm" onclick="toast('👤 Profile settings')">K</div>
+            </div>
+        </div>
+
+        <!-- PAGE: DASHBOARD -->
+        <div class="page on" id="page-dashboard">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <div>
+                    <div class="eyebrow">Good Morning</div>
+                    <h1 class="heading">Store <em>Overview</em></h1>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn-out"><i class="bi bi-calendar3"></i> Mar 2026</button>
+                    <button class="btn-main" onclick="openModal('modal-book')"><i class="bi bi-plus-lg"></i>Add Book</button>
+                </div>
+            </div>
+
+            <div class="row g-3 mb-4">
+                <div class="col-6 col-lg-3">
+                    <div class="stat">
+                        <div class="stat-icon ico-gold"><i class="bi bi-bag"></i></div>
+                        <div class="stat-num">$48<span>K</span></div>
+                        <div class="stat-lbl">Revenue this month</div>
+                        <div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> +12.4% vs last month</div>
+                        <div class="spark">
+                            <svg viewBox="0 0 100 30" width="100%" height="100%">
+                                <polyline points="0,28 14,20 28,22 42,12 56,16 70,8 84,10 100,4" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="stat">
+                        <div class="stat-icon ico-blue"><i class="bi bi-receipt"></i></div>
+                        <div class="stat-num">1<span>,</span>247</div>
+                        <div class="stat-lbl">Orders this month</div>
+                        <div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> +8.1% vs last month</div>
+                        <div class="spark">
+                            <svg viewBox="0 0 100 30" width="100%" height="100%">
+                                <polyline points="0,24 14,18 28,20 42,14 56,18 70,10 84,14 100,6" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="stat">
+                        <div class="stat-icon ico-green"><i class="bi bi-people"></i></div>
+                        <div class="stat-num">8<span>,</span>940</div>
+                        <div class="stat-lbl">Active customers</div>
+                        <div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> +3.6% vs last month</div>
+                        <div class="spark">
+                            <svg viewBox="0 0 100 30" width="100%" height="100%">
+                                <polyline points="0,26 14,22 28,24 42,16 56,20 70,12 84,16 100,8" fill="none" stroke="var(--success)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="stat">
+                        <div class="stat-icon ico-red"><i class="bi bi-box-seam"></i></div>
+                        <div class="stat-num">34</div>
+                        <div class="stat-lbl">Low stock titles</div>
+                        <div class="stat-delta delta-down"><i class="bi bi-arrow-down-short"></i> Needs attention</div>
+                        <div class="spark">
+                            <svg viewBox="0 0 100 30" width="100%" height="100%">
+                                <polyline points="0,8 14,12 28,10 42,16 56,14 70,20 84,18 100,26" fill="none" stroke="var(--danger)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="row g-3 mb-4">
+                <div class="col-lg-8">
+                    <div class="chart-box">
+                        <div class="d-flex align-items-start justify-content-between chart-head">
+                            <div>
+                                <div class="chart-title">Monthly <em class="gold-italic">Revenue</em></div>
+                                <div class="chart-sub">Jan – Mar 2026 · All channels</div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn-ghost btn-ghost-gold">2026</button>
+                                <button class="btn-ghost">2025</button>
+                            </div>
+                        </div>
+                        <div class="bar-chart" id="chart-revenue"></div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="chart-box h-100">
+                        <div class="chart-head">
+                            <div class="chart-title">Sales by <em class="gold-italic">Genre</em></div>
+                            <div class="chart-sub">Current month breakdown</div>
+                        </div>
+                        <div class="donut-wrap">
+                            <div class="donut">
+                                <svg width="120" height="120" viewBox="0 0 120 120">
+                                    <circle cx="60" cy="60" r="46" fill="none" stroke="var(--border2)" stroke-width="16"/>
+                                    <circle cx="60" cy="60" r="46" fill="none" stroke="var(--gold)" stroke-width="16" stroke-dasharray="109.6 179.1" stroke-dashoffset="0" opacity="0.9"/>
+                                    <circle cx="60" cy="60" r="46" fill="none" stroke="var(--blue)" stroke-width="16" stroke-dasharray="63.5 225.2" stroke-dashoffset="-109.6" opacity="0.9"/>
+                                    <circle cx="60" cy="60" r="46" fill="none" stroke="#52c07a" stroke-width="16" stroke-dasharray="52.0 236.7" stroke-dashoffset="-173.1" opacity="0.9"/>
+                                    <circle cx="60" cy="60" r="46" fill="none" stroke="var(--text3)" stroke-width="16" stroke-dasharray="63.5 225.2" stroke-dashoffset="-225.1" opacity="0.6"/>
+                                </svg>
+                                <div class="donut-mid">
+                                    <div class="donut-val">1.2K</div>
+                                    <div class="donut-sub">Sales</div>
+                                </div>
+                            </div>
+                            <div class="leg-list">
+                                <div class="leg-item"><div class="leg-dot leg-gold"></div><div class="leg-name">Fiction</div><div class="leg-pct">38%</div></div>
+                                <div class="leg-item"><div class="leg-dot leg-blue"></div><div class="leg-name">Science</div><div class="leg-pct">22%</div></div>
+                                <div class="leg-item"><div class="leg-dot leg-green"></div><div class="leg-name">History</div><div class="leg-pct">18%</div></div>
+                                <div class="leg-item"><div class="leg-dot leg-muted"></div><div class="leg-name">Other</div><div class="leg-pct">22%</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tables Row -->
+            <div class="row g-3">
+                <div class="col-lg-7">
+                    <div class="card">
+                        <div class="card-head d-flex align-items-center justify-content-between p-4">
+                            <div>
+                                <div class="card-title">Recent <em class="gold-italic">Orders</em></div>
+                                <div class="card-sub">Last 24 hours</div>
+                            </div>
+                            <button class="btn-ghost" onclick="goTo('orders')">View All <i class="bi bi-arrow-right"></i></button>
+                        </div>
+                        <div class="table-wrap">
+                            <table class="tbl">
+                                <thead><tr><th>Order</th><th>Customer</th><th>Books</th><th>Total</th><th>Status</th></tr></thead>
+                                <tbody id="tbody-orders-recent"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card h-100">
+                        <div class="card-head d-flex align-items-center justify-content-between p-4">
+                            <div class="card-title">Top <em class="gold-italic">Sellers</em></div>
+                            <button class="btn-ghost" onclick="goTo('books')">All Books <i class="bi bi-arrow-right"></i></button>
+                        </div>
+                        <div class="p-3" id="list-top-sellers"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity -->
+            <div class="row g-3 mt-0 pt-3">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-head d-flex align-items-center justify-content-between p-4">
+                            <div class="card-title">Live <em class="gold-italic">Activity</em></div>
+                            <button class="btn-ghost" onclick="toast('🔄 Feed refreshed')"><i class="bi bi-arrow-clockwise"></i> Refresh</button>
+                        </div>
+                        <div class="p-4" id="feed-activity"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: BOOKS -->
+        <div class="page" id="page-books">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <div>
+                    <div class="eyebrow">Catalogue</div>
+                    <h1 class="heading">Manage <em>Books</em></h1>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn-out"><i class="bi bi-upload"></i> Import CSV</button>
+                    <button class="btn-main" onclick="openModal('modal-book')"><i class="bi bi-plus-lg"></i>Add Book</button>
+                </div>
+            </div>
+            <div class="card p-3 mb-4">
+                <div class="row g-2 align-items-center">
+                    <div class="col-md-4"><input class="inp" placeholder="🔍  Search by title, author, ISBN…"/></div>
+                    <div class="col-md-2"><select class="sel"><option value="">All Genres</option><option>Fiction</option><option>Science</option><option>History</option><option>Sci-Fi</option><option>Psychology</option></select></div>
+                    <div class="col-md-2"><select class="sel"><option value="">All Status</option><option>Active</option><option>Draft</option><option>Out of Stock</option></select></div>
+                    <div class="col-md-2"><select class="sel"><option>Sort: Newest</option><option>Sort: Price ↑</option><option>Sort: Price ↓</option></select></div>
+                    <div class="col-md-2"><button class="btn-main w-100"><i class="bi bi-funnel"></i> Apply</button></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="table-wrap">
+                    <table class="tbl">
+                        <thead><tr><th><input type="checkbox" class="gold-check"/></th><th>Book</th><th>Author</th><th>Genre</th><th>Price</th><th>Stock</th><th>Rating</th><th>Status</th><th>Actions</th></tr></thead>
+                        <tbody id="tbody-books"></tbody>
+                    </table>
+                </div>
+                <div class="d-flex align-items-center justify-content-between p-4 tbl-footer">
+                    <div class="tbl-count">Showing 1–10 of 12,847 titles</div>
+                    <div class="d-flex gap-2">
+                        <button class="btn-ghost"><i class="bi bi-chevron-left"></i></button>
+                        <button class="btn-ghost btn-ghost-gold">1</button>
+                        <button class="btn-ghost">2</button><button class="btn-ghost">3</button>
+                        <button class="btn-ghost"><i class="bi bi-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: ORDERS -->
+        <div class="page" id="page-orders">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <div>
+                    <div class="eyebrow">Commerce</div>
+                    <h1 class="heading">All <em>Orders</em></h1>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn-out"><i class="bi bi-download"></i> Export</button>
+                    <button class="btn-main" onclick="toast('📦 Bulk label printing started')"><i class="bi bi-printer"></i>Print Labels</button>
+                </div>
+            </div>
+            <div class="row g-3 mb-4">
+                <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-blue"><i class="bi bi-clock-history"></i></div><div class="stat-num stat-num-sm">47</div><div class="stat-lbl">Pending</div></div></div>
+                <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-gold"><i class="bi bi-truck"></i></div><div class="stat-num stat-num-sm">123</div><div class="stat-lbl">Shipped</div></div></div>
+                <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-green"><i class="bi bi-check-circle"></i></div><div class="stat-num stat-num-sm">982</div><div class="stat-lbl">Delivered</div></div></div>
+                <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-red"><i class="bi bi-x-circle"></i></div><div class="stat-num stat-num-sm">12</div><div class="stat-lbl">Cancelled</div></div></div>
+            </div>
+            <div class="card">
+                <div class="p-4 d-flex gap-2 align-items-center tbl-toolbar">
+                    <input class="inp inp-sm" placeholder="🔍  Search order ID or customer…"/>
+                    <select class="sel sel-sm"><option>All Status</option><option>Pending</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select>
+                    <button class="btn-ghost ms-auto"><i class="bi bi-funnel"></i> Filter</button>
+                </div>
+                <div class="table-wrap">
+                    <table class="tbl">
+                        <thead><tr><th>Order ID</th><th>Customer</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th><th>Actions</th></tr></thead>
+                        <tbody id="tbody-orders"></tbody>
+                    </table>
+                </div>
+                <div class="d-flex align-items-center justify-content-between p-4 tbl-footer">
+                    <div class="tbl-count">Showing 1–10 of 1,164 orders</div>
+                    <div class="d-flex gap-2">
+                        <button class="btn-ghost"><i class="bi bi-chevron-left"></i></button>
+                        <button class="btn-ghost btn-ghost-gold">1</button>
+                        <button class="btn-ghost">2</button><button class="btn-ghost">3</button>
+                        <button class="btn-ghost"><i class="bi bi-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: USERS -->
+        <div class="page" id="page-users">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <div>
+                    <div class="eyebrow">People</div>
+                    <h1 class="heading">User <em>Management</em></h1>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn-out"><i class="bi bi-download"></i> Export</button>
+                    <button class="btn-main" onclick="openModal('modal-user')"><i class="bi bi-person-plus"></i>Add User</button>
+                </div>
+            </div>
+            <div class="row g-3 mb-4">
+                <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-green"><i class="bi bi-person-check"></i></div><div class="stat-num stat-num-sm">8<span>,</span>940</div><div class="stat-lbl">Active Users</div></div></div>
+                <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-gold"><i class="bi bi-person-plus"></i></div><div class="stat-num stat-num-sm">214</div><div class="stat-lbl">New This Month</div></div></div>
+                <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-red"><i class="bi bi-person-dash"></i></div><div class="stat-num stat-num-sm">18</div><div class="stat-lbl">Suspended</div></div></div>
+                <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-blue"><i class="bi bi-shield-check"></i></div><div class="stat-num stat-num-sm">3</div><div class="stat-lbl">Admins</div></div></div>
+            </div>
+            <div class="card">
+                <div class="p-4 d-flex gap-2 align-items-center tbl-toolbar">
+                    <input class="inp inp-sm" placeholder="🔍  Search by name or email…"/>
+                    <select class="sel sel-sm"><option>All Roles</option><option>Customer</option><option>Editor</option><option>Admin</option></select>
+                    <select class="sel sel-sm"><option>All Status</option><option>Active</option><option>Suspended</option></select>
+                </div>
+                <div class="table-wrap">
+                    <table class="tbl">
+                        <thead><tr><th>User</th><th>Email</th><th>Role</th><th>Orders</th><th>Spent</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead>
+                        <tbody id="tbody-users"></tbody>
+                    </table>
+                </div>
+                <div class="d-flex align-items-center justify-content-between p-4 tbl-footer">
+                    <div class="tbl-count">Showing 1–10 of 8,958 users</div>
+                    <div class="d-flex gap-2">
+                        <button class="btn-ghost"><i class="bi bi-chevron-left"></i></button>
+                        <button class="btn-ghost btn-ghost-gold">1</button>
+                        <button class="btn-ghost">2</button><button class="btn-ghost">3</button>
+                        <button class="btn-ghost"><i class="bi bi-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: ANALYTICS -->
+        <div class="page" id="page-analytics">
+            <div class="mb-4">
+                <div class="eyebrow">Reports</div>
+                <h1 class="heading">Store <em>Analytics</em></h1>
+            </div>
+            <div class="row g-3 mb-4">
+                <div class="col-md-4"><div class="stat"><div class="stat-icon ico-gold"><i class="bi bi-currency-dollar"></i></div><div class="stat-num">$48<span>K</span></div><div class="stat-lbl">Revenue (Mar)</div><div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> +12.4%</div></div></div>
+                <div class="col-md-4"><div class="stat"><div class="stat-icon ico-blue"><i class="bi bi-eye"></i></div><div class="stat-num">184<span>K</span></div><div class="stat-lbl">Page Views (Mar)</div><div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> +6.8%</div></div></div>
+                <div class="col-md-4"><div class="stat"><div class="stat-icon ico-green"><i class="bi bi-percent"></i></div><div class="stat-num">3<span>.</span>4<span>%</span></div><div class="stat-lbl">Conversion Rate</div><div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> +0.3%</div></div></div>
+            </div>
+            <div class="row g-3">
+                <div class="col-lg-8">
+                    <div class="chart-box">
+                        <div class="chart-head">
+                            <div class="chart-title">12-Month <em class="gold-italic">Revenue</em> Trend</div>
+                            <div class="chart-sub">Apr 2025 – Mar 2026</div>
+                        </div>
+                        <div class="bar-chart" id="chart-analytics"></div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="chart-box h-100">
+                        <div class="chart-head">
+                            <div class="chart-title">Traffic <em class="gold-italic">Sources</em></div>
+                            <div class="chart-sub">Current quarter</div>
+                        </div>
+                        <div class="traffic-sources">
+                            <div class="traffic-row">
+                                <div class="traffic-label"><span class="traffic-name">Organic Search</span><span class="traffic-pct">42%</span></div>
+                                <div class="traffic-bar"><div class="traffic-fill fill-gold" style="width:42%"></div></div>
+                            </div>
+                            <div class="traffic-row">
+                                <div class="traffic-label"><span class="traffic-name">Social Media</span><span class="traffic-pct">28%</span></div>
+                                <div class="traffic-bar"><div class="traffic-fill fill-blue" style="width:28%"></div></div>
+                            </div>
+                            <div class="traffic-row">
+                                <div class="traffic-label"><span class="traffic-name">Direct</span><span class="traffic-pct">18%</span></div>
+                                <div class="traffic-bar"><div class="traffic-fill fill-green" style="width:18%"></div></div>
+                            </div>
+                            <div class="traffic-row">
+                                <div class="traffic-label"><span class="traffic-name">Email</span><span class="traffic-pct">12%</span></div>
+                                <div class="traffic-bar"><div class="traffic-fill fill-warning" style="width:12%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: SETTINGS -->
+        <div class="page" id="page-settings">
+            <div class="mb-4">
+                <div class="eyebrow">Configuration</div>
+                <h1 class="heading">Store <em>Settings</em></h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card p-4">
+                        <div class="card-title mb-1">General <em class="gold-italic">Info</em></div>
+                        <div class="card-sub mb-4">Basic store details</div>
+                        <div class="d-flex flex-column gap-3">
+                            <div><label class="lbl">Store Name</label><input class="inp" value="FOLIO Bookstore"/></div>
+                            <div><label class="lbl">Store Email</label><input class="inp" value="hello@folio.com"/></div>
+                            <div><label class="lbl">Currency</label><select class="sel"><option>USD — US Dollar</option><option>EUR — Euro</option><option>GBP — British Pound</option><option>EGP — Egyptian Pound</option></select></div>
+                            <div><label class="lbl">Timezone</label><select class="sel"><option>UTC+2 Cairo</option><option>UTC+0 London</option><option>UTC-5 New York</option></select></div>
+                            <button class="btn-main" onclick="toast('✅ Settings saved')"><i class="bi bi-check-lg"></i>Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card p-4 mb-4">
+                        <div class="card-title mb-1">Shipping <em class="gold-italic">Rules</em></div>
+                        <div class="card-sub mb-4">Delivery configuration</div>
+                        <div class="d-flex flex-column gap-3">
+                            <div><label class="lbl">Free Shipping Threshold</label><input class="inp" value="$40.00"/></div>
+                            <div><label class="lbl">Default Carrier</label><select class="sel"><option>FedEx</option><option>UPS</option><option>DHL</option><option>USPS</option></select></div>
+                            <button class="btn-main" onclick="toast('✅ Shipping rules saved')"><i class="bi bi-truck"></i>Save Rules</button>
+                        </div>
+                    </div>
+                    <div class="card p-4">
+                        <div class="card-title mb-1">Notifications <em class="gold-italic">Settings</em></div>
+                        <div class="card-sub mb-4">What to be alerted about</div>
+                        <div class="d-flex flex-column gap-3">
+                            <div class="notif-row">
+                                <div><div class="notif-label">New Orders</div><div class="notif-desc">Email alert for every new order</div></div>
+                                <input type="checkbox" checked class="gold-check gold-check-lg"/>
+                            </div>
+                            <div class="notif-row">
+                                <div><div class="notif-label">Low Stock Alerts</div><div class="notif-desc">Alert when stock &lt; 10 units</div></div>
+                                <input type="checkbox" checked class="gold-check gold-check-lg"/>
+                            </div>
+                            <div class="notif-row notif-row-last">
+                                <div><div class="notif-label">New Reviews</div><div class="notif-desc">Notify on every review submission</div></div>
+                                <input type="checkbox" class="gold-check gold-check-lg"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 </body>
 </html>
