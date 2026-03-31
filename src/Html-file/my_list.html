@@ -47,154 +47,68 @@
 
 
 
-
-
+  <!-- PAGE HEADER -->
   <div class="page-header">
     <div class="eyebrow">
       <span class="eyebrow-line"></span>
-      <span>YOUR COLLECTION</span>
+      <span>Your Collection</span>
     </div>
     <div class="header-row">
       <h1 class="page-title">My <em>Reading List</em></h1>
-      <a href="Books.html" class="btn-primary"><i class="bi bi-plus"></i> Add Books</a>
+      <a href="Books.html" class="btn-add">
+        <i class="bi bi-plus"></i> Add Books
+      </a>
     </div>
   </div>
-
-
+  
+  <!-- MAIN CONTENT -->
   <div class="container">
-    <div class="tabs">
-      <button class="tab active" onclick="filterTab(this, 'all')">All (12)</button>
-      <button class="tab" onclick="filterTab(this, 'reading')">Reading (1)</button>
-      <button class="tab" onclick="filterTab(this, 'want')">Want to Read (8)</button>
-      <button class="tab" onclick="filterTab(this, 'finished')">Finished (3)</button>
+  
+    <!-- STATS ROW -->
+    <div class="stats-row" id="stats-row">
+      <!-- Injected by JS -->
     </div>
-
-
+  
+    <!-- TABS -->
+    <div class="tabs" id="tab-bar">
+      <button class="tab active" data-filter="all">All <span class="tab-count" id="count-all">6</span></button>
+      <button class="tab" data-filter="reading">Reading <span class="tab-count" id="count-reading">1</span></button>
+      <button class="tab" data-filter="want">Want to Read <span class="tab-count" id="count-want">3</span></button>
+      <button class="tab" data-filter="finished">Finished <span class="tab-count" id="count-finished">2</span></button>
+    </div>
+  
+    <!-- SORT + SEARCH ROW -->
+    <div class="toolbar">
+      <div class="toolbar-search">
+        <i class="bi bi-search"></i>
+        <input type="text" id="list-search" placeholder="Filter your list..." autocomplete="off">
+      </div>
+      <select class="sort-select" id="sort-select">
+        <option value="default">Sort: Default</option>
+        <option value="title">Title A–Z</option>
+        <option value="author">Author A–Z</option>
+        <option value="progress">Progress</option>
+      </select>
+    </div>
+  
+    <!-- BOOK LIST -->
     <div class="list" id="book-list">
-
-      <div class="list-item" data-status="reading">
-        <div class="book-cover" style="background: linear-gradient(145deg,#2d3142,#4f5d75);">
-          <div class="spine"></div>
-          <span class="cover-title">The Midnight Library</span>
-        </div>
-        <div class="details">
-          <div class="genre-tag">Fiction</div>
-          <h4>The Midnight Library</h4>
-          <p>Matt Haig</p>
-          <span class="status reading">Reading</span>
-          <div class="progress-wrap">
-            <div class="progress-bar" style="width:58%;"></div>
-          </div>
-          <div class="progress-label">58% complete · Page 187 of 320</div>
-        </div>
-        <div class="actions">
-          <button class="action-btn" title="View"><i class="bi bi-eye"></i></button>
-          <button class="action-btn" title="Add to Cart"><i class="bi bi-bag-plus"></i></button>
-          <button class="action-btn danger" title="Remove"><i class="bi bi-trash"></i></button>
-        </div>
-      </div>
-
-      <div class="list-item" data-status="want">
-        <div class="book-cover" style="background: linear-gradient(145deg,#6b2737,#9b4456);">
-          <div class="spine"></div>
-          <span class="cover-title">Lessons in Chemistry</span>
-        </div>
-        <div class="details">
-          <div class="genre-tag">Literary Fiction</div>
-          <h4>Lessons in Chemistry</h4>
-          <p>Bonnie Garmus</p>
-          <span class="status want">Want to Read</span>
-        </div>
-        <div class="actions">
-          <button class="action-btn" title="View"><i class="bi bi-eye"></i></button>
-          <button class="action-btn" title="Add to Cart"><i class="bi bi-bag-plus"></i></button>
-          <button class="action-btn danger" title="Remove"><i class="bi bi-trash"></i></button>
-        </div>
-      </div>
-
-      <div class="list-item" data-status="finished">
-        <div class="book-cover" style="background: linear-gradient(145deg,#3d5a3e,#5e8b61);">
-          <div class="spine"></div>
-          <span class="cover-title">Atomic Habits</span>
-        </div>
-        <div class="details">
-          <div class="genre-tag">Self-Help</div>
-          <h4>Atomic Habits</h4>
-          <p>James Clear</p>
-          <span class="status finished">Finished</span>
-          <div class="progress-wrap">
-            <div class="progress-bar" style="width:100%;"></div>
-          </div>
-          <div class="progress-label">100% complete</div>
-        </div>
-        <div class="actions">
-          <button class="action-btn" title="View"><i class="bi bi-eye"></i></button>
-          <button class="action-btn" title="Add to Cart"><i class="bi bi-bag-plus"></i></button>
-          <button class="action-btn danger" title="Remove"><i class="bi bi-trash"></i></button>
-        </div>
-      </div>
-
-      <div class="list-item" data-status="want">
-        <div class="book-cover" style="background: linear-gradient(145deg,#5c4a1e,#8b6914);">
-          <div class="spine"></div>
-          <span class="cover-title">Dune</span>
-        </div>
-        <div class="details">
-          <div class="genre-tag">Sci-Fi</div>
-          <h4>Dune</h4>
-          <p>Frank Herbert</p>
-          <span class="status want">Want to Read</span>
-        </div>
-        <div class="actions">
-          <button class="action-btn" title="View"><i class="bi bi-eye"></i></button>
-          <button class="action-btn" title="Add to Cart"><i class="bi bi-bag-plus"></i></button>
-          <button class="action-btn danger" title="Remove"><i class="bi bi-trash"></i></button>
-        </div>
-      </div>
-
-      <div class="list-item" data-status="want">
-        <div class="book-cover" style="background: linear-gradient(145deg,#2f3f5b,#3d6b8a);">
-          <div class="spine"></div>
-          <span class="cover-title">Foundation</span>
-        </div>
-        <div class="details">
-          <div class="genre-tag">Sci-Fi</div>
-          <h4>Foundation</h4>
-          <p>Isaac Asimov</p>
-          <span class="status want">Want to Read</span>
-        </div>
-        <div class="actions">
-          <button class="action-btn" title="View"><i class="bi bi-eye"></i></button>
-          <button class="action-btn" title="Add to Cart"><i class="bi bi-bag-plus"></i></button>
-          <button class="action-btn danger" title="Remove"><i class="bi bi-trash"></i></button>
-        </div>
-      </div>
-
-      <div class="list-item" data-status="finished">
-        <div class="book-cover" style="background: linear-gradient(145deg,#4a3020,#7a5035);">
-          <div class="spine"></div>
-          <span class="cover-title">Sapiens</span>
-        </div>
-        <div class="details">
-          <div class="genre-tag">History</div>
-          <h4>Sapiens</h4>
-          <p>Yuval Noah Harari</p>
-          <span class="status finished">Finished</span>
-          <div class="progress-wrap">
-            <div class="progress-bar" style="width:100%;"></div>
-          </div>
-          <div class="progress-label">100% complete</div>
-        </div>
-        <div class="actions">
-          <button class="action-btn" title="View"><i class="bi bi-eye"></i></button>
-          <button class="action-btn" title="Add to Cart"><i class="bi bi-bag-plus"></i></button>
-          <button class="action-btn danger" title="Remove"><i class="bi bi-trash"></i></button>
-        </div>
-      </div>
-
+      <!-- Items injected by JS -->
     </div>
+  
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="empty-state" style="display:none;">
+      <i class="bi bi-bookmark"></i>
+      <p>No books here yet.</p>
+      <a href="Books.html" class="btn-add" style="margin-top:16px;">Browse Collection</a>
+    </div>
+  
   </div>
-
+  
+  <!-- TOAST -->
+  <div id="toast-container"></div>
+  
+  
 <script src="../JavaScript-file/my_list.js"></script>
 
 </body>
