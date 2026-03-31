@@ -1,104 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 
-    <link rel="icon" type="image/icon" href="../../Pictures/dribbble.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="icon" type="image/icon" href="../../Pictures/dribbble.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
 
-    <script src="../JavaScript-file/User_profile.js"></script>
+  <script src="../JavaScript-file/User_profile.js"></script>
   <style></style>
   <link rel="stylesheet" href="../Css-file/User_profile.css">
 </head>
+
 <body>
 
 
-<header class="header">
+  <header class="header">
 
     <div class="F-header">
 
-        <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
-        <ul>
-            <li><a  href="index.html"><i class="bi bi-house"></i>Home</a></li>
-            <li><a href="Books.html"><i class="bi bi-grid"></i>books</a></li>
-            <li><a href="About.html"><i class="bi bi-info-circle"></i>About</a></li>
-            <li><a href="Contact.html"><i class="bi bi-envelope"></i>Contact</a></li>
-        </ul>
+      <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
+      <ul>
+        <li><a href="index.html"><i class="bi bi-house"></i>Home</a></li>
+        <li><a href="Books.html"><i class="bi bi-grid"></i>books</a></li>
+        <li><a href="About.html"><i class="bi bi-info-circle"></i>About</a></li>
+        <li><a href="Contact.html"><i class="bi bi-envelope"></i>Contact</a></li>
+      </ul>
 
     </div>
 
-        <div class="L-header">
-            <form>
-                <input id="search" type="search" placeholder="Search books,authors...">
-                <label for="search" style="color:#ffd636; padding:3px 3px 3px 3px ; border: solid 1px #ffd636; border-radius: 5px  " ><i class="bi bi-search"></i></label>
+    <div class="L-header">
+      <form>
+        <input id="search" type="search" placeholder="Search books,authors...">
+        <label for="search"
+          style="color:#ffd636; padding:3px 3px 3px 3px ; border: solid 1px #ffd636; border-radius: 5px  "><i
+            class="bi bi-search"></i></label>
 
-            </form>
-            <button><a href="my_list.html"><i class="fa-regular fa-bookmark"></i></a></button>
-            <button><a href="Cart.html"><i class="bi bi-bag"></i></a></button>
-            <button><a href="User_profile.html"><i class="fa-regular fa-circle-user"></i></a></button>
+      </form>
+      <button><a href="my_list.html"><i class="fa-regular fa-bookmark"></i></a></button>
+      <button><a href="Cart.html"><i class="bi bi-bag"></i></a></button>
+      <button><a href="User_profile.html"><i class="fa-regular fa-circle-user"></i></a></button>
 
 
 
-        </div>
-</header>
+    </div>
+  </header>
 
-    
 
-    
+
+
+  <!-- MAIN CONTAINER -->
   <div class="container">
 
-    <div class="profile-header">
+    <!-- PROFILE BANNER -->
+    <div class="profile-header reveal">
       <div class="profile-info">
-        <div class="avatar">A</div>
+        <div class="avatar" id="avatar-initials">A</div>
         <div class="profile-text">
-          <h2>Alex Reader</h2>
-          <p class="profile-email"><i class="bi bi-envelope"></i><a href="" target="_blank">folio@gmail.com</a> </p>
+          <h2 id="profile-name">Alex Reader</h2>
+          <p class="profile-email"><i class="bi bi-envelope"></i> <span id="profile-email-text">folio@gmail.com</span>
+          </p>
           <p class="profile-since"><i class="bi bi-calendar3"></i> Member since January 2026</p>
         </div>
       </div>
       <div class="profile-stats">
         <div class="stat">
-          <div class="stat-num">17</div>
+          <div class="stat-num" id="stat-read">17</div>
           <div class="stat-lbl">Books Read</div>
         </div>
         <div class="stat">
-          <div class="stat-num">12</div>
+          <div class="stat-num" id="stat-wish">12</div>
           <div class="stat-lbl">Wishlist</div>
         </div>
         <div class="stat">
-          <div class="stat-num">8</div>
+          <div class="stat-num" id="stat-reviews">8</div>
           <div class="stat-lbl">Reviews</div>
         </div>
       </div>
     </div>
 
+    <!-- FLEX LAYOUT -->
     <div class="flex">
 
+      <!-- LEFT COLUMN -->
       <div class="left">
 
-        <div class="section">
+        <!-- Recent Activity -->
+        <div class="section reveal">
           <h3><i class="bi bi-activity"></i> Recent Activity</h3>
           <div class="activity-item">
             <span class="act-icon"><i class="bi bi-bag-check"></i></span>
-            <span class="act-label">Purchased "The Midnight Library"</span>
+            <span class="act-label">Purchased <strong>"The Midnight Library"</strong></span>
             <span class="act-price">$15.99</span>
           </div>
           <div class="activity-item">
             <span class="act-icon"><i class="bi bi-star"></i></span>
-            <span class="act-label">Reviewed "Atomic Habits"</span>
-            <span class="act-price">$12.50</span>
+            <span class="act-label">Reviewed <strong>"Atomic Habits"</strong></span>
+            <span class="act-price act-stars">★★★★★</span>
           </div>
           <div class="activity-item last">
             <span class="act-icon"><i class="bi bi-bookmark"></i></span>
-            <span class="act-label">Saved "Dune" to Reading List</span>
-            <span class="act-price">$18.75</span>
+            <span class="act-label">Saved <strong>"Dune"</strong> to Reading List</span>
+            <span class="act-price act-muted">$18.75</span>
           </div>
         </div>
 
-        <div class="section">
+        <!-- Currently Reading -->
+        <div class="section reveal">
           <h3><i class="bi bi-book-half"></i> Currently Reading</h3>
           <div class="reading-row">
             <div class="book-cover-sm" style="background: linear-gradient(145deg, #2d3142, #4f5d75);">
@@ -108,37 +119,49 @@
               <div class="reading-title">The Midnight Library</div>
               <div class="reading-author">Matt Haig · Page 187 of 320</div>
               <div class="progress-wrap">
-                <div class="progress-bar"></div>
+                <div class="progress-bar" id="reading-progress" style="width: 58%;"></div>
               </div>
-              <div class="progress-label">58% complete</div>
+              <div class="progress-label"><span id="progress-pct">58%</span> complete</div>
             </div>
           </div>
         </div>
 
       </div>
 
+      <!-- RIGHT COLUMN -->
       <div class="right">
 
-        <div class="section">
+        <!-- Account Settings -->
+        <div class="section reveal">
           <h3><i class="bi bi-gear"></i> Account Settings</h3>
 
-          <label class="field-label">Display Name</label>
-          <input type="text" class="field-input" value="Abdelmaqsoud">
+          <label class="field-label" for="input-name">Display Name</label>
+          <input type="text" id="input-name" class="field-input" value="Abdelmaqsoud" placeholder="Your name">
 
-          <label class="field-label">Email</label>
-          <input type="email" class="field-input" value="folio@example.com">
+          <label class="field-label" for="input-email">Email</label>
+          <input type="email" id="input-email" class="field-input" value="folio@example.com" placeholder="Your email">
 
-          <label class="field-label">Location</label>
-          <input type="text" class="field-input" value="Cairo, Egypt">
+          <label class="field-label" for="input-location">Location</label>
+          <input type="text" id="input-location" class="field-input" value="Cairo, Egypt" placeholder="Your city">
 
-          <button class="save-btn">Save Changes</button>
+          <button class="save-btn" id="save-btn">
+            <i class="bi bi-check2-circle me-2"></i> Save Changes
+          </button>
+          <div class="save-feedback" id="save-feedback"></div>
         </div>
 
-        <div class="section">
+        <!-- Quick Actions -->
+        <div class="section reveal">
           <h3><i class="bi bi-lightning"></i> Quick Actions</h3>
-          <a href="my_list.html" class="action-link"><i class="bi bi-bookmark me-2"></i>My Reading List</a>
-          <a href="Cart.html" class="action-link"><i class="bi bi-bag me-2"></i>My Orders</a>
-          <a href="log_in.html" class="action-link danger"><i class="bi bi-box-arrow-right me-2"></i>Sign Out</a>
+          <a href="my_list.html" class="action-link">
+            <i class="bi bi-bookmark"></i> My Reading List
+          </a>
+          <a href="Cart.html" class="action-link">
+            <i class="bi bi-bag"></i> My Orders
+          </a>
+          <a href="log_in.html" class="action-link danger">
+            <i class="bi bi-box-arrow-right"></i> Sign Out
+          </a>
         </div>
 
       </div>
@@ -147,9 +170,10 @@
   </div>
 
 
-    
 
-<script src="../JavaScript-file/User_profile.js"></script>
+
+  <script src="../JavaScript-file/User_profile.js"></script>
 
 </body>
+
 </html>
