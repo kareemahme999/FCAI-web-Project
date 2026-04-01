@@ -1,187 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="book store where you can buy and reading">
-    <title>Book Store</title>
+<meta charset="UTF-8">
+<meta name="description" content="book store where you can buy and reading">
+<title>Book Store</title>
 
-    <link rel="icon" type="image/icon" href="../../Pictures/dribbble.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="icon" href="../../Pictures/dribbble.svg">
 
-    <script src="../JavaScript-file/Home.js"></script>
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="../Css-file/Home.css">
-    <link rel="stylesheet" href="Books.css">
+<!-- CSS -->
+<link rel="stylesheet" href="../Css-file/Home.css">
+<link rel="stylesheet" href="Books.css">
 </head>
+
 <body>
+
+<!-- HEADER -->
 <header class="header">
-
     <div class="F-header">
-
-        <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
+        <h1><i class="bi bi-dribbble"></i> FOLIO.</h1>
         <ul>
             <li><a href="index.html"><i class="bi bi-house"></i>Home</a></li>
-            <li><a id="active" href="Books.html"><i class="bi bi-grid"></i>books</a></li>
+            <li><a id="active" href="Books.html"><i class="bi bi-grid"></i>Books</a></li>
             <li><a href="About.html"><i class="bi bi-info-circle"></i>About</a></li>
             <li><a href="Contact.html"><i class="bi bi-envelope"></i>Contact</a></li>
         </ul>
-
     </div>
 
     <div class="L-header">
         <form>
-            <input id="search" type="search" placeholder="Search books,authors...">
-            <label for="search" style="color:#ffd636; padding:3px 3px 3px 3px ; border: solid 1px #ffd636; border-radius: 5px  " ><i class="bi bi-search"></i></label>
-
+            <input type="search" placeholder="Search books, authors...">
         </form>
-        <button><a href="my_list.html"><i class="fa-regular fa-bookmark"></i></a></button>
-        <button><a href="Cart.html"><i class="bi bi-bag"></i></a></button>
-        <button><a href="User_profile.html"><i class="fa-regular fa-circle-user"></i></a></button>
 
-
-
+        <button><i class="fa-regular fa-bookmark"></i></button>
+        <button><i class="bi bi-bag"></i></button>
+        <button><i class="fa-regular fa-circle-user"></i></button>
     </div>
 </header>
 
-
-
-
-
-
-
+<!-- MAIN -->
 <main>
 
-    <div>
-        <span>Collection</span>
-        <h1>All <em>Books</em></h1>
-    </div>
-    <div>
-        <select class="sort-select" id="sortSelect">
-            <option>Sort: Featured</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
-            <option>Newest</option>
-            <option>Bestselling</option>
-        </select>
-    </div>
-    <h2>Book Type</h2>
-    <ul>
-        <li><input type="checkbox" /> All Books</li>
-        <li><input type="checkbox" /> Fiction</li>
-        <li><input type="checkbox" /> Science</li>
-        <li><input type="checkbox" /> History</li>
-        <li><input type="checkbox" /> Psychology</li>
-        <li><input type="checkbox" /> Sci-Fi</li>
-        <li><input type="checkbox" /> Travel</li>
-    </ul>
+<!-- TITLE -->
+<div class="title-section">
+    <span>Collection</span>
+    <h1>All <em>Books</em></h1>
+</div>
 
-    <h2>AVAILABILITY</h2>
-    <ul>
-        <li><input type="checkbox" /> In Stock</li>
-        <li><input type="checkbox" /> Pre-Order</li>
-    </ul>
+<!-- SORT -->
+<div class="sort">
+    <select class="sort-select">
+        <option>Sort: Featured</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+        <option>Newest</option>
+    </select>
+</div>
 
-    <hr />
+<!-- FILTERS -->
+<div class="filters">
 
+<h2>GENRE</h2>
+<ul>
+<li><input type="checkbox"> All Books</li>
+<li><input type="checkbox"> Fiction</li>
+<li><input type="checkbox"> Science</li>
+<li><input type="checkbox"> History</li>
+<li><input type="checkbox"> Psychology</li>
+<li><input type="checkbox"> Sci-Fi</li>
+</ul>
 
-    <ul>
+<h2>PRICE RANGE</h2>
 
-        <li>
-            <img src="E:\Cairo university\web project\38.TheMidnightLibrary.jpg" alt="TheMidnightLibrary" width="100">
-            <br/>
-            <strong>The Midnight Library</strong><br />
-            Author: Matt Haig<br />
-            Genre: Fiction<br />
-            Rating: ★★★★★<br />
-            Price: <s>$21.00</s> $18.99<br />
-            Badge: Bestseller
-        </li>
-        <br/>
-        <li>
-            <img src="lessons.jpg" alt="Lessons in Chemistry" width="100">
-            <br/>
-            <strong>Lessons in Chemistry</strong><br />
-            Author: Bonnie Garmus<br />
-            Genre: Literary Fiction<br />
-            Rating: ★★★★★<br />
-            Price: $22.00<br />
-            Badge: New
-        </li>
-        <br/>
-        <li>
-            <img src="E:\Cairo university\web project\atomic-habits-james-clear-irustima.jpg" alt="Atomic Habits" width="100">
-            <br/>
-            <strong>Atomic Habits</strong><br />
-            Author: James Clear<br />
-            Genre: Self-Help<br />
-            Rating: ★★★★★<br />
-            Price: <s>$27.00</s> $19.99<br />
-            Badge: Bestseller
-        </li>
-        <br/>
-        <li>
-            <img src="E:\Cairo university\web project\Dune.jpg" alt="Dune" width="100">
-            <br/>
-            <strong>Dune</strong><br />
-            Author: Frank Herbert<br />
-            Genre: Sci-Fi<br />
-            Rating: ★★★★★<br />
-            Price: $16.99<br />
-            Badge: New
-        </li>
-        <br/>
-        <li>
-            <img src="E:\Cairo university\web project\foundation.jpg" alt="Foundation" width="100">
-            <br/>
-            <strong>Foundation</strong><br />
-            Author: Isaac Asimov<br />
-            Genre: Sci-Fi<br />
-            Rating: ★★★★★<br />
-            Price: <s>$20.00</s> $14.99<br />
-            Badge: Classic
-        </li>
-        <br/>
-        <li>
-            <img src="E:\Cairo university\web project\sapiens.jpg" alt="Sapiens" width="100">
-            <br/>
-            <strong>Sapiens</strong><br />
-            Author: Yuval Noah Harari<br />
-            Genre: History<br />
-            Rating: ★★★★☆<br />
-            Price: $21.99<br />
-            Badge: Bestseller
-        </li>
-        <br/>
-        <li>
-            <img src="E:\Cairo university\web project\the alchemist.jpg" alt="The Alchemist" width="100">
-            <br/>
-            <strong>The Alchemist</strong><br />
-            Author: Paulo Coelho<br />
-            Genre: Fiction<br />
-            Rating: ★★★★★<br />
-            Price: <s>$18.00</s> $13.99<br />
-            Badge: Sale
-        </li>
-        <br/>
-        <li>
-            <img src="E:\Cairo university\web project\think again.jpg" alt="Think Again" width="100">
-            <br/>
-            <strong>Think Again</strong><br />
-            Author: Adam Grant<br />
-            Genre: Psychology<br />
-            Rating: ★★★★☆<br />
-            Price: $17.99<br />
-            Badge: New
-        </li>
+<input type="range" min="0" max="40" value="20">
 
-    </ul>
+<div class="price-labels">
+    <span>$0</span>
+    <span>Up to $40</span>
+</div>
+
+<h2>RATING</h2>
+
+<label class="rating-row">
+    <input type="checkbox">
+    <span class="stars">★★★★★</span>
+    <span>& up</span>
+</label>
+
+<label class="rating-row">
+    <input type="checkbox">
+    <span class="stars">★★★★☆</span>
+    <span>& up</span>
+</label>
+
+<label class="rating-row">
+    <input type="checkbox">
+    <span class="stars">★★★☆☆</span>
+    <span>& up</span>
+</label>
+
+<h2>AVAILABILITY</h2>
+<ul>
+<li><input type="checkbox"> In Stock</li>
+<li><input type="checkbox"> Pre-Order</li>
+</ul>
+
+<button class="apply-btn">APPLY FILTERS</button>
+<p class="clear">Clear All</p>
+
+</div>
+
+<!-- BOOKS -->
+<ul class="books-grid">
+
+<li class="book-card">
+<div class="book-img">
+<img src="38.TheMidnightLibrary.jpg">
+<span class="badge">Bestseller</span>
+</div>
+<div class="book-info">
+<span class="category">FICTION</span>
+<h3>The Midnight Library</h3>
+<p>Matt Haig</p>
+<div class="rating">★★★★★</div>
+<div class="book-footer">
+<div><s>$21</s> $18.99</div>
+<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
+</div>
+</div>
+</li>
+
+<li class="book-card">
+<div class="book-img">
+<img src="lessons.jpg">
+<span class="badge">New</span>
+</div>
+<div class="book-info">
+<span class="category">FICTION</span>
+<h3>Lessons in Chemistry</h3>
+<p>Bonnie Garmus</p>
+<div class="rating">★★★★★</div>
+<div class="book-footer">
+<div>$22.00</div>
+<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
+</div>
+</div>
+</li>
+
+<li class="book-card">
+<div class="book-img">
+<img src="atomic-habits.jpg">
+<span class="badge">Bestseller</span>
+</div>
+<div class="book-info">
+<span class="category">SELF-HELP</span>
+<h3>Atomic Habits</h3>
+<p>James Clear</p>
+<div class="rating">★★★★★</div>
+<div class="book-footer">
+<div><s>$27</s> $19.99</div>
+<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
+</div>
+</div>
+</li>
+
+<li class="book-card">
+<div class="book-img">
+<img src="Dune.jpg">
+<span class="badge">New</span>
+</div>
+<div class="book-info">
+<span class="category">SCI-FI</span>
+<h3>Dune</h3>
+<p>Frank Herbert</p>
+<div class="rating">★★★★★</div>
+<div class="book-footer">
+<div>$16.99</div>
+<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
+</div>
+</div>
+</li>
+
+<li class="book-card">
+<div class="book-img">
+<img src="foundation.jpg">
+<span class="badge">Classic</span>
+</div>
+<div class="book-info">
+<span class="category">SCI-FI</span>
+<h3>Foundation</h3>
+<p>Isaac Asimov</p>
+<div class="rating">★★★★★</div>
+<div class="book-footer">
+<div><s>$20</s> $14.99</div>
+<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
+</div>
+</div>
+</li>
+
+<li class="book-card">
+<div class="book-img">
+<img src="sapiens.jpg">
+<span class="badge">Bestseller</span>
+</div>
+<div class="book-info">
+<span class="category">HISTORY</span>
+<h3>Sapiens</h3>
+<p>Yuval Noah Harari</p>
+<div class="rating">★★★★☆</div>
+<div class="book-footer">
+<div>$21.99</div>
+<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
+</div>
+</div>
+</li>
+
+<li class="book-card">
+<div class="book-img">
+<img src="the-alchemist.jpg">
+<span class="badge">Sale</span>
+</div>
+<div class="book-info">
+<span class="category">FICTION</span>
+<h3>The Alchemist</h3>
+<p>Paulo Coelho</p>
+<div class="rating">★★★★★</div>
+<div class="book-footer">
+<div><s>$18</s> $13.99</div>
+<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
+</div>
+</div>
+</li>
+
+<li class="book-card">
+<div class="book-img">
+<img src="think-again.jpg">
+<span class="badge">New</span>
+</div>
+<div class="book-info">
+<span class="category">PSYCHOLOGY</span>
+<h3>Think Again</h3>
+<p>Adam Grant</p>
+<div class="rating">★★★★☆</div>
+<div class="book-footer">
+<div>$17.99</div>
+<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
+</div>
+</div>
+</li>
+
+</ul>
+
+<!-- PAGINATION -->
+<div class="pagination">
+    <span class="page active">1</span>
+    <span class="page">2</span>
+    <span class="page">3</span>
+    <span class="page">4</span>
+</div>
 
 </main>
 
-
-
-<script src="../JavaScript-file/Books.js"></script>
-
 </body>
-</html> 
+</html>
