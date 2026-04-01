@@ -40,6 +40,7 @@ body{
     top: 0;
     height: 70px;
     align-items: center !important;
+    z-index: 100;
 }
 .F-header{
     display: inline-flex;
@@ -201,7 +202,7 @@ body{
     padding: 32px;
     display: flex;
     flex-direction: column;
-    gap: 15px;  
+    gap: 15px;
 }
 
 .stats:hover {
@@ -233,6 +234,7 @@ body{
     margin-top: 2rem;
     margin-bottom: 3rem;
 }
+
 .value {
     background: var(--card);
     border: 1px solid var(--border);
@@ -243,6 +245,7 @@ body{
     flex-direction: column;
     gap: 24px;
 }
+
 .value:hover {
     border-top: 3px solid var(--gold2);
     box-shadow: 0 4px 20px rgba(184, 132, 42, 0.1);
