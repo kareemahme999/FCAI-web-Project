@@ -1,21 +1,9 @@
 /* ══════════════════════════════════════════════
    FOLIO — my_list.js
-   • Reads folio-mylist from localStorage
-   • Tabs counts always correct
-   • Supports books added from Books.html via bookmark
+   القائمة تبدأ فاضية — بتتملى بس من الـ bookmark
    ══════════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  /* ── DEFAULT BOOKS (fallback when storage is empty) ── */
-  const DEFAULT_BOOKS = [
-    { id:1, title:'The Midnight Library', author:'Matt Haig',          genre:'Fiction',         status:'reading',  progress:58,  progressLabel:'Page 187 of 320',  color:'linear-gradient(145deg,#2d3142,#4f5d75)' },
-    { id:2, title:'Lessons in Chemistry', author:'Bonnie Garmus',      genre:'Literary Fiction', status:'want',     progress:0,   progressLabel:'',                  color:'linear-gradient(145deg,#6b2737,#9b4456)' },
-    { id:3, title:'Atomic Habits',        author:'James Clear',        genre:'Self-Help',        status:'finished', progress:100, progressLabel:'100% complete',     color:'linear-gradient(145deg,#3d5a3e,#5e8b61)' },
-    { id:4, title:'Dune',                 author:'Frank Herbert',      genre:'Sci-Fi',            status:'want',     progress:0,   progressLabel:'',                  color:'linear-gradient(145deg,#5c4a1e,#8b6914)' },
-    { id:5, title:'Foundation',           author:'Isaac Asimov',       genre:'Sci-Fi',            status:'want',     progress:0,   progressLabel:'',                  color:'linear-gradient(145deg,#2f3f5b,#3d6b8a)' },
-    { id:6, title:'Sapiens',              author:'Yuval Noah Harari',  genre:'History',           status:'finished', progress:100, progressLabel:'100% complete',     color:'linear-gradient(145deg,#4a3020,#7a5035)' },
-  ];
 
   /* ── STATE ── */
   let books        = loadBooks();
@@ -23,23 +11,59 @@ document.addEventListener('DOMContentLoaded', () => {
   let searchQuery  = '';
   let sortOrder    = 'default';
 
-  /* ── STORAGE ── */
+  /* ── STORAGE: ابدأ بـ array فاضي لو مفيش حاجة محفوظة ── */
   function loadBooks() {
     try {
       const saved = localStorage.getItem('folio-mylist');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed)) return parsed;
       }
     } catch (_) {}
-    /* First visit: seed with defaults and save */
-    const defaults = [...DEFAULT_BOOKS];
-    localStorage.setItem('folio-mylist', JSON.stringify(defaults));
-    return defaults;
+    return [];   /* فاضي تماماً */
   }
 
   function saveBooks() {
     localStorage.setItem('folio-mylist', JSON.stringify(books));
+  }
+
+  /* ══════════════════════════════════════════
+     CART HELPERS
+     ══════════════════════════════════════════ */
+  function getCart()      { return JSON.parse(localStorage.getItem('folio_cart') || '[]'); }
+  function saveCart(cart) { localStorage.setItem('folio_cart', JSON.stringify(cart)); }
+
+  function addToCart(book, btnEl) {
+    const cart     = getCart();
+    const existing = cart.find(x => x.title === book.title);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({
+        title:  book.title,
+        author: book.author,
+        genre:  book.genre,
+        price:  book.price || 14.99,
+        color:  book.color || 'linear-gradient(145deg,#2d3142,#4f5d75)',
+        qty:    1,
+      });
+    }
+    saveCart(cart);
+
+    /* feedback */
+    const original = btnEl.innerHTML;
+    btnEl.style.borderColor = 'var(--gold)';
+    btnEl.style.color       = 'var(--gold)';
+    btnEl.style.background  = 'var(--glow)';
+    btnEl.innerHTML = '<i class="bi bi-check-lg"></i>';
+    setTimeout(() => {
+      btnEl.innerHTML         = original;
+      btnEl.style.borderColor = '';
+      btnEl.style.color       = '';
+      btnEl.style.background  = '';
+    }, 1500);
+
+    showToast(`"${book.title}" added to cart`);
   }
 
   /* ── STATS ── */
@@ -69,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-  /* ── TAB COUNTS — always reflects real data ── */
+  /* ── TAB COUNTS ── */
   function updateCounts() {
     document.getElementById('count-all').textContent      = books.length;
     document.getElementById('count-reading').textContent  = books.filter(b => b.status === 'reading').length;
@@ -95,13 +119,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return result;
   }
 
-  /* ── STATUS BADGE HTML ── */
+  /* ── STATUS BADGE ── */
   function statusLabel(status) {
     const map = { reading:'Reading', want:'Want to Read', finished:'Finished' };
     return `<span class="status ${status}">${map[status] || status}</span>`;
   }
 
-  /* ── BUILD LIST ITEM ── */
+  /* ── BUILD ITEM ── */
   function buildItem(book, index) {
     const progressHTML = book.progress > 0 ? `
       <div class="progress-wrap">
@@ -127,9 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <button class="action-btn btn-status" data-id="${book.id}" title="Change status">
             <i class="bi bi-arrow-repeat"></i>
           </button>
-          <a href="Cart.html" class="action-btn" title="Add to Cart">
+          <button class="action-btn btn-cart" data-id="${book.id}" title="Add to Cart">
             <i class="bi bi-bag-plus"></i>
-          </a>
+          </button>
           <button class="action-btn danger btn-remove" data-id="${book.id}" title="Remove">
             <i class="bi bi-trash"></i>
           </button>
@@ -165,6 +189,13 @@ document.addEventListener('DOMContentLoaded', () => {
       listEl.querySelectorAll('.btn-status').forEach(btn => {
         btn.addEventListener('click', () => cycleStatus(+btn.dataset.id));
       });
+
+      listEl.querySelectorAll('.btn-cart').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const book = books.find(b => b.id === +btn.dataset.id);
+          if (book) addToCart(book, btn);
+        });
+      });
     }
 
     updateCounts();
@@ -186,8 +217,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function cycleStatus(id) {
     const book = books.find(b => b.id === id);
     if (!book) return;
-    const prev   = book.status;
-    book.status  = CYCLE[book.status] || 'want';
+    const prev  = book.status;
+    book.status = CYCLE[book.status] || 'want';
     if (book.status === 'finished') {
       book.progress = 100; book.progressLabel = '100% complete';
     } else if (prev === 'finished') {
@@ -231,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => toast.remove(), 3100);
   }
 
-  /* ── ACTIVE NAV LINK ── */
+  /* ── ACTIVE NAV ── */
   const currentFile = window.location.pathname.split('/').pop();
   document.querySelectorAll('.F-header ul li a').forEach(link => {
     if (link.getAttribute('href') === currentFile) link.classList.add('active-link');
