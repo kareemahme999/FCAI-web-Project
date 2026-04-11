@@ -24,12 +24,17 @@
 body {
     background: linear-gradient(to bottom, #f5f2ec, #ede9e0);
     color: var(--text);
+    padding-top: 80px;
 }
 
 /* =========================
    HEADER
 ========================= */
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
