@@ -8,8 +8,8 @@
 <link rel="icon" href="../../Pictures/dribbble.svg">
 
 <!-- Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
 <!-- CSS -->
     <link rel="stylesheet" href="../Css-file/Books.css">
@@ -20,248 +20,257 @@
 <!-- HEADER -->
 <header class="header">
     <div class="F-header">
-        <h1><i class="bi bi-dribbble"></i> FOLIO.</h1>
+        <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
         <ul>
             <li><a href="index.html"><i class="bi bi-house"></i>Home</a></li>
-            <li><a id="active" href="Books.html"><i class="bi bi-grid"></i>Books</a></li>
+            <li><a id="books" href="Books.html"><i class="bi bi-grid"></i>Books</a></li>
             <li><a href="About.html"><i class="bi bi-info-circle"></i>About</a></li>
             <li><a href="Contact.html"><i class="bi bi-envelope"></i>Contact</a></li>
         </ul>
     </div>
-
     <div class="L-header">
         <form>
-            <input type="search" placeholder="Search books, authors...">
+            <input id="search-input" type="search" placeholder="Search books,authors...">
         </form>
-
-        <button><i class="fa-regular fa-bookmark"></i></button>
-        <button><i class="bi bi-bag"></i></button>
-        <button><i class="fa-regular fa-circle-user"></i></button>
+        <button onclick="location.href='my_list.html'" title="My List"><i class="fa-regular fa-bookmark"></i></button>
+        <button onclick="location.href='Cart.html'" title="Cart" id="cart-btn" style="position:relative;"><i class="bi bi-bag"></i><span id="cart-badge" style="display:none;position:absolute;top:-6px;right:-6px;background:var(--gold);color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;">0</span></button>
+        <button onclick="location.href='User_profile.html'" title="Profile"><i class="fa-regular fa-circle-user"></i></button>
     </div>
 </header>
 
 <!-- MAIN -->
 <main>
 
-<!-- TITLE -->
-<div class="title-section">
-    <span>Collection</span>
-    <h1>All <em>Books</em></h1>
-</div>
+    <!-- TITLE -->
+    <div class="title-section">
+        <span>Collection</span>
+        <h1>All <em>Books</em></h1>
+    </div>
 
-<!-- SORT -->
-<div class="sort">
-    <select class="sort-select">
-        <option>Sort: Featured</option>
-        <option>Price: Low to High</option>
-        <option>Price: High to Low</option>
-        <option>Newest</option>
-    </select>
-</div>
+    <!-- SORT -->
+    <div class="sort-row">
+        <select class="sort-select">
+            <option>Sort: Featured</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest</option>
+        </select>
+    </div>
 
-<!-- FILTERS -->
-<div class="filters">
+    <!-- FILTERS -->
+    <aside class="filters">
 
-<h2>GENRE</h2>
-<ul>
-<li><input type="checkbox"> All Books</li>
-<li><input type="checkbox"> Fiction</li>
-<li><input type="checkbox"> Science</li>
-<li><input type="checkbox"> History</li>
-<li><input type="checkbox"> Psychology</li>
-<li><input type="checkbox"> Sci-Fi</li>
-</ul>
+        <h2>Genre</h2>
+        <ul>
+            <li><input type="checkbox"> All Books</li>
+            <li><input type="checkbox"> Fiction</li>
+            <li><input type="checkbox"> Science</li>
+            <li><input type="checkbox"> History</li>
+            <li><input type="checkbox"> Psychology</li>
+            <li><input type="checkbox"> Sci-Fi</li>
+        </ul>
 
-<h2>PRICE RANGE</h2>
+        <h2>Price Range</h2>
+        <input type="range" min="0" max="40" value="20">
+        <div class="price-labels">
+            <span>$0</span>
+            <span>Up to $40</span>
+        </div>
 
-<input type="range" min="0" max="40" value="20">
+        <h2>Rating</h2>
+        <label class="rating-row">
+            <input type="checkbox">
+            <span class="stars">★★★★★</span>
+            <span>& up</span>
+        </label>
+        <label class="rating-row">
+            <input type="checkbox">
+            <span class="stars">★★★★☆</span>
+            <span>& up</span>
+        </label>
+        <label class="rating-row">
+            <input type="checkbox">
+            <span class="stars">★★★☆☆</span>
+            <span>& up</span>
+        </label>
 
-<div class="price-labels">
-    <span>$0</span>
-    <span>Up to $40</span>
-</div>
+        <h2>Availability</h2>
+        <ul>
+            <li><input type="checkbox"> In Stock</li>
+            <li><input type="checkbox"> Pre-Order</li>
+        </ul>
 
-<h2>RATING</h2>
+        <button class="apply-btn">Apply Filters</button>
+        <p class="clear">Clear All</p>
 
-<label class="rating-row">
-    <input type="checkbox">
-    <span class="stars">★★★★★</span>
-    <span>& up</span>
-</label>
+    </aside>
 
-<label class="rating-row">
-    <input type="checkbox">
-    <span class="stars">★★★★☆</span>
-    <span>& up</span>
-</label>
+    <!-- BOOKS -->
+    <ul class="books-grid">
 
-<label class="rating-row">
-    <input type="checkbox">
-    <span class="stars">★★★☆☆</span>
-    <span>& up</span>
-</label>
+        <li class="book-card">
+            <div class="book-img">
+                <img src="38.TheMidnightLibrary.jpg" alt="The Midnight Library">
+                <span class="badge">Bestseller</span>
+            </div>
+            <div class="book-info">
+                <span class="category">Fiction</span>
+                <h3 class="title">The Midnight Library</h3>
+                <p class="author">Matt Haig</p>
+                <div class="rating">★★★★★</div>
+                <div class="book-footer">
+                    <div class="price"><s>$21</s> <span>$18.99</span></div>
+                    <div class="icons"><i class="bi bi-bookmark"></i></div>
+                </div>
 
-<h2>AVAILABILITY</h2>
-<ul>
-<li><input type="checkbox"> In Stock</li>
-<li><input type="checkbox"> Pre-Order</li>
-</ul>
+                <button class="add-to-cart" onclick="addToCart('The Midnight Library','Matt Haig','Fiction',18.99,'linear-gradient(145deg,#2d3142,#4f5d75)',this)"><i class="bi bi-bag-plus"></i> Add to Cart</button>
+            </div>
+        </li>
 
-<button class="apply-btn">APPLY FILTERS</button>
-<p class="clear">Clear All</p>
+        <li class="book-card">
+            <div class="book-img">
+                <img src="lessons.jpg" alt="Lessons in Chemistry">
+                <span class="badge">New</span>
+            </div>
+            <div class="book-info">
+                <span class="category">Fiction</span>
+                <h3 class="title">Lessons in Chemistry</h3>
+                <p class="author">Bonnie Garmus</p>
+                <div class="rating">★★★★★</div>
+                <div class="book-footer">
+                    <div class="price"><span>$22.00</span></div>
+                    <div class="icons"><i class="bi bi-bookmark"></i></div>
+                </div>
 
-</div>
+                <button class="add-to-cart" onclick="addToCart('Lessons in Chemistry','Bonnie Garmus','Fiction',22.0,'linear-gradient(145deg,#3d2a2a,#6b4a4a)',this)"><i class="bi bi-bag-plus"></i> Add to Cart</button>
+            </div>
+        </li>
 
-<!-- BOOKS -->
-<ul class="books-grid">
+        <li class="book-card">
+            <div class="book-img">
+                <img src="atomic-habits.jpg" alt="Atomic Habits">
+                <span class="badge">Bestseller</span>
+            </div>
+            <div class="book-info">
+                <span class="category">Self-Help</span>
+                <h3 class="title">Atomic Habits</h3>
+                <p class="author">James Clear</p>
+                <div class="rating">★★★★★</div>
+                <div class="book-footer">
+                    <div class="price"><s>$27</s> <span>$19.99</span></div>
+                    <div class="icons"><i class="bi bi-bookmark"></i></div>
+                </div>
 
-<li class="book-card">
-<div class="book-img">
-<img src="38.TheMidnightLibrary.jpg">
-<span class="badge">Bestseller</span>
-</div>
-<div class="book-info">
-<span class="category">FICTION</span>
-<h3>The Midnight Library</h3>
-<p>Matt Haig</p>
-<div class="rating">★★★★★</div>
-<div class="book-footer">
-<div><s>$21</s> $18.99</div>
-<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
-</div>
-</div>
-</li>
+                <button class="add-to-cart" onclick="addToCart('Atomic Habits','James Clear','Self-Help',19.99,'linear-gradient(145deg,#3d5a3e,#5e8b61)',this)"><i class="bi bi-bag-plus"></i> Add to Cart</button>
+            </div>
+        </li>
 
-<li class="book-card">
-<div class="book-img">
-<img src="lessons.jpg">
-<span class="badge">New</span>
-</div>
-<div class="book-info">
-<span class="category">FICTION</span>
-<h3>Lessons in Chemistry</h3>
-<p>Bonnie Garmus</p>
-<div class="rating">★★★★★</div>
-<div class="book-footer">
-<div>$22.00</div>
-<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
-</div>
-</div>
-</li>
+        <li class="book-card">
+            <div class="book-img">
+                <img src="Dune.jpg" alt="Dune">
+                <span class="badge">New</span>
+            </div>
+            <div class="book-info">
+                <span class="category">Sci-Fi</span>
+                <h3 class="title">Dune</h3>
+                <p class="author">Frank Herbert</p>
+                <div class="rating">★★★★★</div>
+                <div class="book-footer">
+                    <div class="price"><span>$16.99</span></div>
+                    <div class="icons"><i class="bi bi-bookmark"></i></div>
+                </div>
 
-<li class="book-card">
-<div class="book-img">
-<img src="atomic-habits.jpg">
-<span class="badge">Bestseller</span>
-</div>
-<div class="book-info">
-<span class="category">SELF-HELP</span>
-<h3>Atomic Habits</h3>
-<p>James Clear</p>
-<div class="rating">★★★★★</div>
-<div class="book-footer">
-<div><s>$27</s> $19.99</div>
-<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
-</div>
-</div>
-</li>
+                <button class="add-to-cart" onclick="addToCart('Dune','Frank Herbert','Sci-Fi',16.99,'linear-gradient(145deg,#5c4a1e,#8b6914)',this)"><i class="bi bi-bag-plus"></i> Add to Cart</button>
+            </div>
+        </li>
 
-<li class="book-card">
-<div class="book-img">
-<img src="Dune.jpg">
-<span class="badge">New</span>
-</div>
-<div class="book-info">
-<span class="category">SCI-FI</span>
-<h3>Dune</h3>
-<p>Frank Herbert</p>
-<div class="rating">★★★★★</div>
-<div class="book-footer">
-<div>$16.99</div>
-<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
-</div>
-</div>
-</li>
+        <li class="book-card">
+            <div class="book-img">
+                <img src="foundation.jpg" alt="Foundation">
+                <span class="badge">Classic</span>
+            </div>
+            <div class="book-info">
+                <span class="category">Sci-Fi</span>
+                <h3 class="title">Foundation</h3>
+                <p class="author">Isaac Asimov</p>
+                <div class="rating">★★★★★</div>
+                <div class="book-footer">
+                    <div class="price"><s>$20</s> <span>$14.99</span></div>
+                    <div class="icons"><i class="bi bi-bookmark"></i></div>
+                </div>
 
-<li class="book-card">
-<div class="book-img">
-<img src="foundation.jpg">
-<span class="badge">Classic</span>
-</div>
-<div class="book-info">
-<span class="category">SCI-FI</span>
-<h3>Foundation</h3>
-<p>Isaac Asimov</p>
-<div class="rating">★★★★★</div>
-<div class="book-footer">
-<div><s>$20</s> $14.99</div>
-<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
-</div>
-</div>
-</li>
+                <button class="add-to-cart" onclick="addToCart('Foundation','Isaac Asimov','Sci-Fi',14.99,'linear-gradient(145deg,#1a2a4a,#2a4a7a)',this)"><i class="bi bi-bag-plus"></i> Add to Cart</button>
+            </div>
+        </li>
 
-<li class="book-card">
-<div class="book-img">
-<img src="sapiens.jpg">
-<span class="badge">Bestseller</span>
-</div>
-<div class="book-info">
-<span class="category">HISTORY</span>
-<h3>Sapiens</h3>
-<p>Yuval Noah Harari</p>
-<div class="rating">★★★★☆</div>
-<div class="book-footer">
-<div>$21.99</div>
-<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
-</div>
-</div>
-</li>
+        <li class="book-card">
+            <div class="book-img">
+                <img src="sapiens.jpg" alt="Sapiens">
+                <span class="badge">Bestseller</span>
+            </div>
+            <div class="book-info">
+                <span class="category">History</span>
+                <h3 class="title">Sapiens</h3>
+                <p class="author">Yuval Noah Harari</p>
+                <div class="rating">★★★★☆</div>
+                <div class="book-footer">
+                    <div class="price"><span>$21.99</span></div>
+                    <div class="icons"><i class="bi bi-bookmark"></i></div>
+                </div>
 
-<li class="book-card">
-<div class="book-img">
-<img src="the-alchemist.jpg">
-<span class="badge">Sale</span>
-</div>
-<div class="book-info">
-<span class="category">FICTION</span>
-<h3>The Alchemist</h3>
-<p>Paulo Coelho</p>
-<div class="rating">★★★★★</div>
-<div class="book-footer">
-<div><s>$18</s> $13.99</div>
-<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
-</div>
-</div>
-</li>
+                <button class="add-to-cart" onclick="addToCart('Sapiens','Yuval Noah Harari','History',21.99,'linear-gradient(145deg,#4a3020,#7a5035)',this)"><i class="bi bi-bag-plus"></i> Add to Cart</button>
+            </div>
+        </li>
 
-<li class="book-card">
-<div class="book-img">
-<img src="think-again.jpg">
-<span class="badge">New</span>
-</div>
-<div class="book-info">
-<span class="category">PSYCHOLOGY</span>
-<h3>Think Again</h3>
-<p>Adam Grant</p>
-<div class="rating">★★★★☆</div>
-<div class="book-footer">
-<div>$17.99</div>
-<div><i class="bi bi-bookmark"></i> <i class="bi bi-bag"></i></div>
-</div>
-</div>
-</li>
+        <li class="book-card">
+            <div class="book-img">
+                <img src="the-alchemist.jpg" alt="The Alchemist">
+                <span class="badge">Sale</span>
+            </div>
+            <div class="book-info">
+                <span class="category">Fiction</span>
+                <h3 class="title">The Alchemist</h3>
+                <p class="author">Paulo Coelho</p>
+                <div class="rating">★★★★★</div>
+                <div class="book-footer">
+                    <div class="price"><s>$18</s> <span>$13.99</span></div>
+                    <div class="icons"><i class="bi bi-bookmark"></i></div>
+                </div>
 
-</ul>
+                <button class="add-to-cart" onclick="addToCart('The Alchemist','Paulo Coelho','Fiction',13.99,'linear-gradient(145deg,#7a5a10,#b08820)',this)"><i class="bi bi-bag-plus"></i> Add to Cart</button>
+            </div>
+        </li>
 
-<!-- PAGINATION -->
-<div class="pagination">
-    <span class="page active">1</span>
-    <span class="page">2</span>
-    <span class="page">3</span>
-    <span class="page">4</span>
-</div>
+        <li class="book-card">
+            <div class="book-img">
+                <img src="think-again.jpg" alt="Think Again">
+                <span class="badge">New</span>
+            </div>
+            <div class="book-info">
+                <span class="category">Psychology</span>
+                <h3 class="title">Think Again</h3>
+                <p class="author">Adam Grant</p>
+                <div class="rating">★★★★☆</div>
+                <div class="book-footer">
+                    <div class="price"><span>$17.99</span></div>
+                    <div class="icons"><i class="bi bi-bookmark"></i></div>
+                </div>
+
+                <button class="add-to-cart" onclick="addToCart('Think Again','Adam Grant','Psychology',17.99,'linear-gradient(145deg,#2a3a5a,#3a5a8a)',this)"><i class="bi bi-bag-plus"></i> Add to Cart</button>
+            </div>
+        </li>
+
+    </ul>
+
+    <!-- PAGINATION -->
+    <div class="pagination">
+        <span class="page active">1</span>
+        <span class="page">2</span>
+        <span class="page">3</span>
+        <span class="page">4</span>
+    </div>
 
 </main>
-
+<script src="../JavaScript-file/Books.js"></script>
 </body>
 </html>
