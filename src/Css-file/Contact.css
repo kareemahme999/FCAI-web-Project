@@ -3,11 +3,12 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Syne', Arial, Helvetica, sans-serif;
     box-sizing: border-box;
-}
 
-:root {
+
+
+}
+:root{
     --bg: #f5f2ec;
     --bg2: #ede9e0;
     --bg3: #e8e3d8;
@@ -23,138 +24,110 @@
     --text3: #a89880;
     --danger: #cc3c3c;
     --success: #3a9e62;
-    --radius: 12px;
 }
-
-body {
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
+body{
+    position: relative;
+    font-family: 'Syne', sans-serif;
 }
-
-/* ── HEADER ── */
-.header {
-    display: flex;
+/*header*****************************************************************************/
+.header{
+    display: inline-flex;
     justify-content: space-between;
-    align-items: center;
     width: 100%;
     background: rgba(245, 242, 236, 0.92);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.08);
+    box-shadow:0 1px 20px rgba(0,0,0,0.08);
     position: sticky;
     top: 0;
     height: 70px;
-    z-index: 99;
-    padding: 0 20px;
+    align-items: center !important;
+    z-index: 999;
 }
-
-.F-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.F-header h1 {
-    font-size: 26px;
-    font-weight: 700;
-    margin-right: 12px;
-    white-space: nowrap;
-    color: var(--text);
-}
-
-.F-header ul {
-    list-style: none;
-    display: flex;
-    gap: 2px;
-    padding: 0;
-}
-
-.F-header ul li {
+.F-header{
     display: inline-flex;
-}
-
-.F-header ul li a {
-    font-size: 13px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--text2);
-    border: 1px solid transparent;
-    border-radius: 6px;
-    padding: 7px 14px;
-    transition: all 0.2s;
-    white-space: nowrap;
-}
-
-.F-header ul li a:hover {
-    background: var(--glow);
-    color: var(--gold);
-}
-
-#contact-active {
-    background: var(--glow) !important;
-    color: var(--gold) !important;
-}
-
-.L-header {
-    display: flex;
+    justify-content: space-between;
+    padding: 20px;
     align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
+
+}
+.F-header h1{
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 15px 0 0;
+
+}
+.F-header ul{
+    padding: 10px
+}
+.F-header ul li{
+    display: inline-flex;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 5px;
+    cursor: pointer;
+    text-decoration: none;
+
+}
+.F-header ul li :hover{
+    background: var(--glow);
+    color:var(--gold) ;
+}
+
+#home{
+    background: var(--glow);
+    color:var(--gold) ;
+}
+
+.F-header ul li a{
+    font-size: 14px;
+    text-decoration: none;
+    color:var(--text2) ;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 8px 20px;
+}
+.L-header{
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
+.L-header button{
+    border-radius: 8px;
+    border: 1px solid rgba(116, 112, 112, 0.82);
+    background:transparent ;
+    padding: 8px 9px;
+
+}
+.L-header button:hover{
+    border: 1px solid var(--gold  );
+    background: var(--glow);
+
+}
+.L-header button a {
+    color: var(--text2);
+}
+.L-header button:hover a{
+    color: var(--gold);
 }
 
 .L-header form input {
+
     border: 1px solid var(--border2);
     border-radius: 8px;
-    padding: 8px 14px;
+    padding: 8px 16px;
     outline: none;
-    font-family: 'Syne', sans-serif;
-    font-size: 12px;
-    color: var(--text2);
-    background: var(--card);
-    width: 180px;
-    transition: box-shadow 0.2s;
 }
-
 .L-header form input:focus {
-    box-shadow: 0 0 0 3px var(--glow);
-}
+    box-shadow:  1px 1px 10px var(--gold);
 
+}
 .L-header form input::placeholder {
-    color: var(--text3);
-}
-
-.L-header button {
-    border-radius: 8px;
-    border: 1px solid rgba(116, 112, 112, 0.6);
-    background: transparent;
-    padding: 8px 10px;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.L-header button:hover {
-    border-color: var(--gold);
-    background: var(--glow);
-}
-
-.L-header button a {
+    font-family: 'Syne', sans-serif;
     color: var(--text2);
-    text-decoration: none;
-    font-size: 15px;
-    line-height: 1;
-    display: flex;
-    align-items: center;
+    font-size: 12px;
+    padding:0;
 }
-
-.L-header button:hover a {
-    color: var(--gold);
-}
-
 /* ── CONTACT PAGE ── */
 .contact-page {
     padding: 60px 5vw 80px;
