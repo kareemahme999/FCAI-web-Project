@@ -468,26 +468,53 @@ function goTo(page) {
     if (page==='media')     renderMediaPage();
 }
 
-/* ── MEDIA PAGE ── */
+/* ════════════════════════════════════════════
+   ── MEDIA PAGE  ✅ FIX: بيعمل media-grid
+      ديناميكياً لو مش موجود في الـ HTML
+   ════════════════════════════════════════════ */
 function renderMediaPage() {
     const el = document.getElementById('page-media');
-    if (!el || el.dataset.loaded) return;
+    if (!el) return;
+
+    /* ✅ FIX: مش بنمنع إعادة الرسم بـ dataset.loaded
+       عشان لو الـ grid اتحذف من الـ DOM يرجع يترسم */
+    let grid = document.getElementById('media-grid');
+
+    /* ✅ FIX: لو مفيش media-grid في الـ HTML، نعمله */
+    if (!grid) {
+        grid = document.createElement('div');
+        grid.id        = 'media-grid';
+        grid.className = 'media-grid';
+        grid.style.cssText =
+            'display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;padding:24px 0;';
+        el.appendChild(grid);
+    }
+
+    /* لو الصور اتحُملت قبل كده، ما نعيدش تحميلهم */
+    if (el.dataset.loaded === 'true') return;
     el.dataset.loaded = 'true';
+
     const images = [
-        { label:'Hero Banner',  tag:'Banner',  src:'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=200&fit=crop' },
-        { label:'Store Front',  tag:'Promo',   src:'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=200&fit=crop' },
-        { label:'Reading Nook', tag:'Lifestyle',src:'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=200&fit=crop' },
-        { label:'Book Stack',   tag:'Product', src:'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400&h=200&fit=crop' },
-        { label:'Library',      tag:'Lifestyle',src:'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400&h=200&fit=crop' },
+        { label:'Hero Banner',   tag:'Banner',   src:'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=200&fit=crop' },
+        { label:'Store Front',   tag:'Promo',    src:'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=200&fit=crop' },
+        { label:'Reading Nook',  tag:'Lifestyle',src:'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=200&fit=crop' },
+        { label:'Book Stack',    tag:'Product',  src:'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400&h=200&fit=crop' },
+        { label:'Library',       tag:'Lifestyle',src:'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400&h=200&fit=crop' },
         { label:'Coffee & Book', tag:'Lifestyle',src:'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=200&fit=crop' },
     ];
-    el.querySelector('#media-grid').innerHTML = images.map(img=>`
+
+    grid.innerHTML = images.map(img => `
     <div class="media-card">
       <div class="media-img-wrap">
-        <img src="${img.src}" alt="${img.label}" loading="lazy"/>
+        <img src="${img.src}"
+             alt="${img.label}"
+             loading="lazy"
+             onerror="this.style.display='none';this.insertAdjacentHTML('afterend',
+               '<div style=\'width:100%;height:160px;background:linear-gradient(145deg,#2d3142,#4f5d75);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);font-size:13px;\'>${img.label}</div>')"
+        />
         <div class="media-overlay">
           <button class="btn-ghost" onclick="toast('🔗 Link copied')"><i class="bi bi-link-45deg"></i></button>
-          <button class="btn-red"   onclick="toast('🗑️ Image deleted')"><i class="bi bi-trash"></i></button>
+          <button class="btn-red"   onclick="this.closest('.media-card').remove();toast('🗑️ Image deleted')"><i class="bi bi-trash"></i></button>
         </div>
       </div>
       <div class="media-info">
