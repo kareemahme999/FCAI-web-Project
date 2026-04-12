@@ -8,6 +8,7 @@
     document.getElementById(errorId).classList.add('show');
 }
 
+
     function sendMessage() {
     clearErrors();
 

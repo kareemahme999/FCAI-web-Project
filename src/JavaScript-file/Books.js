@@ -14,6 +14,7 @@ const DEFAULT_TITLES = [
     'Foundation', 'Sapiens', 'The Alchemist', 'Think Again'
 ];
 
+
 const BOOK_COLORS = {
     'The Midnight Library':  'linear-gradient(145deg,#2d3142,#4f5d75)',
     'Lessons in Chemistry':  'linear-gradient(145deg,#3d2a2a,#6b4a4a)',

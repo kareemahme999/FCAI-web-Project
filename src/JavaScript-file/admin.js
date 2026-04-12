@@ -25,6 +25,7 @@ function getOrders()       { return JSON.parse(localStorage.getItem(ORDERS_KEY) 
 /* seed defaults once */
 if (!localStorage.getItem(BOOKS_KEY)) saveBooks([...DEFAULT_BOOKS]);
 
+
 /* ── HELPERS ── */
 function statusBadge(s) {
     const map = { Active:'badge-green', Draft:'badge-yellow', 'Out of Stock':'badge-red' };

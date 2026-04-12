@@ -9,6 +9,7 @@ function saveCart(cart) {
   localStorage.setItem('folio_cart', JSON.stringify(cart));
 }
 
+
 // ── RENDER CART ──
 function renderCart() {
   const list = document.getElementById('cart-items-list');

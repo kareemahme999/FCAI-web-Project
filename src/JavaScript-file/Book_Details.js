@@ -360,4 +360,5 @@ if(book){
       <h2>Book not found</h2>
       <p>We couldn't find this book. <a href="../Html-file/Books.html" style="color:var(--gold)">Browse all books</a></p>
     </div>`;
+
 }

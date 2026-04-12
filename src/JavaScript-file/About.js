@@ -13,6 +13,7 @@ toggle.addEventListener('click', (e) => {
     }
 });
 
+
 document.addEventListener('click', (e) => {
     if (!menu.contains(e.target)) {
         menu.classList.remove('active');

@@ -236,4 +236,5 @@ document.addEventListener('DOMContentLoaded', () => {
     avatarInitials.textContent = initial;
   }
 
+
 });

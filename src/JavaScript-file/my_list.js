@@ -262,6 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (link.getAttribute('href') === currentFile) link.classList.add('active-link');
   });
 
+
   /* ── INIT ── */
   renderList();
 });

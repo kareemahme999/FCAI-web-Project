@@ -1018,6 +1018,7 @@ footer > div:first-child > div ul li a {
     transition: color 0.2s;
 }
 
+
 footer > div:first-child > div ul li a:hover {
     color: var(--gold);
 }

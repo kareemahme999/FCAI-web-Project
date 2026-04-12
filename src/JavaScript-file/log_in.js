@@ -12,6 +12,7 @@ const ADMIN_PASSWORD = '66200660K';
     }
 })();
 
+
 /* ── SHOW / HIDE ADMIN FIELDS ── */
 function toggleAdminFields() {
     const isChecked   = document.getElementById('is-admin').checked;

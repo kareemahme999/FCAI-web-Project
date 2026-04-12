@@ -35,5 +35,6 @@ if (_origRenderAdminBooks) {
     };
 }
 
+
 /* ── BOOT ── */
 document.addEventListener('DOMContentLoaded', linkBookCards);
