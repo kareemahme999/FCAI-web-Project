@@ -278,6 +278,19 @@ body {
   border: 3px solid rgba(212, 168, 67, 0.4);
   flex-shrink: 0;
   box-shadow: 0 4px 20px rgba(184, 132, 42, 0.3);
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.avatar.has-image {
+  color: transparent;
+  background-size: cover;
+  background-position: center;
+}
+
+.avatar:hover {
+  transform: translateY(-1px);
 }
 
 .profile-text h2 {
