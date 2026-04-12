@@ -46,3 +46,42 @@ document.querySelectorAll('.menu li a').forEach(link => {
         e.stopPropagation();
     });
 });
+
+
+// ✅ شغّال على أي عدد من الـ social menus
+document.querySelectorAll('.social-menu').forEach(menu => {
+    const toggle = menu.querySelector('.social-toggle');
+
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.classList.toggle('active');
+        toggle.classList.toggle('active');
+
+        toggle.innerHTML = menu.classList.contains('active')
+            ? '<i class="fas fa-times"></i>'
+            : '<i class="fas fa-share-alt"></i>';
+    });
+});
+
+// إقفال أي menu مفتوح لما تضغط بره
+document.addEventListener('click', (e) => {
+    document.querySelectorAll('.social-menu').forEach(menu => {
+        if (!menu.contains(e.target)) {
+            const toggle = menu.querySelector('.social-toggle');
+            menu.classList.remove('active');
+            toggle.classList.remove('active');
+            toggle.innerHTML = '<i class="fas fa-share-alt"></i>';
+        }
+    });
+});
+
+// Hover effect على links الـ social
+document.querySelectorAll('.social-menu li a').forEach(link => {
+    link.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.3) rotate(5deg)';
+    });
+    link.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1) rotate(0deg)';
+    });
+    link.addEventListener('click', (e) => e.stopPropagation());
+});
