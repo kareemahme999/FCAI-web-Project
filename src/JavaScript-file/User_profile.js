@@ -43,11 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const avatarInitials = document.getElementById('avatar-initials');
  
     if (profileName)    profileName.textContent    = name;
-    if (profileEmail)   profileEmail.textContent   = email;
-    if (avatarInitials) avatarInitials.textContent = name.charAt(0).toUpperCase();
+    if (profileEmail)   profileEmail.innerHTML   = `<a href="#input-email" style="text-decoration: none;">${email}</a>`;
+    resetAvatarToInitial(name);
  
     // Save to localStorage
     localStorage.setItem('folio-profile', JSON.stringify({ name, email }));
+    localStorage.removeItem('folio-profile-avatar');
  
     // Animate button
     saveBtn.textContent = '✓ Saved!';
@@ -64,22 +65,71 @@ document.addEventListener('DOMContentLoaded', () => {
  
   // ── RESTORE SAVED PROFILE ──────────────────────────────
   const saved = localStorage.getItem('folio-profile');
+  const savedAvatar = localStorage.getItem('folio-profile-avatar');
+  const avatarInitials = document.getElementById('avatar-initials');
+  const avatarFileInput = document.getElementById('avatar-file-input');
+
   if (saved) {
     try {
       const { name, email } = JSON.parse(saved);
       const profileName    = document.getElementById('profile-name');
       const profileEmail   = document.getElementById('profile-email-text');
-      const avatarInitials = document.getElementById('avatar-initials');
- 
+
       if (inputName && name)    inputName.value = name;
       if (inputEmail && email)  inputEmail.value = email;
       if (profileName && name)  profileName.textContent = name;
-      if (profileEmail && email) profileEmail.textContent = email;
-      if (avatarInitials && name) avatarInitials.textContent = name.charAt(0).toUpperCase();
+      if (profileEmail && email) profileEmail.innerHTML = `<a href="#input-email" style="text-decoration: none;">${email}</a>`;
+      if (avatarInitials && name && !savedAvatar) avatarInitials.textContent = name.charAt(0).toUpperCase();
     } catch (_) { /* corrupted storage, ignore */ }
   }
- 
- 
+
+  if (savedAvatar && avatarInitials) {
+    setAvatarImage(savedAvatar);
+  }
+
+  const profileEmailLink = document.querySelector('.profile-email a');
+  if (profileEmailLink && inputEmail) {
+    profileEmailLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      inputEmail.focus();
+      inputEmail.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+
+  if (avatarInitials && avatarFileInput) {
+    avatarInitials.addEventListener('click', () => avatarFileInput.click());
+    avatarInitials.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        avatarFileInput.click();
+      }
+    });
+  }
+
+  if (avatarFileInput) {
+    avatarFileInput.addEventListener('change', (event) => {
+      const input = event.target;
+      const file = input.files?.[0];
+      if (!file) return;
+      if (!file.type.startsWith('image/')) {
+        showFeedback('Please select a valid image file.', 'error');
+        input.value = '';
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (typeof reader.result === 'string') {
+          setAvatarImage(reader.result);
+          localStorage.setItem('folio-profile-avatar', reader.result);
+          showFeedback('Profile image updated!', 'success');
+          setTimeout(clearFeedback, 2000);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
   // ── ANIMATED READING PROGRESS BAR ─────────────────────
   const bar = document.getElementById('reading-progress');
   if (bar) {
@@ -170,5 +220,20 @@ document.addEventListener('DOMContentLoaded', () => {
   function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
- 
+
+  function setAvatarImage(src) {
+    if (!avatarInitials) return;
+    avatarInitials.style.backgroundImage = `url(${src})`;
+    avatarInitials.classList.add('has-image');
+    avatarInitials.textContent = '';
+  }
+
+  function resetAvatarToInitial(name) {
+    if (!avatarInitials) return;
+    const initial = name ? name.charAt(0).toUpperCase() : 'A';
+    avatarInitials.style.backgroundImage = '';
+    avatarInitials.classList.remove('has-image');
+    avatarInitials.textContent = initial;
+  }
+
 });
