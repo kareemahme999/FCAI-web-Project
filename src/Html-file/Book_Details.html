@@ -14,188 +14,43 @@
 </head>
 <body>
 
+
+<!-- HEADER -->
 <header class="header">
-
-    <div class="F-header">
-
-        <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
-        <ul>
-            <li><a href="index.html"><i class="bi bi-house"></i>Home</a></li>
-            <li><a href="Books.html"><i class="bi bi-grid"></i>books</a></li>
-            <li><a href="About.html"><i class="bi bi-info-circle"></i>About</a></li>
-            <li><a href="Contact.html"><i class="bi bi-envelope"></i>Contact</a></li>
-        </ul>
-
-    </div>
-
-    <div class="L-header">
-      <form>
-        <input id="search" type="search" placeholder="Search books,authors...">
-        <label for="search" style="color:#ffd636; padding:3px 3px 3px 3px ; border: solid 1px #ffd636; border-radius: 5px  " ><i class="bi bi-search"></i></label>
-
-      </form>
-      <button><a href="my_list.html"><i class="fa-regular fa-bookmark"></i></a></button>
-      <button><a href="Cart.html"><i class="bi bi-bag"></i></a></button>
-      <button><a href="User_profile.html"><i class="fa-regular fa-circle-user"></i></a></button>
-
-
-
-    </div>
+  <div class="F-header">
+    <h1 onclick="location.href='index.html'"><i class="bi bi-dribbble"></i>FOLIO.</h1>
+    <ul class="nav-links">
+      <li><a href="index.html"><i class="bi bi-house"></i> Home</a></li>
+      <li><a href="Books.html" class="active"><i class="bi bi-grid"></i> Books</a></li>
+      <li><a href="About.html"><i class="bi bi-info-circle"></i> About</a></li>
+      <li><a href="Contact.html"><i class="bi bi-envelope"></i> Contact</a></li>
+    </ul>
+  </div>
+  <div class="L-header">
+    <form>
+      <input id="search" type="search" placeholder="Search books, authors…">
+    </form>
+    <a href="my_list.html" class="icon-btn" title="My List"><i class="bi bi-bookmark"></i></a>
+    <a href="Cart.html" class="icon-btn" title="Cart" style="position:relative">
+      <i class="bi bi-bag"></i>
+      <span class="cart-badge" id="cart-badge">0</span>
+    </a>
+    <a href="User_profile.html" class="icon-btn" title="Profile"><i class="fa-regular fa-circle-user"></i></a>
+  </div>
 </header>
 
+<!-- MAIN -->
+<main class="page-wrap">
 
+  <a href="Books.html" class="back-btn" id="back-btn">
+    <i class="bi bi-arrow-left"></i> Back to Books
+  </a>
+  <div id="book-detail-root"></div>
 
+</main>
+<script src="../JavaScript-file/Book_Details.js"></script>
 
-
-
-
-  <div class="detail-page-wrap">
-
-    <button class="btn-folio-ghost mb-4">
-      <i class="bi bi-arrow-left me-2"></i>Back to Books
-    </button>
-
-    <div class="row g-5 mb-5">
-
-      <div class="col-md-4 text-center">
-        <div class="detail-cover mx-auto" id="detail-cover">
-          <div class="book-cover-spine"></div>
-          <div class="d-flex align-items-center justify-content-center h-100">
-            <div class="book-cover-text" id="detail-cover-title">The Midnight Library</div>
-          </div>
-          <div class="book-cover-author-label" id="detail-cover-author">Matt Haig</div>
-        </div>
-        <div class="d-flex gap-2 justify-content-center mt-4">
-          <button class="btn-folio-ghost" >
-            <i class="bi bi-bookmark me-1"></i>Save
-          </button>
-          <button class="btn-folio-ghost">
-            <i class="bi bi-share me-1"></i>Share
-          </button>
-        </div>
-      </div>
-
-      <div class="col-md-8">
-        <div class="d-flex gap-2 align-items-center mb-3">
-          <span class="badge-gold" id="detail-badge">Bestseller</span>
-          <span id="detail-genre">Fiction</span>
-        </div>
-
-        <h1 class="detail-title" id="detail-title">The Midnight Library</h1>
-        <div class="detail-author" id="detail-author">by Matt Haig</div>
-
-        <div class="d-flex align-items-center gap-3 mb-4">
-          <div class="stars">★★★★★</div>
-          <span >4.8 · 2,341 reviews</span>
-        </div>
-
-        <div class="detail-price mb-4">
-          <span class="old-price me-2" id="detail-old">$24.00</span>
-          <span id="detail-price">$18.99</span>
-        </div>
-
-        <p class="detail-desc mb-4" id="detail-desc">
-          Between life and death there is a library, and within that library, the shelves go on forever.
-          Every book provides a chance to try another life you could have lived. To see how things would be
-          if you had made other choices... Would you have done anything different, if you had the chance to
-          undo your regrets?
-        </p>
-
-        <div class="d-flex gap-3 flex-wrap mb-4">
-          <button class="btn-folio-primary">
-            <i class="bi bi-bag-plus me-2"></i>Add to Cart
-          </button>
-          <button class="btn-folio-outline" >
-            <i class="bi bi-bookmark me-2"></i>Save to List
-          </button>
-        </div>
-
-        <div class="detail-meta">
-          <div class="meta-item">
-            <div class="meta-val" id="meta-pages">320</div>
-            <div class="meta-key">Pages</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-val" id="meta-year">2020</div>
-            <div class="meta-key">Published</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-val" id="meta-lang">EN</div>
-            <div class="meta-key">Language</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="border-bottom">
-      <div class="d-flex">
-        <button class="tab-btn active" >Description</button>
-        <button class="tab-btn">Reviews</button>
-        <button class="tab-btn" >Related Books</button>
-      </div>
-    </div>
-
-
-
-    <div class="tab-content active" id="tab-desc">
-      <p>
-        Nora Seed finds herself in the Midnight Library. Faced with the possibility of changing her life for
-        a new one, following a different career, undoing old breakups, realizing her dreams of becoming a
-        glaciologist; she must search within herself as she travels through the Midnight Library to decide
-        what is truly fulfilling in life, and what makes it worth living in the first place.
-      </p>
-    </div>
-
-    <div class="tab-content" id="tab-reviews">
-      <div class="review-card">
-        <div class="d-flex gap-3 mb-3">
-          <div class="reviewer-avatar">S</div>
-          <div>
-            <div >Sarah M.</div>
-            <div class="stars">★★★★★</div>
-          </div>
-          <span class="ms-auto" >2 days ago</span>
-        </div>
-        <p>
-          Absolutely beautiful. One of those books that makes you think about all the choices you've made.
-        </p>
-      </div>
-      <div class="review-card">
-        <div class="d-flex gap-3 mb-3">
-          <div class="reviewer-avatar">J</div>
-          <div>
-            <div>James K.</div>
-            <div class="stars" >★★★★★</div>
-          </div>
-          <span class="ms-auto" >1 week ago</span>
-        </div>
-        <p >
-          Read it in one sitting. Matt Haig writes with such empathy and wisdom.
-        </p>
-      </div>
-
-      <div class="folio-card p-4 mt-4">
-        <h6>
-          Write a Review</h6>
-        <div class="mb-3">
-          <div>Your Rating</div>
-          <div >☆☆☆☆☆</div>
-        </div>
-        <textarea class="folio-input mb-3" rows="4" placeholder="Share your thoughts on this book…"></textarea>
-        <button class="btn-folio-primary" >
-          <i class="bi bi-send me-2"></i>Submit Review
-        </button>
-      </div>
-    </div>
-
-    <div class="tab-content" id="tab-related">
-      <div class="row g-4" id="related-grid"></div>
-    </div>
-
-  </div>
-
-  <div id="toast-container"></div>
-
+<div id="toast-container"></div>
 
 </body>
 </html>

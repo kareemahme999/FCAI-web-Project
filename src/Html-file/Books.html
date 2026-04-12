@@ -8,10 +8,11 @@
 <link rel="icon" href="../../Pictures/dribbble.svg">
 
 <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-<!-- CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="../Css-file/Books.css">
 </head>
 
@@ -31,11 +32,35 @@
     <div class="L-header">
         <form>
             <input id="search-input" type="search" placeholder="Search books,authors...">
+            <label onclick="goSearch(event)" style="color:#ffd636; padding:3px; border: solid 1px #ffd636; border-radius: 5px; cursor:pointer;">
+                <i class="bi bi-search"></i>
+            </label>
         </form>
-        <button onclick="location.href='my_list.html'" title="My List"><i class="fa-regular fa-bookmark"></i></button>
-        <button onclick="location.href='Cart.html'" title="Cart" id="cart-btn" style="position:relative;"><i class="bi bi-bag"></i><span id="cart-badge" style="display:none;position:absolute;top:-6px;right:-6px;background:var(--gold);color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;">0</span></button>
-        <button onclick="location.href='User_profile.html'" title="Profile"><i class="fa-regular fa-circle-user"></i></button>
+
+        <script>
+            function goSearch(e){
+                e.preventDefault();
+                let value = document.getElementById("search").value;
+                window.location.href = "Books.html?q=" + value;
+            }
+        </script>
+        <!-- Bookmark -->
+        <button onclick="location.href='my_list.html'" title="My List">
+            <i class="bi bi-bookmark"></i>
+        </button>
+
+        <!-- Cart -->
+        <button onclick="location.href='Cart.html'" title="Cart" id="cart-btn" style="position:relative;">
+            <i class="bi bi-bag"></i>
+            <span id="cart-badge" style="display:none;position:absolute;top:-6px;right:-6px;background:var(--gold);color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;">0</span>
+        </button>
+
+        <!-- Profile -->
+        <button onclick="location.href='User_profile.html'" title="Profile">
+            <i class="bi bi-person-circle"></i>
+        </button>
     </div>
+
 </header>
 
 <!-- MAIN -->
@@ -71,10 +96,10 @@
         </ul>
 
         <h2>Price Range</h2>
-        <input type="range" min="0" max="40" value="20">
+        <input type="range" min="0" max="500" value="500">
         <div class="price-labels">
             <span>$0</span>
-            <span>Up to $40</span>
+            <span>Up to $500</span>
         </div>
 
         <h2>Rating</h2>
@@ -271,6 +296,7 @@
     </div>
 
 </main>
+<script src="../JavaScript-file/Books_Link_Patch.js"></script>
 <script src="../JavaScript-file/Books.js"></script>
 </body>
 </html>

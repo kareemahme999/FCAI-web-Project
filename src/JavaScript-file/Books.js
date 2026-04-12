@@ -2,8 +2,7 @@
    FOLIO — Books.js  (updated)
    • يخفي الكتب اللي اتحذفت من الـ Admin
    • يعرض صورة الكتاب لو في imgUrl، لو لأ يعرض لون
-   • Page 1: الكتب الـ 8 الأصلية (HTML)
-   • Page 2: الكتب اللي أضافها الأدمن
+   • الكتب الجديدة بتتضاف في Page 1 جنب الـ 8 الأصليين مباشرة
    • Search, Cart, Bookmark كالعادة
    • Visitor counter بيتزود عند كل زيارة
    ══════════════════════════════════════════════ */
@@ -44,31 +43,31 @@ function getAdminBooks() {
 }
 
 /* ════════════════
-   ★ الجديد: إخفاء الكتب المحذوفة من الـ admin
+   إخفاء الكتب المحذوفة من الـ admin
    ════════════════ */
 function syncDeletedBooks() {
     const stored = localStorage.getItem(BOOKS_KEY);
-
-    // لو مفيش حاجة اتغيرت من الـ admin، اتركها
     if (stored === null) return;
 
-    const adminBooks    = getAdminBooks();
-    const activeTitles  = adminBooks.map(b => b.title);
+    const adminBooks   = getAdminBooks();
+    const activeTitles = adminBooks.map(b => b.title);
 
     htmlCards.forEach(card => {
         const titleEl = card.querySelector('.title');
         if (!titleEl) return;
         const title = titleEl.textContent.trim();
 
-        // لو الكتاب ده من الأصليين وبقى غير موجود في الـ admin list → اخبيه
         if (DEFAULT_TITLES.includes(title) && !activeTitles.includes(title)) {
-            card.style.display = 'none';
+            card.style.display       = 'none';
+            card.dataset.adminHidden = 'true';
         }
     });
 
-    // لو الـ admin مسح كل حاجة (array فاضي)
     if (adminBooks.length === 0) {
-        htmlCards.forEach(c => c.style.display = 'none');
+        htmlCards.forEach(c => {
+            c.style.display       = 'none';
+            c.dataset.adminHidden = 'true';
+        });
         noResults.textContent   = '📚 No books available right now. Check back soon!';
         noResults.style.display = 'block';
     }
@@ -87,44 +86,47 @@ grid.appendChild(noResults);
 if (searchInput) {
     searchInput.addEventListener('input', function () {
         const q = this.value.trim().toLowerCase();
-        if (currentPage === 1) {
-            let visible = 0;
-            htmlCards.forEach(card => {
-                // لو الكارد ده متخبي بسبب الـ admin، خليه متخبي
-                if (card.dataset.adminHidden === 'true') return;
-                const title  = card.querySelector('.title').textContent.toLowerCase();
-                const author = card.querySelector('.author').textContent.toLowerCase();
-                const show   = !q || title.includes(q) || author.includes(q);
-                card.style.display = show ? '' : 'none';
-                if (show) visible++;
-            });
-            noResults.style.display = visible === 0 ? 'block' : 'none';
-        } else {
-            renderPage2(q);
-        }
+
+        // فلتر الـ HTML cards الأصلية
+        let visible = 0;
+        htmlCards.forEach(card => {
+            if (card.dataset.adminHidden === 'true') return;
+            const title  = card.querySelector('.title').textContent.toLowerCase();
+            const author = card.querySelector('.author').textContent.toLowerCase();
+            const show   = !q || title.includes(q) || author.includes(q);
+            card.style.display = show ? '' : 'none';
+            if (show) visible++;
+        });
+
+        // فلتر الـ admin books كمان في نفس الـ page
+        renderAdminBooks(q);
+
+        const adminVisible = document.querySelectorAll('.admin-book-card').length;
+        noResults.style.display = (visible + adminVisible) === 0 ? 'block' : 'none';
     });
 }
 
-/* ════════════════ PAGE 2: ADMIN BOOKS ════════════════ */
-function renderPage2(filterQ = '') {
-    htmlCards.forEach(c => c.style.display = 'none');
+/* ════════════════
+   ★ RENDER ADMIN BOOKS
+   بتضاف في Page 1 جنب الأصليين مباشرة — مش في page منفصلة
+   ════════════════ */
+function renderAdminBooks(filterQ = '') {
+    // امسح أي admin cards قديمة
     document.querySelectorAll('.admin-book-card').forEach(c => c.remove());
     noResults.style.display = 'none';
 
     const adminBooks = getAdminBooks();
-    let page2Books   = adminBooks.filter(b => !DEFAULT_TITLES.includes(b.title) && b.status !== 'Draft');
+    // الكتب الجديدة اللي مش من الـ 8 الأصليين ومش Draft
+    let newBooks = adminBooks.filter(b => !DEFAULT_TITLES.includes(b.title) && b.status !== 'Draft');
 
     if (filterQ) {
-        page2Books = page2Books.filter(b =>
-            b.title.toLowerCase().includes(filterQ) || b.author.toLowerCase().includes(filterQ)
+        newBooks = newBooks.filter(b =>
+            b.title.toLowerCase().includes(filterQ) ||
+            b.author.toLowerCase().includes(filterQ)
         );
     }
 
-    if (!page2Books.length) {
-        noResults.style.display = 'block';
-        noResults.textContent   = 'No additional books yet — add some from the admin dashboard!';
-        return;
-    }
+    if (!newBooks.length) return;
 
     const COLORS_FALLBACK = [
         'linear-gradient(145deg,#2d3142,#4f5d75)',
@@ -134,16 +136,15 @@ function renderPage2(filterQ = '') {
         'linear-gradient(145deg,#1a4a3a,#3a8a6a)',
     ];
 
-    page2Books.forEach((book, i) => {
-        const color     = book.color || COLORS_FALLBACK[i % COLORS_FALLBACK.length];
-        const finalPrice= book.discount > 0 ? book.price * (1 - book.discount / 100) : book.price;
-        const discPrice = book.discount > 0
+    newBooks.forEach((book, i) => {
+        const color      = book.color || COLORS_FALLBACK[i % COLORS_FALLBACK.length];
+        const finalPrice = book.discount > 0 ? book.price * (1 - book.discount / 100) : book.price;
+        const discPrice  = book.discount > 0
             ? `<s style="color:var(--text3);font-size:12px;margin-right:4px;">$${book.price.toFixed(2)}</s>
                <span style="font-weight:700;color:var(--gold);">$${finalPrice.toFixed(2)}</span>`
             : `<span style="font-weight:700;color:var(--gold);">$${book.price.toFixed(2)}</span>`;
         const badgeLabel = book.discount > 0 ? `Sale -${book.discount}%` : 'New';
 
-        /* ★ إذا في imgUrl نعرض صورة، لو لأ نعرض لون */
         const coverHtml = book.imgUrl
             ? `<img src="${book.imgUrl}" alt="${book.title}"
                     style="width:100%;height:210px;border-radius:10px;object-fit:cover;display:block;"
@@ -188,9 +189,10 @@ function renderPage2(filterQ = '') {
         </button>
       </div>`;
 
+        // ★ بنضيف في grid Page 1 مباشرة (قبل noResults)
         grid.insertBefore(li, noResults);
 
-        /* wire bookmark */
+        // wire bookmark
         const iconEl = li.querySelector('.icons i');
         if (getMyList().map(b => b.title).includes(book.title)) {
             iconEl.classList.replace('bi-bookmark', 'bi-bookmark-fill');
@@ -211,20 +213,17 @@ function setupPagination() {
             this.classList.add('active');
             currentPage = parseInt(this.textContent) || 1;
 
-            if (currentPage === 1) {
-                document.querySelectorAll('.admin-book-card').forEach(c => c.remove());
-                /* أعيد تشغيل sync عشان نخبي المحذوف */
-                htmlCards.forEach(c => {
-                    c.style.display = '';
-                    c.dataset.adminHidden = 'false';
-                });
-                noResults.style.display = 'none';
-                noResults.textContent   = 'No books found.';
-                if (searchInput) searchInput.value = '';
-                syncDeletedBooks();
-            } else {
-                renderPage2(searchInput ? searchInput.value.trim().toLowerCase() : '');
-            }
+            // أعد تهيئة الـ HTML cards
+            htmlCards.forEach(c => {
+                c.style.display       = '';
+                c.dataset.adminHidden = 'false';
+            });
+            noResults.style.display = 'none';
+            noResults.textContent   = 'No books found.';
+            if (searchInput) searchInput.value = '';
+
+            syncDeletedBooks();
+            renderAdminBooks(); // ★ الكتب الجديدة دايمًا في نفس الـ grid
         });
     });
 }
@@ -237,8 +236,8 @@ function updateCartBadge() {
     const total = getCart().reduce((a, c) => a + c.qty, 0);
     const badge = document.getElementById('cart-badge');
     if (!badge) return;
-    badge.textContent    = total;
-    badge.style.display  = total > 0 ? 'flex' : 'none';
+    badge.textContent   = total;
+    badge.style.display = total > 0 ? 'flex' : 'none';
 }
 
 function addToCart(title, author, genre, price, color, btn) {
@@ -318,10 +317,99 @@ toastStyle.textContent =
     '.icons i.bookmarked{background:var(--gold);color:#fff !important;border-color:var(--gold) !important;}';
 document.head.appendChild(toastStyle);
 
+
+
+
+
+/* ════════════════ SORT & FILTER LOGIC ════════════════ */
+
+function getAllVisibleCards() {
+    return [...document.querySelectorAll('.book-card:not(.admin-book-card)')];
+}
+
+function getCardData(card) {
+    const title  = card.querySelector('.title')?.textContent.trim() || '';
+    const author = card.querySelector('.author')?.textContent.trim() || '';
+    const genre  = card.querySelector('.category')?.textContent.trim() || '';
+    const priceEl = card.querySelector('.price span');
+    const price  = priceEl ? parseFloat(priceEl.textContent.replace('$','')) : 0;
+    const stars  = card.querySelector('.rating')?.textContent.trim().split('★').length - 1 || 0;
+    return { title, author, genre, price, stars };
+}
+
+function applyFiltersAndSort() {
+    // قيم الـ sort
+    const sortVal = document.querySelector('.sort-select')?.value || '';
+
+    // قيم الـ genre checkboxes
+    const genreChecks = [...document.querySelectorAll('.filters ul:first-of-type input[type=checkbox]:checked')]
+        .map(cb => cb.parentElement.textContent.trim().toLowerCase());
+    const allBooksChecked = genreChecks.includes('all books') || genreChecks.length === 0;
+
+    // قيم الـ rating checkboxes
+    const ratingChecks = [...document.querySelectorAll('.rating-row input[type=checkbox]:checked')]
+        .map(cb => {
+            const stars = cb.parentElement.querySelector('.stars')?.textContent.trim();
+            return stars ? stars.split('★').length - 1 : 0;
+        });
+    const anyRating = ratingChecks.length === 0;
+
+    // قيمة الـ price range
+    const maxPrice = parseFloat(document.querySelector('.filters input[type=range]')?.value || 500);
+
+    // اجمع كل الكروت (HTML + admin)
+    const allCards = [...document.querySelectorAll('.book-card')];
+
+    allCards.forEach(card => {
+        if (card.dataset.adminHidden === 'true') return;
+        const data = getCardData(card);
+
+        // فلتر genre
+        const genreMatch = allBooksChecked || genreChecks.includes(data.genre.toLowerCase());
+
+        // فلتر rating
+        const ratingMatch = anyRating || ratingChecks.some(r => data.stars >= r);
+
+        // فلتر price
+        const priceMatch = data.price <= maxPrice;
+
+        card.style.display = (genreMatch && ratingMatch && priceMatch) ? '' : 'none';
+    });
+
+    // Sort — بنعمل sort للـ grid
+    const grid = document.querySelector('.books-grid');
+    const visibleCards = [...document.querySelectorAll('.book-card')]
+        .filter(c => c.style.display !== 'none' && c.dataset.adminHidden !== 'true');
+
+    if (sortVal.includes('Low to High')) {
+        visibleCards.sort((a, b) => getCardData(a).price - getCardData(b).price);
+    } else if (sortVal.includes('High to Low')) {
+        visibleCards.sort((a, b) => getCardData(b).price - getCardData(a).price);
+    } else if (sortVal.includes('Newest')) {
+        visibleCards.reverse();
+    }
+
+    visibleCards.forEach(card => grid.insertBefore(card, noResults));
+}
+
+/* Wire الـ controls */
+document.querySelector('.sort-select')?.addEventListener('change', applyFiltersAndSort);
+document.querySelector('.apply-btn')?.addEventListener('click', applyFiltersAndSort);
+document.querySelector('.filters input[type=range]')?.addEventListener('input', function() {
+    document.querySelector('.price-labels span:last-child').textContent = `Up to $${this.value}`;
+    applyFiltersAndSort();
+});
+document.querySelector('.clear')?.addEventListener('click', () => {
+    document.querySelectorAll('.filters input[type=checkbox]').forEach(cb => cb.checked = false);
+    const range = document.querySelector('.filters input[type=range]');
+    if (range) { range.value = 500; document.querySelector('.price-labels span:last-child').textContent = 'Up to $500'; }
+    document.querySelector('.sort-select').value = 'Sort: Featured';
+    document.querySelectorAll('.book-card').forEach(c => { if (c.dataset.adminHidden !== 'true') c.style.display = ''; });
+});
+
 /* ════════════════ BOOT ════════════════ */
 updateCartBadge();
 initBookmarkIcons();
 setupPagination();
-
-/* ★ أهم حاجة: sync الكتب المحذوفة من الـ admin مع صفحة الـ Books ── */
 syncDeletedBooks();
+renderAdminBooks(); // ★ الكتب الجديدة بتتضاف في Page 1 فوراً عند التحميل
