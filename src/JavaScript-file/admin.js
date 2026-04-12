@@ -1,12 +1,3 @@
-/* ═══════════════════════════════════════════
-   FOLIO — admin.js   (updated)
-   • Real book CRUD via localStorage (folio_books)
-   • Visitor counter from folio_visits
-   • Live genre/revenue stats
-   • Page navigation
-   • Modals & toasts
-   • Image URL support for books
-   ═══════════════════════════════════════════ */
 
 /* ── STORAGE KEYS ── */
 const BOOKS_KEY   = 'folio_books';
@@ -46,7 +37,6 @@ function stars(r) {
     return `<span class="rating-stars">${s}</span> <span class="rating-val">${r}</span>`;
 }
 
-/* ── COVER: يعرض الصورة لو موجودة، لو لأ يعرض اللون ── */
 function coverDiv(book) {
     if (book.imgUrl) {
         return `<div class="book-cover" style="background:#000;padding:0;overflow:hidden;">
@@ -333,7 +323,6 @@ function renderUsersTable() {
     </tr>`).join('');
 }
 
-/* ── ACTIVITY FEED ── */
 const ACTIVITIES = [
     { icon:'bi-bag-check', cls:'',      text:'<strong>Lena Fischer</strong> placed a new order — 3 books — $54.97',  time:'2 min ago' },
     { icon:'bi-person-plus',cls:'blue', text:'<strong>David Park</strong> created a new account',                    time:'8 min ago' },
@@ -355,7 +344,6 @@ function renderActivity() {
     </div>`).join('');
 }
 
-/* ── REVENUE BAR CHART ── */
 function buildBars(containerId, data, max) {
     const el = document.getElementById(containerId);
     if (!el) return;
@@ -380,7 +368,6 @@ function renderAnalyticsChart() {
     ], 60000);
 }
 
-/* ── GENRE DONUT (live %) ── */
 function renderGenreChart() {
     const books  = getBooks();
     const total  = books.length || 1;
@@ -468,19 +455,13 @@ function goTo(page) {
     if (page==='media')     renderMediaPage();
 }
 
-/* ════════════════════════════════════════════
-   ── MEDIA PAGE  ✅ FIX: بيعمل media-grid
-      ديناميكياً لو مش موجود في الـ HTML
-   ════════════════════════════════════════════ */
+
 function renderMediaPage() {
     const el = document.getElementById('page-media');
     if (!el) return;
 
-    /* ✅ FIX: مش بنمنع إعادة الرسم بـ dataset.loaded
-       عشان لو الـ grid اتحذف من الـ DOM يرجع يترسم */
     let grid = document.getElementById('media-grid');
 
-    /* ✅ FIX: لو مفيش media-grid في الـ HTML، نعمله */
     if (!grid) {
         grid = document.createElement('div');
         grid.id        = 'media-grid';
@@ -490,7 +471,6 @@ function renderMediaPage() {
         el.appendChild(grid);
     }
 
-    /* لو الصور اتحُملت قبل كده، ما نعيدش تحميلهم */
     if (el.dataset.loaded === 'true') return;
     el.dataset.loaded = 'true';
 

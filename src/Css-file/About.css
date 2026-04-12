@@ -755,7 +755,6 @@ body{
 
 .social-menu li a:hover { transform: scale(1.25); }
 
-/* ألوان الـ hover للأيقونات */
 .social-menu li:nth-child(1) a:hover { color:#fff; background:#1877f2; border-color:#1877f2; }
 .social-menu li:nth-child(2) a:hover { color:#fff; background:#25d366; border-color:#25d366; }
 .social-menu li:nth-child(3) a:hover { color:#fff; background:#000;    border-color:#000; }

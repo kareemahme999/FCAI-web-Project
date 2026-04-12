@@ -2,11 +2,7 @@
 const ADMIN_USERNAME = 'Kareem';
 const ADMIN_PASSWORD = '66200660K';
 
-/* ════════════════ VISITOR TRACKING ════════════════
-   Counts every unique session that lands on log_in.html
-   Stored in localStorage: folio_visits
-   Read by admin dashboard to show live visitor count.
-═══════════════════════════════════════════════════ */
+
 (function trackPageVisit() {
     /* Use sessionStorage to avoid counting the same tab twice on refresh */
     if (!sessionStorage.getItem('folio_visit_counted')) {

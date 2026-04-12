@@ -48,7 +48,6 @@ document.querySelectorAll('.menu li a').forEach(link => {
 });
 
 
-// ✅ شغّال على أي عدد من الـ social menus
 document.querySelectorAll('.social-menu').forEach(menu => {
     const toggle = menu.querySelector('.social-toggle');
 
@@ -63,7 +62,6 @@ document.querySelectorAll('.social-menu').forEach(menu => {
     });
 });
 
-// إقفال أي menu مفتوح لما تضغط بره
 document.addEventListener('click', (e) => {
     document.querySelectorAll('.social-menu').forEach(menu => {
         if (!menu.contains(e.target)) {
@@ -75,7 +73,6 @@ document.addEventListener('click', (e) => {
     });
 });
 
-// Hover effect على links الـ social
 document.querySelectorAll('.social-menu li a').forEach(link => {
     link.addEventListener('mouseenter', function() {
         this.style.transform = 'scale(1.3) rotate(5deg)';

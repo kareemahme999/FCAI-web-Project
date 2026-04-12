@@ -1,9 +1,3 @@
-/* ════════════════════════════════════════
-   FOLIO — Book_Details.js
-   Reads book from localStorage (folio_books) or falls
-   back to the 8 default HTML books embedded here.
-   URL param: ?title=The+Midnight+Library
-════════════════════════════════════════ */
 
 const BOOKS_KEY = 'folio_books';
 const CART_KEY  = 'folio_cart';

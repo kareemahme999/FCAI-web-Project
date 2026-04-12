@@ -1,11 +1,4 @@
-/* ══════════════════════════════════════════════
-   FOLIO — Books.js  (updated)
-   • يخفي الكتب اللي اتحذفت من الـ Admin
-   • يعرض صورة الكتاب لو في imgUrl، لو لأ يعرض لون
-   • الكتب الجديدة بتتضاف في Page 1 جنب الـ 8 الأصليين مباشرة
-   • Search, Cart, Bookmark كالعادة
-   • Visitor counter بيتزود عند كل زيارة
-   ══════════════════════════════════════════════ */
+
 
 const BOOKS_KEY  = 'folio_books';
 const VISITS_KEY = 'folio_visits';
@@ -16,13 +9,11 @@ const VISITS_KEY = 'folio_visits';
     localStorage.setItem(VISITS_KEY, current + 1);
 })();
 
-/* ── أسماء الكتب الأصلية الـ 8 ── */
 const DEFAULT_TITLES = [
     'The Midnight Library', 'Lessons in Chemistry', 'Atomic Habits', 'Dune',
     'Foundation', 'Sapiens', 'The Alchemist', 'Think Again'
 ];
 
-/* ── BOOK COLOURS (للـ HTML cards الأصلية) ── */
 const BOOK_COLORS = {
     'The Midnight Library':  'linear-gradient(145deg,#2d3142,#4f5d75)',
     'Lessons in Chemistry':  'linear-gradient(145deg,#3d2a2a,#6b4a4a)',
@@ -42,9 +33,7 @@ function getAdminBooks() {
     catch(e) { return []; }
 }
 
-/* ════════════════
-   إخفاء الكتب المحذوفة من الـ admin
-   ════════════════ */
+
 function syncDeletedBooks() {
     const stored = localStorage.getItem(BOOKS_KEY);
     if (stored === null) return;
@@ -87,7 +76,6 @@ if (searchInput) {
     searchInput.addEventListener('input', function () {
         const q = this.value.trim().toLowerCase();
 
-        // فلتر الـ HTML cards الأصلية
         let visible = 0;
         htmlCards.forEach(card => {
             if (card.dataset.adminHidden === 'true') return;
@@ -98,7 +86,6 @@ if (searchInput) {
             if (show) visible++;
         });
 
-        // فلتر الـ admin books كمان في نفس الـ page
         renderAdminBooks(q);
 
         const adminVisible = document.querySelectorAll('.admin-book-card').length;
@@ -106,17 +93,13 @@ if (searchInput) {
     });
 }
 
-/* ════════════════
-   ★ RENDER ADMIN BOOKS
-   بتضاف في Page 1 جنب الأصليين مباشرة — مش في page منفصلة
-   ════════════════ */
+
 function renderAdminBooks(filterQ = '') {
     // امسح أي admin cards قديمة
     document.querySelectorAll('.admin-book-card').forEach(c => c.remove());
     noResults.style.display = 'none';
 
     const adminBooks = getAdminBooks();
-    // الكتب الجديدة اللي مش من الـ 8 الأصليين ومش Draft
     let newBooks = adminBooks.filter(b => !DEFAULT_TITLES.includes(b.title) && b.status !== 'Draft');
 
     if (filterQ) {
@@ -223,7 +206,7 @@ function setupPagination() {
             if (searchInput) searchInput.value = '';
 
             syncDeletedBooks();
-            renderAdminBooks(); // ★ الكتب الجديدة دايمًا في نفس الـ grid
+            renderAdminBooks();
         });
     });
 }
@@ -412,4 +395,4 @@ updateCartBadge();
 initBookmarkIcons();
 setupPagination();
 syncDeletedBooks();
-renderAdminBooks(); // ★ الكتب الجديدة بتتضاف في Page 1 فوراً عند التحميل
+renderAdminBooks();

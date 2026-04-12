@@ -1,7 +1,4 @@
-/* ══════════════════════════════════════════════
-   FOLIO — my_list.js
-   القائمة تبدأ فاضية — بتتملى بس من الـ bookmark
-   ══════════════════════════════════════════════ */
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -11,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let searchQuery  = '';
   let sortOrder    = 'default';
 
-  /* ── STORAGE: ابدأ بـ array فاضي لو مفيش حاجة محفوظة ── */
   function loadBooks() {
     try {
       const saved = localStorage.getItem('folio-mylist');
@@ -20,16 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (Array.isArray(parsed)) return parsed;
       }
     } catch (_) {}
-    return [];   /* فاضي تماماً */
+    return [];
   }
 
   function saveBooks() {
     localStorage.setItem('folio-mylist', JSON.stringify(books));
   }
 
-  /* ══════════════════════════════════════════
-     CART HELPERS
-     ══════════════════════════════════════════ */
+
   function getCart()      { return JSON.parse(localStorage.getItem('folio_cart') || '[]'); }
   function saveCart(cart) { localStorage.setItem('folio_cart', JSON.stringify(cart)); }
 
