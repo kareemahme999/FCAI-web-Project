@@ -10,10 +10,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../Css-file/admin.css"></link>
 </head>
-<body class="bisec">
+<body>
 
 <div id="toasts"></div>
 
+<!-- ══ MODAL: ADD BOOK ══ -->
 <div class="modal-bg" id="modal-book">
     <div class="modal-box">
         <div class="d-flex justify-content-between align-items-start mb-1">
@@ -24,28 +25,91 @@
             <button class="btn-ghost" onclick="closeModal('modal-book')"><i class="bi bi-x-lg"></i></button>
         </div>
         <div class="row g-3">
-            <div class="col-12"><label class="lbl">Book Title</label><input class="inp" placeholder="e.g. The Midnight Library"/></div>
-            <div class="col-md-6"><label class="lbl">Author</label><input class="inp" placeholder="Author name"/></div>
-            <div class="col-md-6"><label class="lbl">ISBN</label><input class="inp" placeholder="978-0-..."/></div>
+            <div class="col-12"><label class="lbl">Book Title *</label><input class="inp" id="nb-title" placeholder="e.g. The Midnight Library"/></div>
+            <div class="col-md-6"><label class="lbl">Author *</label><input class="inp" id="nb-author" placeholder="Author name"/></div>
+            <div class="col-md-6"><label class="lbl">ISBN</label><input class="inp" id="nb-isbn" placeholder="978-0-..."/></div>
             <div class="col-md-6">
                 <label class="lbl">Genre</label>
-                <select class="sel"><option>Fiction</option><option>Non-Fiction</option><option>Science</option><option>History</option><option>Sci-Fi</option><option>Psychology</option></select>
+                <select class="sel" id="nb-genre"><option>Fiction</option><option>Non-Fiction</option><option>Science</option><option>History</option><option>Sci-Fi</option><option>Psychology</option><option>Self-Help</option></select>
             </div>
-            <div class="col-md-6"><label class="lbl">Price ($)</label><input class="inp" type="number" placeholder="0.00"/></div>
-            <div class="col-md-6"><label class="lbl">Stock</label><input class="inp" type="number" placeholder="0"/></div>
+            <div class="col-md-6"><label class="lbl">Price ($)</label><input class="inp" id="nb-price" type="number" step="0.01" placeholder="0.00"/></div>
+            <div class="col-md-6"><label class="lbl">Stock</label><input class="inp" id="nb-stock" type="number" placeholder="0"/></div>
+            <div class="col-md-6"><label class="lbl">Discount (%)</label><input class="inp" id="nb-disc" type="number" min="0" max="90" placeholder="0"/></div>
             <div class="col-md-6">
                 <label class="lbl">Status</label>
-                <select class="sel"><option>Active</option><option>Draft</option><option>Out of Stock</option></select>
+                <select class="sel" id="nb-status"><option>Active</option><option>Draft</option><option>Out of Stock</option></select>
             </div>
-            <div class="col-12"><label class="lbl">Description</label><textarea class="inp" rows="3" placeholder="Short synopsis..."></textarea></div>
+
+            <!-- ★ خانة الصورة الجديدة -->
+            <div class="col-12">
+                <label class="lbl">Book Cover Image URL</label>
+                <input class="inp" id="nb-img" placeholder="https://example.com/cover.jpg  —  اتركها فارغة لو عايز لون تلقائي"/>
+            </div>
+            <!-- معاينة الصورة -->
+            <div class="col-12" id="nb-img-preview-wrap" style="display:none;">
+                <img id="nb-img-preview" src="" alt="preview"
+                     style="width:80px;height:110px;object-fit:cover;border-radius:6px;border:1px solid var(--border2);box-shadow:0 2px 8px rgba(0,0,0,0.15);"/>
+            </div>
+
+            <div class="col-12"><label class="lbl">Description</label><textarea class="inp" id="nb-desc" rows="3" placeholder="Short synopsis..."></textarea></div>
             <div class="col-12 d-flex gap-2 justify-content-end mt-2">
                 <button class="btn-out" onclick="closeModal('modal-book')">Cancel</button>
-                <button class="btn-main" onclick="closeModal('modal-book');toast('✅ Book added successfully')"><i class="bi bi-plus-lg"></i>Add Book</button>
+                <button class="btn-main" onclick="addBook()"><i class="bi bi-plus-lg"></i>Add Book</button>
             </div>
         </div>
     </div>
 </div>
 
+<!-- ══ MODAL: EDIT BOOK ══ -->
+<div class="modal-bg" id="modal-edit">
+    <div class="modal-box">
+        <div class="d-flex justify-content-between align-items-start mb-1">
+            <div>
+                <div class="modal-title">Edit <em class="gold-italic">Book</em></div>
+                <div class="modal-sub">Update book details or run a promotion</div>
+            </div>
+            <button class="btn-ghost" onclick="closeModal('modal-edit')"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <input type="hidden" id="edit-id"/>
+        <div class="row g-3">
+            <div class="col-12"><label class="lbl">Book Title</label><input class="inp" id="edit-title"/></div>
+            <div class="col-md-6"><label class="lbl">Author</label><input class="inp" id="edit-author"/></div>
+            <div class="col-md-6">
+                <label class="lbl">Genre</label>
+                <select class="sel" id="edit-genre"><option>Fiction</option><option>Non-Fiction</option><option>Science</option><option>History</option><option>Sci-Fi</option><option>Psychology</option><option>Self-Help</option></select>
+            </div>
+            <div class="col-md-6"><label class="lbl">Price ($)</label><input class="inp" id="edit-price" type="number" step="0.01"/></div>
+            <div class="col-md-6"><label class="lbl">Stock</label><input class="inp" id="edit-stock" type="number"/></div>
+            <div class="col-md-6">
+                <label class="lbl">Discount (%) — Promotion</label>
+                <input class="inp" id="edit-disc" type="number" min="0" max="90" placeholder="0 = no discount"/>
+            </div>
+            <div class="col-md-6">
+                <label class="lbl">Status</label>
+                <select class="sel" id="edit-status"><option>Active</option><option>Draft</option><option>Out of Stock</option></select>
+            </div>
+
+            <!-- ★ خانة الصورة في Edit -->
+            <div class="col-12">
+                <label class="lbl">Book Cover Image URL</label>
+                <input class="inp" id="edit-img" placeholder="https://example.com/cover.jpg  —  اتركها فارغة لو عايز لون تلقائي"/>
+            </div>
+            <!-- معاينة الصورة في Edit -->
+            <div class="col-12" id="edit-img-preview-wrap" style="display:none;">
+                <img id="edit-img-preview" src="" alt="preview"
+                     style="width:80px;height:110px;object-fit:cover;border-radius:6px;border:1px solid var(--border2);box-shadow:0 2px 8px rgba(0,0,0,0.15);"/>
+            </div>
+
+            <div class="col-12"><label class="lbl">Description</label><textarea class="inp" id="edit-desc" rows="3"></textarea></div>
+            <div class="col-12 d-flex gap-2 justify-content-end mt-2">
+                <button class="btn-out" onclick="closeModal('modal-edit')">Cancel</button>
+                <button class="btn-main" onclick="saveEdit()"><i class="bi bi-check-lg"></i>Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══ MODAL: ADD USER ══ -->
 <div class="modal-bg" id="modal-user">
     <div class="modal-box">
         <div class="d-flex justify-content-between align-items-start mb-1">
@@ -59,14 +123,8 @@
             <div class="col-md-6"><label class="lbl">First Name</label><input class="inp" placeholder="John"/></div>
             <div class="col-md-6"><label class="lbl">Last Name</label><input class="inp" placeholder="Doe"/></div>
             <div class="col-12"><label class="lbl">Email</label><input class="inp" type="email" placeholder="user@example.com"/></div>
-            <div class="col-md-6">
-                <label class="lbl">Role</label>
-                <select class="sel"><option>Customer</option><option>Editor</option><option>Admin</option></select>
-            </div>
-            <div class="col-md-6">
-                <label class="lbl">Status</label>
-                <select class="sel"><option>Active</option><option>Suspended</option></select>
-            </div>
+            <div class="col-md-6"><label class="lbl">Role</label><select class="sel"><option>Customer</option><option>Editor</option><option>Admin</option></select></div>
+            <div class="col-md-6"><label class="lbl">Status</label><select class="sel"><option>Active</option><option>Suspended</option></select></div>
             <div class="col-12 d-flex gap-2 justify-content-end mt-2">
                 <button class="btn-out" onclick="closeModal('modal-user')">Cancel</button>
                 <button class="btn-main" onclick="closeModal('modal-user');toast('✅ User created successfully')"><i class="bi bi-person-plus"></i>Create User</button>
@@ -75,6 +133,7 @@
     </div>
 </div>
 
+<!-- ══ LAYOUT ══ -->
 <div class="layout">
 
     <!-- SIDEBAR -->
@@ -89,8 +148,8 @@
             <a class="nav-link" onclick="goTo('analytics')"><i class="bi bi-graph-up-arrow"></i> Analytics</a>
 
             <div class="nav-group">Catalogue</div>
-            <a class="nav-link" onclick="goTo('books')"><i class="bi bi-book"></i> Books <span class="nav-badge gold-bg">12K</span></a>
-            <a class="nav-link" onclick="goTo('books')"><i class="bi bi-tags"></i> Categories</a>
+            <a class="nav-link" onclick="goTo('books')"><i class="bi bi-book"></i> Books</a>
+            <a class="nav-link" onclick="goTo('media')"><i class="bi bi-images"></i> Media</a>
             <a class="nav-link" onclick="goTo('books')"><i class="bi bi-star"></i> Reviews <span class="nav-badge">4</span></a>
 
             <div class="nav-group">Commerce</div>
@@ -100,7 +159,7 @@
 
             <div class="nav-group">People</div>
             <a class="nav-link" onclick="goTo('users')"><i class="bi bi-people"></i> Users</a>
-            <a class="nav-link" onclick="goTo('users')"><i class="bi bi-envelope"></i> Newsletters</a>
+            <a class="nav-link" onclick="toast('📋 Newsletter stats')"><i class="bi bi-envelope"></i> Newsletters</a>
 
             <div class="nav-group">System</div>
             <a class="nav-link" onclick="goTo('settings')"><i class="bi bi-gear"></i> Settings</a>
@@ -113,7 +172,7 @@
                     <div class="user-name">Kareem Ahmed</div>
                     <div class="user-role">Super Admin</div>
                 </div>
-                <i class="bi bi-three-dots-vertical ms-auto text3-color side-more-icon"></i>
+                <i class="bi bi-three-dots-vertical ms-auto" style="color:var(--text3);font-size:14px;"></i>
             </div>
         </div>
     </aside>
@@ -121,6 +180,7 @@
     <!-- MAIN -->
     <div class="main">
 
+        <!-- TOPBAR -->
         <div class="topbar">
             <div class="d-flex align-items-center gap-2">
                 <button class="top-btn d-lg-none me-2" onclick="document.getElementById('side').classList.toggle('on')">
@@ -130,6 +190,9 @@
             </div>
             <div class="top-right">
                 <input class="top-search d-none d-md-block" placeholder="Search anything…"/>
+                <a class="visit-store-btn" href="Books.html" target="_blank">
+                    <i class="bi bi-box-arrow-up-right"></i> View Store
+                </a>
                 <button class="top-btn" onclick="toast('🔔 3 new notifications')">
                     <i class="bi bi-bell"></i>
                     <span class="notif-dot"></span>
@@ -148,8 +211,20 @@
                     <h1 class="heading">Store <em>Overview</em></h1>
                 </div>
                 <div class="d-flex gap-2">
-                    <button class="btn-out"><i class="bi bi-calendar3"></i> Mar 2026</button>
+                    <button class="btn-out"><i class="bi bi-calendar3"></i> Apr 2026</button>
                     <button class="btn-main" onclick="openModal('modal-book')"><i class="bi bi-plus-lg"></i>Add Book</button>
+                </div>
+            </div>
+
+            <div class="visitor-box mb-4">
+                <div class="visitor-icon"><i class="bi bi-people"></i></div>
+                <div>
+                    <div class="visitor-num" id="visitor-count">0</div>
+                    <div class="visitor-lbl">Total visitors via login page</div>
+                </div>
+                <div class="ms-auto text-end">
+                    <div style="font-size:11px;color:var(--text3)">Tracked from log_in.js</div>
+                    <div style="font-size:12px;color:var(--success);font-weight:600;margin-top:4px;"><i class="bi bi-arrow-up-short"></i> Live count</div>
                 </div>
             </div>
 
@@ -160,11 +235,7 @@
                         <div class="stat-num">$48<span>K</span></div>
                         <div class="stat-lbl">Revenue this month</div>
                         <div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> +12.4% vs last month</div>
-                        <div class="spark">
-                            <svg viewBox="0 0 100 30" width="100%" height="100%">
-                                <polyline points="0,28 14,20 28,22 42,12 56,16 70,8 84,10 100,4" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-                            </svg>
-                        </div>
+                        <div class="spark"><svg viewBox="0 0 100 30" width="100%" height="100%"><polyline points="0,28 14,20 28,22 42,12 56,16 70,8 84,10 100,4" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/></svg></div>
                     </div>
                 </div>
                 <div class="col-6 col-lg-3">
@@ -173,11 +244,7 @@
                         <div class="stat-num">1<span>,</span>247</div>
                         <div class="stat-lbl">Orders this month</div>
                         <div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> +8.1% vs last month</div>
-                        <div class="spark">
-                            <svg viewBox="0 0 100 30" width="100%" height="100%">
-                                <polyline points="0,24 14,18 28,20 42,14 56,18 70,10 84,14 100,6" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-                            </svg>
-                        </div>
+                        <div class="spark"><svg viewBox="0 0 100 30" width="100%" height="100%"><polyline points="0,24 14,18 28,20 42,14 56,18 70,10 84,14 100,6" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/></svg></div>
                     </div>
                 </div>
                 <div class="col-6 col-lg-3">
@@ -186,36 +253,27 @@
                         <div class="stat-num">8<span>,</span>940</div>
                         <div class="stat-lbl">Active customers</div>
                         <div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> +3.6% vs last month</div>
-                        <div class="spark">
-                            <svg viewBox="0 0 100 30" width="100%" height="100%">
-                                <polyline points="0,26 14,22 28,24 42,16 56,20 70,12 84,16 100,8" fill="none" stroke="var(--success)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-                            </svg>
-                        </div>
+                        <div class="spark"><svg viewBox="0 0 100 30" width="100%" height="100%"><polyline points="0,26 14,22 28,24 42,16 56,20 70,12 84,16 100,8" fill="none" stroke="var(--success)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/></svg></div>
                     </div>
                 </div>
                 <div class="col-6 col-lg-3">
                     <div class="stat">
                         <div class="stat-icon ico-red"><i class="bi bi-box-seam"></i></div>
-                        <div class="stat-num">34</div>
+                        <div class="stat-num" id="low-stock-num">34</div>
                         <div class="stat-lbl">Low stock titles</div>
                         <div class="stat-delta delta-down"><i class="bi bi-arrow-down-short"></i> Needs attention</div>
-                        <div class="spark">
-                            <svg viewBox="0 0 100 30" width="100%" height="100%">
-                                <polyline points="0,8 14,12 28,10 42,16 56,14 70,20 84,18 100,26" fill="none" stroke="var(--danger)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-                            </svg>
-                        </div>
+                        <div class="spark"><svg viewBox="0 0 100 30" width="100%" height="100%"><polyline points="0,8 14,12 28,10 42,16 56,14 70,20 84,18 100,26" fill="none" stroke="var(--danger)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/></svg></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Charts -->
             <div class="row g-3 mb-4">
                 <div class="col-lg-8">
                     <div class="chart-box">
                         <div class="d-flex align-items-start justify-content-between chart-head">
                             <div>
                                 <div class="chart-title">Monthly <em class="gold-italic">Revenue</em></div>
-                                <div class="chart-sub">Jan – Mar 2026 · All channels</div>
+                                <div class="chart-sub">Jan – Apr 2026 · All channels</div>
                             </div>
                             <div class="d-flex gap-2">
                                 <button class="btn-ghost btn-ghost-gold">2026</button>
@@ -229,34 +287,33 @@
                     <div class="chart-box h-100">
                         <div class="chart-head">
                             <div class="chart-title">Sales by <em class="gold-italic">Genre</em></div>
-                            <div class="chart-sub">Current month breakdown</div>
+                            <div class="chart-sub">Live — based on catalogue</div>
                         </div>
                         <div class="donut-wrap">
                             <div class="donut">
                                 <svg width="120" height="120" viewBox="0 0 120 120">
                                     <circle cx="60" cy="60" r="46" fill="none" stroke="var(--border2)" stroke-width="16"/>
-                                    <circle cx="60" cy="60" r="46" fill="none" stroke="var(--gold)" stroke-width="16" stroke-dasharray="109.6 179.1" stroke-dashoffset="0" opacity="0.9"/>
-                                    <circle cx="60" cy="60" r="46" fill="none" stroke="var(--blue)" stroke-width="16" stroke-dasharray="63.5 225.2" stroke-dashoffset="-109.6" opacity="0.9"/>
-                                    <circle cx="60" cy="60" r="46" fill="none" stroke="#52c07a" stroke-width="16" stroke-dasharray="52.0 236.7" stroke-dashoffset="-173.1" opacity="0.9"/>
-                                    <circle cx="60" cy="60" r="46" fill="none" stroke="var(--text3)" stroke-width="16" stroke-dasharray="63.5 225.2" stroke-dashoffset="-225.1" opacity="0.6"/>
+                                    <circle cx="60" cy="60" r="46" fill="none" stroke="var(--gold)"  stroke-width="16" stroke-dasharray="109.6 179.1" stroke-dashoffset="0" opacity="0.9"/>
+                                    <circle cx="60" cy="60" r="46" fill="none" stroke="var(--blue)"  stroke-width="16" stroke-dasharray="63.5 225.2"  stroke-dashoffset="-109.6" opacity="0.9"/>
+                                    <circle cx="60" cy="60" r="46" fill="none" stroke="#52c07a"       stroke-width="16" stroke-dasharray="52.0 236.7"  stroke-dashoffset="-173.1" opacity="0.9"/>
+                                    <circle cx="60" cy="60" r="46" fill="none" stroke="var(--text3)" stroke-width="16" stroke-dasharray="63.5 225.2"  stroke-dashoffset="-225.1" opacity="0.6"/>
                                 </svg>
                                 <div class="donut-mid">
-                                    <div class="donut-val">1.2K</div>
-                                    <div class="donut-sub">Sales</div>
+                                    <div class="donut-val">—</div>
+                                    <div class="donut-sub">Books</div>
                                 </div>
                             </div>
                             <div class="leg-list">
-                                <div class="leg-item"><div class="leg-dot leg-gold"></div><div class="leg-name">Fiction</div><div class="leg-pct">38%</div></div>
-                                <div class="leg-item"><div class="leg-dot leg-blue"></div><div class="leg-name">Science</div><div class="leg-pct">22%</div></div>
-                                <div class="leg-item"><div class="leg-dot leg-green"></div><div class="leg-name">History</div><div class="leg-pct">18%</div></div>
-                                <div class="leg-item"><div class="leg-dot leg-muted"></div><div class="leg-name">Other</div><div class="leg-pct">22%</div></div>
+                                <div class="leg-item"><div class="leg-dot leg-gold"></div><div class="leg-name">Fiction</div><div class="leg-pct">—</div></div>
+                                <div class="leg-item"><div class="leg-dot leg-blue"></div><div class="leg-name">Science</div><div class="leg-pct">—</div></div>
+                                <div class="leg-item"><div class="leg-dot leg-green"></div><div class="leg-name">History</div><div class="leg-pct">—</div></div>
+                                <div class="leg-item"><div class="leg-dot leg-muted"></div><div class="leg-name">Other</div><div class="leg-pct">—</div></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Tables Row -->
             <div class="row g-3">
                 <div class="col-lg-7">
                     <div class="card">
@@ -286,7 +343,6 @@
                 </div>
             </div>
 
-            <!-- Activity -->
             <div class="row g-3 mt-0 pt-3">
                 <div class="col-12">
                     <div class="card">
@@ -308,17 +364,18 @@
                     <h1 class="heading">Manage <em>Books</em></h1>
                 </div>
                 <div class="d-flex gap-2">
-                    <button class="btn-out"><i class="bi bi-upload"></i> Import CSV</button>
+                    <button class="btn-out" onclick="toast('📥 CSV import coming soon')"><i class="bi bi-upload"></i> Import CSV</button>
+                    <button class="btn-red" onclick="clearAllBooks()"><i class="bi bi-trash"></i> Clear All</button>
                     <button class="btn-main" onclick="openModal('modal-book')"><i class="bi bi-plus-lg"></i>Add Book</button>
                 </div>
             </div>
             <div class="card p-3 mb-4">
                 <div class="row g-2 align-items-center">
-                    <div class="col-md-4"><input class="inp" placeholder="🔍  Search by title, author, ISBN…"/></div>
-                    <div class="col-md-2"><select class="sel"><option value="">All Genres</option><option>Fiction</option><option>Science</option><option>History</option><option>Sci-Fi</option><option>Psychology</option></select></div>
-                    <div class="col-md-2"><select class="sel"><option value="">All Status</option><option>Active</option><option>Draft</option><option>Out of Stock</option></select></div>
-                    <div class="col-md-2"><select class="sel"><option>Sort: Newest</option><option>Sort: Price ↑</option><option>Sort: Price ↓</option></select></div>
-                    <div class="col-md-2"><button class="btn-main w-100"><i class="bi bi-funnel"></i> Apply</button></div>
+                    <div class="col-md-4"><input class="inp" id="book-search" placeholder="🔍  Search by title, author…" oninput="filterBooks()"/></div>
+                    <div class="col-md-2"><select class="sel" id="book-genre" onchange="filterBooks()"><option value="">All Genres</option><option>Fiction</option><option>Science</option><option>History</option><option>Sci-Fi</option><option>Psychology</option><option>Self-Help</option></select></div>
+                    <div class="col-md-2"><select class="sel" id="book-status" onchange="filterBooks()"><option value="">All Status</option><option>Active</option><option>Draft</option><option>Out of Stock</option></select></div>
+                    <div class="col-md-2"><select class="sel" id="book-sort" onchange="filterBooks()"><option>Sort: Newest</option><option>Sort: Price ↑</option><option>Sort: Price ↓</option></select></div>
+                    <div class="col-md-2"><button class="btn-main w-100" onclick="filterBooks()"><i class="bi bi-funnel"></i> Apply</button></div>
                 </div>
             </div>
             <div class="card">
@@ -329,14 +386,41 @@
                     </table>
                 </div>
                 <div class="d-flex align-items-center justify-content-between p-4 tbl-footer">
-                    <div class="tbl-count">Showing 1–10 of 12,847 titles</div>
+                    <div class="tbl-count">Showing 1–10 of 0 titles</div>
                     <div class="d-flex gap-2">
                         <button class="btn-ghost"><i class="bi bi-chevron-left"></i></button>
                         <button class="btn-ghost btn-ghost-gold">1</button>
-                        <button class="btn-ghost">2</button><button class="btn-ghost">3</button>
+                        <button class="btn-ghost">2</button>
                         <button class="btn-ghost"><i class="bi bi-chevron-right"></i></button>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- PAGE: MEDIA -->
+        <div class="page" id="page-media">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <div>
+                    <div class="eyebrow">Assets</div>
+                    <h1 class="heading">Media <em>Gallery</em></h1>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn-out" onclick="toast('📤 Upload dialog — coming soon')"><i class="bi bi-upload"></i> Upload</button>
+                    <button class="btn-main" onclick="toast('🗂️ New folder created')"><i class="bi bi-folder-plus"></i>New Folder</button>
+                </div>
+            </div>
+            <div class="row g-3 mb-4">
+                <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-gold"><i class="bi bi-images"></i></div><div class="stat-num stat-num-sm">6</div><div class="stat-lbl">Total Images</div></div></div>
+                <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-blue"><i class="bi bi-hdd"></i></div><div class="stat-num stat-num-sm">12<span>MB</span></div><div class="stat-lbl">Storage Used</div></div></div>
+                <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-green"><i class="bi bi-cloud-check"></i></div><div class="stat-num stat-num-sm">100<span>%</span></div><div class="stat-lbl">CDN Synced</div></div></div>
+                <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-red"><i class="bi bi-exclamation-triangle"></i></div><div class="stat-num stat-num-sm">0</div><div class="stat-lbl">Unused Assets</div></div></div>
+            </div>
+            <div class="card p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div class="card-title">All <em class="gold-italic">Assets</em></div>
+                    <input class="inp inp-sm" placeholder="🔍 Search media…"/>
+                </div>
+                <div class="media-grid" id="media-grid"></div>
             </div>
         </div>
 
@@ -348,8 +432,8 @@
                     <h1 class="heading">All <em>Orders</em></h1>
                 </div>
                 <div class="d-flex gap-2">
-                    <button class="btn-out"><i class="bi bi-download"></i> Export</button>
-                    <button class="btn-main" onclick="toast('📦 Bulk label printing started')"><i class="bi bi-printer"></i>Print Labels</button>
+                    <button class="btn-out" onclick="toast('📥 Orders exported')"><i class="bi bi-download"></i> Export</button>
+                    <button class="btn-main" onclick="toast('🖨️ Bulk label printing started')"><i class="bi bi-printer"></i>Print Labels</button>
                 </div>
             </div>
             <div class="row g-3 mb-4">
@@ -375,7 +459,7 @@
                     <div class="d-flex gap-2">
                         <button class="btn-ghost"><i class="bi bi-chevron-left"></i></button>
                         <button class="btn-ghost btn-ghost-gold">1</button>
-                        <button class="btn-ghost">2</button><button class="btn-ghost">3</button>
+                        <button class="btn-ghost">2</button>
                         <button class="btn-ghost"><i class="bi bi-chevron-right"></i></button>
                     </div>
                 </div>
@@ -390,7 +474,7 @@
                     <h1 class="heading">User <em>Management</em></h1>
                 </div>
                 <div class="d-flex gap-2">
-                    <button class="btn-out"><i class="bi bi-download"></i> Export</button>
+                    <button class="btn-out" onclick="toast('📥 Users exported')"><i class="bi bi-download"></i> Export</button>
                     <button class="btn-main" onclick="openModal('modal-user')"><i class="bi bi-person-plus"></i>Add User</button>
                 </div>
             </div>
@@ -398,7 +482,14 @@
                 <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-green"><i class="bi bi-person-check"></i></div><div class="stat-num stat-num-sm">8<span>,</span>940</div><div class="stat-lbl">Active Users</div></div></div>
                 <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-gold"><i class="bi bi-person-plus"></i></div><div class="stat-num stat-num-sm">214</div><div class="stat-lbl">New This Month</div></div></div>
                 <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-red"><i class="bi bi-person-dash"></i></div><div class="stat-num stat-num-sm">18</div><div class="stat-lbl">Suspended</div></div></div>
-                <div class="col-6 col-md-3"><div class="stat"><div class="stat-icon ico-blue"><i class="bi bi-shield-check"></i></div><div class="stat-num stat-num-sm">3</div><div class="stat-lbl">Admins</div></div></div>
+                <div class="col-6 col-md-3">
+                    <div class="stat">
+                        <div class="stat-icon ico-purple"><i class="bi bi-people"></i></div>
+                        <div class="stat-num stat-num-sm" id="visitor-stat-users">0</div>
+                        <div class="stat-lbl">Total Visitors</div>
+                        <div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> from login page</div>
+                    </div>
+                </div>
             </div>
             <div class="card">
                 <div class="p-4 d-flex gap-2 align-items-center tbl-toolbar">
@@ -417,7 +508,7 @@
                     <div class="d-flex gap-2">
                         <button class="btn-ghost"><i class="bi bi-chevron-left"></i></button>
                         <button class="btn-ghost btn-ghost-gold">1</button>
-                        <button class="btn-ghost">2</button><button class="btn-ghost">3</button>
+                        <button class="btn-ghost">2</button>
                         <button class="btn-ghost"><i class="bi bi-chevron-right"></i></button>
                     </div>
                 </div>
@@ -431,8 +522,8 @@
                 <h1 class="heading">Store <em>Analytics</em></h1>
             </div>
             <div class="row g-3 mb-4">
-                <div class="col-md-4"><div class="stat"><div class="stat-icon ico-gold"><i class="bi bi-currency-dollar"></i></div><div class="stat-num">$48<span>K</span></div><div class="stat-lbl">Revenue (Mar)</div><div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> +12.4%</div></div></div>
-                <div class="col-md-4"><div class="stat"><div class="stat-icon ico-blue"><i class="bi bi-eye"></i></div><div class="stat-num">184<span>K</span></div><div class="stat-lbl">Page Views (Mar)</div><div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> +6.8%</div></div></div>
+                <div class="col-md-4"><div class="stat"><div class="stat-icon ico-gold"><i class="bi bi-currency-dollar"></i></div><div class="stat-num">$48<span>K</span></div><div class="stat-lbl">Revenue (Apr)</div><div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> +12.4%</div></div></div>
+                <div class="col-md-4"><div class="stat"><div class="stat-icon ico-blue"><i class="bi bi-eye"></i></div><div class="stat-num">184<span>K</span></div><div class="stat-lbl">Page Views (Apr)</div><div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> +6.8%</div></div></div>
                 <div class="col-md-4"><div class="stat"><div class="stat-icon ico-green"><i class="bi bi-percent"></i></div><div class="stat-num">3<span>.</span>4<span>%</span></div><div class="stat-lbl">Conversion Rate</div><div class="stat-delta delta-up"><i class="bi bi-arrow-up-short"></i> +0.3%</div></div></div>
             </div>
             <div class="row g-3">
@@ -440,7 +531,7 @@
                     <div class="chart-box">
                         <div class="chart-head">
                             <div class="chart-title">12-Month <em class="gold-italic">Revenue</em> Trend</div>
-                            <div class="chart-sub">Apr 2025 – Mar 2026</div>
+                            <div class="chart-sub">Apr 2025 – Apr 2026</div>
                         </div>
                         <div class="bar-chart" id="chart-analytics"></div>
                     </div>
@@ -452,22 +543,10 @@
                             <div class="chart-sub">Current quarter</div>
                         </div>
                         <div class="traffic-sources">
-                            <div class="traffic-row">
-                                <div class="traffic-label"><span class="traffic-name">Organic Search</span><span class="traffic-pct">42%</span></div>
-                                <div class="traffic-bar"><div class="traffic-fill fill-gold" style="width:42%"></div></div>
-                            </div>
-                            <div class="traffic-row">
-                                <div class="traffic-label"><span class="traffic-name">Social Media</span><span class="traffic-pct">28%</span></div>
-                                <div class="traffic-bar"><div class="traffic-fill fill-blue" style="width:28%"></div></div>
-                            </div>
-                            <div class="traffic-row">
-                                <div class="traffic-label"><span class="traffic-name">Direct</span><span class="traffic-pct">18%</span></div>
-                                <div class="traffic-bar"><div class="traffic-fill fill-green" style="width:18%"></div></div>
-                            </div>
-                            <div class="traffic-row">
-                                <div class="traffic-label"><span class="traffic-name">Email</span><span class="traffic-pct">12%</span></div>
-                                <div class="traffic-bar"><div class="traffic-fill fill-warning" style="width:12%"></div></div>
-                            </div>
+                            <div><div class="traffic-label"><span class="traffic-name">Organic Search</span><span class="traffic-pct">42%</span></div><div class="traffic-bar"><div class="traffic-fill fill-gold" style="width:42%"></div></div></div>
+                            <div><div class="traffic-label"><span class="traffic-name">Social Media</span><span class="traffic-pct">28%</span></div><div class="traffic-bar"><div class="traffic-fill fill-blue" style="width:28%"></div></div></div>
+                            <div><div class="traffic-label"><span class="traffic-name">Direct</span><span class="traffic-pct">18%</span></div><div class="traffic-bar"><div class="traffic-fill fill-green" style="width:18%"></div></div></div>
+                            <div><div class="traffic-label"><span class="traffic-name">Email</span><span class="traffic-pct">12%</span></div><div class="traffic-bar"><div class="traffic-fill fill-warning" style="width:12%"></div></div></div>
                         </div>
                     </div>
                 </div>
@@ -508,25 +587,53 @@
                         <div class="card-title mb-1">Notifications <em class="gold-italic">Settings</em></div>
                         <div class="card-sub mb-4">What to be alerted about</div>
                         <div class="d-flex flex-column gap-3">
-                            <div class="notif-row">
-                                <div><div class="notif-label">New Orders</div><div class="notif-desc">Email alert for every new order</div></div>
-                                <input type="checkbox" checked class="gold-check gold-check-lg"/>
-                            </div>
-                            <div class="notif-row">
-                                <div><div class="notif-label">Low Stock Alerts</div><div class="notif-desc">Alert when stock &lt; 10 units</div></div>
-                                <input type="checkbox" checked class="gold-check gold-check-lg"/>
-                            </div>
-                            <div class="notif-row notif-row-last">
-                                <div><div class="notif-label">New Reviews</div><div class="notif-desc">Notify on every review submission</div></div>
-                                <input type="checkbox" class="gold-check gold-check-lg"/>
-                            </div>
+                            <div class="notif-row"><div><div class="notif-label">New Orders</div><div class="notif-desc">Email alert for every new order</div></div><input type="checkbox" checked class="gold-check gold-check-lg"/></div>
+                            <div class="notif-row"><div><div class="notif-label">Low Stock Alerts</div><div class="notif-desc">Alert when stock &lt; 10 units</div></div><input type="checkbox" checked class="gold-check gold-check-lg"/></div>
+                            <div class="notif-row notif-row-last"><div><div class="notif-label">New Reviews</div><div class="notif-desc">Notify on every review submission</div></div><input type="checkbox" class="gold-check gold-check-lg"/></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-    </div>
-</div>
+    </div><!-- /main -->
+</div><!-- /layout -->
+
+<script>
+    /* ── معاينة الصورة لحظية في Add modal ── */
+    document.addEventListener('DOMContentLoaded', () => {
+        const nbImg     = document.getElementById('nb-img');
+        const nbPreview = document.getElementById('nb-img-preview');
+        const nbWrap    = document.getElementById('nb-img-preview-wrap');
+        if (nbImg) {
+            nbImg.addEventListener('input', function () {
+                const url = this.value.trim();
+                if (url) {
+                    nbPreview.src = url;
+                    nbWrap.style.display = 'block';
+                } else {
+                    nbWrap.style.display = 'none';
+                }
+            });
+        }
+
+        /* ── معاينة الصورة لحظية في Edit modal ── */
+        const editImg     = document.getElementById('edit-img');
+        const editPreview = document.getElementById('edit-img-preview');
+        const editWrap    = document.getElementById('edit-img-preview-wrap');
+        if (editImg) {
+            editImg.addEventListener('input', function () {
+                const url = this.value.trim();
+                if (url) {
+                    editPreview.src = url;
+                    editWrap.style.display = 'block';
+                } else {
+                    editWrap.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>
+<script src="../JavaScript-file/admin.js"></script>
 </body>
 </html>
