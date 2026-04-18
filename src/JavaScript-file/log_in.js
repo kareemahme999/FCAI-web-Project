@@ -4,7 +4,6 @@ const ADMIN_PASSWORD = '66200660K';
 
 
 (function trackPageVisit() {
-    /* Use sessionStorage to avoid counting the same tab twice on refresh */
     if (!sessionStorage.getItem('folio_visit_counted')) {
         sessionStorage.setItem('folio_visit_counted', '1');
         const current = parseInt(localStorage.getItem('folio_visits') || '0');
@@ -49,15 +48,22 @@ function handleLogin() {
         return;
     }
 
-    /* Normal user */
     const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value.trim();
     if (!username || !password) {
         showToast('⚠️ Please fill in all fields.', true);
         return;
     }
-    showToast('✅ Welcome back, ' + username + '!');
-    setTimeout(() => { window.location.href = 'User_profile.html'; }, 1400);
+
+    const users = JSON.parse(localStorage.getItem('folio_users') || '[]');
+    const found = users.find(u => u.username === username && u.password === password);
+
+    if (found) {
+        showToast('✅ Welcome back, ' + username + '!');
+        setTimeout(() => { window.location.href = 'User_profile.html'; }, 1400);
+    } else {
+        showToast('❌ Username or password is incorrect.', true);
+    }
 }
 
 /* ── REGISTER ── */
@@ -69,6 +75,18 @@ function handleRegister() {
     if (!email || !username || !password) { showToast('⚠️ Please fill in all fields.', true); return; }
     if (!emailOk) { showToast('⚠️ Please enter a valid email.', true); return; }
     if (password.length < 6) { showToast('⚠️ Password must be at least 6 characters.', true); return; }
+
+    const users = JSON.parse(localStorage.getItem('folio_users') || '[]');
+    const exists = users.find(u => u.username === username || u.email === email);
+    if (exists) {
+        showToast('⚠️ Username or email already exists.', true);
+        return;
+    }
+
+    /*  localStorage */
+    users.push({ email, username, password });
+    localStorage.setItem('folio_users', JSON.stringify(users));
+
     showToast('🎉 Account created! You can now log in.');
     setTimeout(() => switchToLogin(), 1600);
 }
