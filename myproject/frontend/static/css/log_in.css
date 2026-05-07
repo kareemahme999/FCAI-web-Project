@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Syne:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Syne', Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #f5f2ec;
+    --bg2: #ede9e0;
+    --bg3: #e8e3d8;
+    --card: #ffffff;
+    --card2: #f0ece3;
+    --border: rgba(0, 0, 0, 0.08);
+    --border2: rgba(0, 0, 0, 0.14);
+    --gold: #b8842a;
+    --gold2: #d4a843;
+    --glow: rgba(184, 132, 42, 0.12);
+    --text: #1a1610;
+    --text2: #6b5f4a;
+    --text3: #a89880;
+    --danger: #cc3c3c;
+    --success: #3a9e62;
+    --radius: 12px;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* ── MAIN ── */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 70px);
+    background: var(--bg);
+    padding: 32px 16px;
+}
+
+/* ── FORM CARD ── */
+.form {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 440px;
+    /* height grows automatically when admin fields appear */
+    min-height: 520px;
+    border-radius: 28px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 40px var(--glow);
+    transition: min-height 0.4s ease;
+}
+
+/* taller when admin fields are visible */
+.form.admin-mode {
+    min-height: 660px;
+}
+
+/* ── LOGIN / REGISTER PANELS ── */
+.box-login, .box-register {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    height: 100%;
+    padding: 32px 24px;
+    transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1),
+    opacity  0.55s ease;
+}
+
+.box-register {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.box-register.active {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.box-login.hidden {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+/* ── HEADINGS ── */
+.form h2 {
+    padding-bottom: 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    color: var(--text);
+    text-align: center;
+}
+
+.form h2 span {
+    font-size: 14px;
+    font-weight: normal;
+    color: var(--text3);
+    font-family: 'Syne', sans-serif;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.form h2 i {
+    color: var(--gold);
+    font-style: italic;
+}
+
+/* ── INPUTS ── */
+.input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+}
+
+.input input {
+    width: 100%;
+    height: 48px;
+    border: 1.5px solid var(--border2);
+    border-radius: 12px;
+    padding: 0 15px;
+    font-size: 15px;
+    font-family: 'Syne', sans-serif;
+    background: var(--bg2);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+.input input:focus {
+    border-color: var(--gold);
+    background: var(--card);
+    box-shadow: 0 0 0 3px var(--glow);
+}
+
+.input label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: var(--text2);
+    transition: 0.3s all;
+    pointer-events: none;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.input input:focus ~ label,
+.input input:valid ~ label {
+    top: 0;
+    transform: translateY(-110%) translateX(-4px);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* ── OPTIONS ROW ── */
+.opt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 85%;
+    font-size: 13px;
+    color: var(--text2);
+    gap: 8px;
+}
+
+.opt label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.opt button {
+    background: none;
+    border: none;
+    color: var(--gold);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: 'Syne', sans-serif;
+    padding: 0;
+    transition: opacity 0.2s;
+}
+
+.opt button:hover { opacity: 0.75; }
+
+.opt input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: var(--gold);
+    width: 15px;
+    height: 15px;
+}
+
+/* ── ADMIN CHECKBOX ROW ── */
+.admin-check-row {
+    width: 85%;
+}
+
+.admin-check-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    cursor: pointer;
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 9px 14px;
+    background: var(--bg2);
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+    user-select: none;
+}
+
+.admin-check-label:hover {
+    border-color: var(--gold);
+    background: var(--glow);
+    color: var(--gold);
+}
+
+.admin-check-label input[type="checkbox"] {
+    accent-color: var(--gold);
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.admin-check-label i {
+    color: var(--gold);
+    font-size: 15px;
+}
+
+/* ── ADMIN FIELDS (hidden until checkbox ticked) ── */
+.admin-fields {
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+    width: 85%;
+    padding: 16px;
+    border: 1px dashed rgba(184, 132, 42, 0.4);
+    border-radius: 14px;
+    background: rgba(184, 132, 42, 0.04);
+    animation: fadeSlideIn 0.35s ease;
+}
+
+.admin-fields.show {
+    display: flex;
+}
+
+.admin-fields .input {
+    width: 100%;
+}
+
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SUBMIT ── */
+.submit {
+    width: 75%;
+    height: 48px;
+    border-radius: 25px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.05em;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    cursor: pointer;
+    transition: all 0.25s;
+    margin-top: 4px;
+}
+
+.submit:hover {
+    box-shadow: 0 6px 20px rgba(184, 132, 42, 0.4);
+    transform: translateY(-2px);
+}
+
+.submit:active { transform: translateY(0); }
+
+/* ── SWITCH TEXT ── */
+.box-login > span,
+.box-register > span {
+    font-size: 13px;
+    color: var(--text2);
+}
+
+.form span button {
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 13px;
+    transition: opacity 0.2s;
+}
+
+.form span button:hover { opacity: 0.75; }
+
+/* ── TOAST ── */
+#toast-box {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background: var(--card2);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--gold);
+    border-radius: 10px;
+    padding: 13px 18px;
+    font-size: 13px;
+    color: var(--text);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+    animation: slideIn 0.3s ease, fadeOut 0.4s ease 2.6s forwards;
+    min-width: 220px;
+}
+
+.toast.toast-error { border-left-color: var(--danger); }
+
+@keyframes slideIn {
+    from { transform: translateX(50px); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+}
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateX(30px); }
+}
+
+/* ── RESPONSIVE: Tablet ── */
+@media (max-width: 900px) {
+    .F-header ul    { display: none; }
+    .L-header form  { display: none; }
+}
+
+/* ── RESPONSIVE: Mobile ── */
+@media (max-width: 600px) {
+    .header         { padding: 0 14px; }
+    .F-header h1    { font-size: 20px; }
+    .L-header       { gap: 6px; }
+    .L-header button{ padding: 7px 8px; }
+
+    main {
+        padding: 20px 12px 40px;
+        align-items: flex-start;
+    }
+
+    .form {
+        border-radius: 20px;
+        min-height: 500px;
+    }
+
+    .form.admin-mode { min-height: 680px; }
+
+    .input,
+    .admin-check-row,
+    .admin-fields { width: 92%; }
+
+
+    .opt    { width: 92%; flex-wrap: wrap; }
+    .submit { width: 86%; }
+
+    .form h2 { font-size: 28px; }
+
+    #toast-box { bottom: 14px; right: 14px; left: 14px; }
+    .toast { min-width: unset; width: 100%; }
+}
+
+/* ── RESPONSIVE: Very small ── */
+@media (max-width: 380px) {
+    .F-header h1 { font-size: 17px; }
+    .form h2     { font-size: 24px; }
+    .L-header    { gap: 4px; }
+}

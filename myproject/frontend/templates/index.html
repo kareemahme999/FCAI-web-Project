@@ -1,0 +1,324 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Book Store</title>
+
+    <link rel="icon" type="image/icon" href="{% static 'images/dribbble.svg' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <script src="{% static 'js/Home.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/Home.css' %}">
+</head>
+
+<body>
+    <header class="header">
+
+
+        <div class="F-header">
+
+            <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
+            <ul>
+                <li><a id="home" href="{% url 'home' %}"><i class="bi bi-house"></i>Home</a></li>
+                <li><a href="{% url 'books' %}"><i class="bi bi-grid"></i>books</a></li>
+                <li><a href="{% url 'about' %}"><i class="bi bi-info-circle"></i>About</a></li>
+                <li><a href="{% url 'contact' %}"><i class="bi bi-envelope"></i>Contact</a></li>
+            </ul>
+
+        </div>
+
+        <div class="L-header">
+            <form>
+                <input id="search" type="search" placeholder="Search books,authors...">
+
+                <label onclick="goSearch(event)"
+                    style="color:#ffd636; padding:3px; border: solid 1px #ffd636; border-radius: 5px; cursor:pointer;">
+                    <i class="bi bi-search"></i>
+                </label>
+            </form>
+
+            <script>
+                function goSearch(e) {
+                    e.preventDefault();
+                    let value = document.getElementById("search").value;
+                    window.location.href = "{% url 'books' %}?q=" + value;
+                }
+            </script>
+            <button><a href="{% url 'my_list' %}"><i class="fa-regular fa-bookmark"></i></a></button>
+            <button><a href="{% url 'cart' %}"><i class="bi bi-bag"></i></a></button>
+            <button><a href="{% url 'user_profile' %}"><i class="fa-regular fa-circle-user"></i></a></button>
+
+
+
+        </div>
+    </header>
+
+    <main>
+        <section class="Section-1">
+            <div class="Section-1-1">
+                <div>
+                    <h4><i class="bi bi-stars"></i> New Collection 2026</h4>
+                </div>
+                <div>
+                    <h1>Every Great
+                        <br />
+                        <em style="color: var(--gold)">Story</em>
+                        Starts
+                        <br />
+                        <span style="color: var(--gold)">With a Page.</span>
+                    </h1>
+
+                    <p class="pargraph">Handpicked titles for curious minds. From timeless classics<br /> to this
+                        season's most anticipated releases.</p>
+
+                    <button class="frist-button"><a href="{% url 'books' %}"><i
+                                class="bi bi-grid"></i>Collection</a></button>
+                    <button class="second-button"><a href="{% url 'books' %}"><i class="bi bi-search"></i>Search
+                            Books</a></button>
+                    <hr />
+
+
+                </div>
+                <div class="loges">
+                    <div>
+                        <h2><small>12</small><span style="color: var(--gold)">K+</span></h2>
+                        <p>Titles</p>
+                    </div>
+                    <div>
+                        <h2>340<span style="color: var(--gold)">+</span></h2>
+                        <p>Authors</p>
+                    </div>
+                    <div>
+                        <h2>98<span style="color: var(--gold)">%</span></h2>
+                        <p>Happy Readers</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="Section-1-2">
+                <div><img
+                        src="{% static 'images/Bookstore Photos - Download Free High-Quality Pictures _ Freepik.jpg' %}">
+                </div>
+                <div><img src="{% static 'images/Ebooks.jpg' %}"></div>
+                <div><img src="{% static 'images/Utilisation Gratuite _ Licence PIXABAY.jpg' %}"></div>
+                <div class="center"><img
+                        src="{% static 'images/Your Little Finger Can Tell a Lot About Your Personality.jpg' %}" alt="">
+                </div>
+                <div><img
+                        src="{% static 'images/Como organizar livros de forma criativa_ Segredos surpreendentes para otimizar espaço e encontrar___.jpg' %}">
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="Section-2">
+            <ul>
+                <li>New Arrivals Every Week</li>
+                <li>First Order 15% Off</li>
+                <li>Curated Reading Lists</li>
+                <li>Gift Wrapping Available</li>
+                <li>Free Shipping Over $40</li>
+
+
+            </ul>
+        </section>
+
+
+
+        <section class="Section-3">
+            <div class="Section-3-1">
+                <div>
+                    <h2>Explore by Genre</h2>
+                    <a href="{% url 'books' %}">View All<i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div>
+                    <div>
+                        <span>🎭</span>
+                        <h3>Fiction</h3>
+                        <p>2,340</p>
+                    </div>
+                    <div>
+                        <span>🔬</span>
+                        <h3>Science</h3>
+                        <p>1,180</p>
+
+                    </div>
+                    <div>
+                        <span>🏺</span>
+                        <h3>History</h3>
+                        <p>980</p>
+
+                    </div>
+                    <div>
+                        <span>🧠</span>
+                        <h3>Psychology</h3>
+                        <p>740</p>
+
+                    </div>
+                    <div>
+                        <span>🚀</span>
+                        <h3>Sci-Fi</h3>
+                        <p>620</p>
+
+                    </div>
+                    <div>
+                        <span>🌍</span>
+                        <h3>Travel</h3>
+                        <p>520</p>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="Section-3-2">
+                <div>
+                    <h2>Featured Titles</h2>
+                    <a href="{% url 'books' %}">View All<i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="all-cards">
+                    <div class="cards">
+                        <img src="{% static 'images/OIP.webp' %}" alt="">
+                        <h2>The Midnight Library</h2>
+                        <p>by Matt Haig</p>
+                        <span><del>$24.00</del>$18.99</span>
+                    </div>
+                    <div class="cards">
+                        <img src="{% static 'images/OIP (1).jpg' %}" alt="">
+                        <h2>Lessons in Chemistry</h2>
+                        <p>by Bonnie Garmus</p>
+                        <span>$22.00</span>
+                    </div>
+                    <div class="cards">
+                        <img src="{% static 'images/OIP (2).jpg' %}" alt="">
+                        <h2>Atomic Habits</h2>
+                        <p>by James Clear</p>
+                        <span><del>$27.00</del>$19.99</span>
+                    </div>
+                    <div class="cards">
+                        <img src="{% static 'images/download.jpg' %}" alt="">
+                        <h2>Dune</h2>
+                        <p>by Frank Herbert</p>
+                        <span>$16.99</span>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+
+            <div class="Section-3-3">
+                <div class="left-of-Section-3-3">
+                    <h3>Limited Time</h3>
+                    <h2>Summer Sale — Up to 50% Off</h2>
+                    <p>Stock up on your reading list. Hundreds of titles discounted for a limited time.</p>
+
+                    <button><a href="{% url 'books' %}"><i class="bi bi-lightning"></i> SHOP THE SALE</a></button>
+                </div>
+                <div class="right-of-Section-3-3">
+                    <p>"A reader lives a thousand lives before he dies."</p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+        <section>
+            <div>
+
+                <h3>Stay Updated</h3>
+                <h2>Join the Reading Circle</h2>
+                <p>Weekly recommendations, exclusive deals, and curated lists in your inbox.</p>
+                <form>
+                    <input required type="email" placeholder="Your Email Address">
+                    <button>Subscribe Now</button>
+
+                </form>
+            </div>
+
+
+        </section>
+
+
+
+
+    </main>
+
+
+
+    <footer>
+        <div>
+            <div>
+                <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
+                <p>Your independent bookstore, curating the finest titles across every genre. Books are not just stories
+                    — they are experiences.</p>
+            </div>
+
+            <div>
+                <h2>Shop</h2>
+
+                <ul>
+                    <li><a href="{% url 'books' %}">New Arrivals</a></li>
+                    <li><a href="{% url 'books' %}">Bestsellers</a></li>
+                    <li><a href="{% url 'books' %}">Fiction</a></li>
+                    <li><a href="{% url 'books' %}">Non-Fiction</a></li>
+
+                </ul>
+            </div>
+            <div>
+                <h2>Help</h2>
+
+                <ul>
+                    <li><a href="{% url 'contact' %}">Shipping Policy</a></li>
+                    <li>Returns</li>
+                    <li>Order Tracking</li>
+                    <li>Gift Cards</li>
+
+                </ul>
+            </div>
+            <div>
+                <h2>Company</h2>
+
+                <ul>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a href="{% url 'books' %}">Blog</a></li>
+                    <li>Careers</li>
+
+                </ul>
+            </div>
+            <div>
+                <h2>Account</h2>
+
+                <ul>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'user_profile' %}">Profile</a></li>
+                    <li><a href="{% url 'my_list' %}">My List</a></li>
+                    <li><a href="{% url 'cart' %}">Cart</a></li>
+                </ul>
+            </div>
+
+            <hr />
+            <div>
+                <p>© 2026 FOLIO Bookstore. All rights reserved.</p>
+                <p>Privacy · Terms</p>
+            </div>
+
+    </footer>
+
+
+
+
+</body>
+
+</html>

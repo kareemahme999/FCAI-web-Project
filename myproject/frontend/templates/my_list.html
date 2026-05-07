@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="icon" type="image/icon" href="../../Pictures/dribbble.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <script src="{% static 'js/my_list.js' %}"></script>
+  <style></style>
+  <link rel="stylesheet" href="{% static 'css/my_list.css' %}">
+</head>
+
+
+
+<body>
+
+  <header class="header">
+
+    <div class="F-header">
+
+      <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
+      <ul>
+        <li><a href="{% url 'home' %}"><i class="bi bi-house"></i>Home</a></li>
+        <li><a href="{% url 'books' %}"><i class="bi bi-grid"></i>books</a></li>
+        <li><a href="{% url 'about' %}"><i class="bi bi-info-circle"></i>About</a></li>
+        <li><a href="{% url 'contact' %}"><i class="bi bi-envelope"></i>Contact</a></li>
+      </ul>
+
+    </div>
+
+    <div class="L-header">
+      <form>
+        <input id="search" type="search" placeholder="Search books,authors...">
+        <label onclick="goSearch(event)"
+          style="color:#ffd636; padding:3px; border: solid 1px #ffd636; border-radius: 5px; cursor:pointer;">
+          <i class="bi bi-search"></i>
+        </label>
+      </form>
+
+      <script>
+        function goSearch(e) {
+          e.preventDefault();
+          let value = document.getElementById("search").value;
+          window.location.href = "{% url 'books' %}?q=" + value;
+        }
+      </script>
+      <button><a href="{% url 'my_list' %}"><i class="fa-regular fa-bookmark"></i></a></button>
+      <button><a href="{% url 'cart' %}"><i class="bi bi-bag"></i></a></button>
+      <button><a href="{% url 'user_profile' %}"><i class="fa-regular fa-circle-user"></i></a></button>
+
+
+
+    </div>
+  </header>
+
+
+
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="eyebrow">
+      <span class="eyebrow-line"></span>
+      <span>Your Collection</span>
+    </div>
+    <div class="header-row">
+      <h1 class="page-title">My <em>Reading List</em></h1>
+      <a href="{% url 'books' %}" class="btn-add">
+        <i class="bi bi-plus"></i> Add Books
+      </a>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+    <!-- STATS ROW -->
+    <div class="stats-row" id="stats-row">
+      <!-- Injected by JS -->
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs" id="tab-bar">
+      <button class="tab active" data-filter="all">All <span class="tab-count" id="count-all">6</span></button>
+      <button class="tab" data-filter="reading">Reading <span class="tab-count" id="count-reading">1</span></button>
+      <button class="tab" data-filter="want">Want to Read <span class="tab-count" id="count-want">3</span></button>
+      <button class="tab" data-filter="finished">Finished <span class="tab-count" id="count-finished">2</span></button>
+    </div>
+
+    <!-- SORT + SEARCH ROW -->
+    <div class="toolbar">
+      <div class="toolbar-search">
+        <i class="bi bi-search"></i>
+        <input type="text" id="list-search" placeholder="Filter your list..." autocomplete="off">
+      </div>
+      <select class="sort-select" id="sort-select">
+        <option value="default">Sort: Default</option>
+        <option value="title">Title A–Z</option>
+        <option value="author">Author A–Z</option>
+        <option value="progress">Progress</option>
+      </select>
+    </div>
+
+    <!-- BOOK LIST -->
+    <div class="list" id="book-list">
+      <!-- Items injected by JS -->
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="empty-state" style="display:none;">
+      <i class="bi bi-bookmark"></i>
+      <p>No books here yet.</p>
+      <a href="{% url 'books' %}" class="btn-add" style="margin-top:16px;">Browse Collection</a>
+    </div>
+
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast-container"></div>
+
+
+  <script src="{% static 'js/my_list.js' %}"></script>
+
+</body>
+
+</html>

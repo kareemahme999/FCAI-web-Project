@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+
+    <link rel="icon" type="image/icon" href="{% static 'images/dribbble.svg' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/log_in.css' %}">
+</head>
+
+<body>
+
+
+
+    <main>
+        <div class="form" id="main-form">
+
+            <!-- ── LOGIN BOX ── -->
+            <div class="box-login" id="box-login">
+                <h2><i>Login</i></h2>
+
+                <div class="input">
+                    <input type="text" id="username" required placeholder=" ">
+                    <label for="username"><i class="fa fa-user"></i> Username</label>
+                </div>
+
+                <div class="input">
+                    <input type="password" id="password" required placeholder=" ">
+                    <label for="password"><i class="fa fa-lock"></i> Password</label>
+                </div>
+
+                <div class="opt">
+                    <button onclick="forgotPass()">Forgot password?</button>
+                    <label for="remember">
+                        <input type="checkbox" id="remember"> Remember me
+                    </label>
+                </div>
+
+                <!-- Admin checkbox -->
+                <div class="admin-check-row">
+                    <label for="is-admin" class="admin-check-label">
+                        <input type="checkbox" id="is-admin" onchange="toggleAdminFields()">
+                        <i class="bi bi-shield-lock-fill"></i>
+                        Login as Admin
+                    </label>
+                </div>
+
+                <!-- Admin credentials — hidden until checkbox is ticked -->
+                <div class="admin-fields" id="admin-fields">
+                    <div class="input">
+                        <input type="text" id="admin-username" placeholder=" ">
+                        <label for="admin-username"><i class="bi bi-person-badge"></i> Admin Username</label>
+                    </div>
+                    <div class="input">
+                        <input type="password" id="admin-password" placeholder=" ">
+                        <label for="admin-password"><i class="bi bi-key-fill"></i> Admin Password</label>
+                    </div>
+                </div>
+
+                <button class="submit" onclick="handleLogin()">
+                    Login <i class="fa fa-sign-in"></i>
+                </button>
+
+                <span>Don't have an account? <button onclick="switchToRegister()">Sign up</button></span>
+            </div>
+
+            <!-- ── REGISTER BOX ── -->
+            <div class="box-register" id="box-register">
+                <h2><span>FOLIO —</span><i>Register</i></h2>
+
+                <div class="input">
+                    <input type="email" id="reg-email" required placeholder=" ">
+                    <label for="reg-email"><i class="fa fa-envelope"></i> Email</label>
+                </div>
+
+                <div class="input">
+                    <input type="text" id="reg-username" required placeholder=" ">
+                    <label for="reg-username"><i class="fa fa-user"></i> Username</label>
+                </div>
+
+                <div class="input">
+                    <input type="password" id="reg-password" required placeholder=" ">
+                    <label for="reg-password"><i class="fa fa-lock"></i> Password</label>
+                </div>
+
+                <button class="submit" onclick="handleRegister()">
+                    Create Account
+                </button>
+
+                <span>Already have an account? <button onclick="switchToLogin()">Login <i
+                            class="fa fa-sign-in"></i></button></span>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="toast-box"></div>
+    <script src="{% static 'js/log_in.js' %}"></script>
+
+</body>
+
+</html>

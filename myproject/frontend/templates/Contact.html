@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FOLIO — Contact Us</title>
+    <link rel="stylesheet" href="{% static 'css/Contact.css' %}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="F-header">
+            <h1><i class="bi bi-dribbble"></i> FOLIO.</h1>
+            <ul>
+                <li><a href="{% url 'home' %}"><i class="bi bi-house"></i> Home</a></li>
+                <li><a href="{% url 'books' %}"><i class="bi bi-grid"></i> Books</a></li>
+                <li><a href="{% url 'about' %}"><i class="bi bi-info-circle"></i> About</a></li>
+                <li><a href="{% url 'contact' %}" id="contact-active"><i class="bi bi-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+        <div class="L-header">
+            <form>
+                <input id="search" type="search" placeholder="Search books,authors...">
+                <label onclick="goSearch(event)"
+                    style="color:#ffd636; padding:3px; border: solid 1px #ffd636; border-radius: 5px; cursor:pointer;">
+                    <i class="bi bi-search"></i>
+                </label>
+            </form>
+
+            <script>
+                function goSearch(e) {
+                    e.preventDefault();
+                    let value = document.getElementById("search").value;
+                    window.location.href = "{% url 'books' %}?q=" + value;
+                }
+            </script>
+            <button><a href="{% url 'my_list' %}"><i class="fa-regular fa-bookmark"></i></a></button>
+            <button><a href="{% url 'cart' %}"><i class="bi bi-bag"></i></a></button>
+            <button><a href="{% url 'user_profile' %}"><i class="fa-regular fa-circle-user"></i></a></button>
+
+
+
+        </div>
+    </header>
+    <main class="contact-page">
+
+        <div class="eyebrow">Get In Touch</div>
+        <h1 class="title">Contact <em>Us</em></h1>
+        <p class="intro">We'd love to hear from you. Drop us a message and we'll get back within 24 hours.</p>
+
+        <div class="grid">
+
+            <div>
+                <div class="info-card">
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+                        <div>
+                            <div class="info-title">Visit Us</div>
+                            <div class="info-detail">123 Book Street, Literary Quarter<br>Cairo, NY 10001</div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+                        <div>
+                            <div class="info-title">Call Us</div>
+                            <div class="info-detail">+20 1558003416</div>
+                            <div class="info-sub">Mon–Fri, 9am–6pm EST</div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                        <div>
+                            <div class="info-title">Email Us</div>
+                            <div class="info-detail">kareemahmed4795@gmail.com</div>
+                            <div class="info-sub">We reply within 24 hours</div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="bi bi-clock-fill"></i>
+                        </div>
+                        <div>
+                            <div class="info-title">Store Hours</div>
+                            <div class="info-detail">Mon–Sat: 9am – 9pm<br>Sunday: 11am – 6pm</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="map">
+                    <i class="bi bi-map" style="font-size: 48px; opacity: 0.25;"></i>
+                    <span>Interactive map</span>
+                </div>
+            </div>
+
+
+
+            <div class="form-card">
+                <div class="form-title">Send a Message</div>
+
+                {% csrf_token %}
+
+                <div class="form-row">
+                    <div>
+                        <label class="label" for="name">Your Name</label>
+                        <input class="input" id="name" type="text" placeholder="Alex Reader" />
+                        <span class="error-msg" id="name-error">Please enter your name.</span>
+                    </div>
+                    <div>
+                        <label class="label" for="email">Email Address</label>
+                        <input class="input" id="email" type="email" placeholder="alex@example.com" />
+                        <span class="error-msg" id="email-error">Please enter a valid email address.</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="subject">Subject</label>
+                    <select class="input" id="subject">
+                        <option>General Inquiry</option>
+                        <option>Order Support</option>
+                        <option>Book Recommendation</option>
+                        <option>Partnership</option>
+                        <option>Press &amp; Media</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="message">Message</label>
+                    <textarea class="input" id="message" placeholder="Tell us how we can help you…"></textarea>
+                    <span class="error-msg" id="message-error">Please write your message.</span>
+                </div>
+
+                <button class="send-btn" onclick="sendMessage()">
+                    <i class="bi bi-send"></i> Send Message
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="toast-box"></div>
+
+
+</body>
+
+</html>
