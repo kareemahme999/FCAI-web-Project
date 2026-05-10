@@ -1,4 +1,20 @@
-# 📚 Online Library Website
+<div align="center">
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&pause=1000&color=F7C948&center=true&vCenter=true&width=600&lines=📚+FOLIO+Online+Library;Browse+%7C+Search+%7C+Borrow;Built+for+Book+Lovers" alt="Typing SVG" />
+
+<br/>
+
+![GitHub stars](https://img.shields.io/github/stars/YOUR_USERNAME/online-library-website?style=for-the-badge&color=yellow)
+![GitHub forks](https://img.shields.io/github/forks/YOUR_USERNAME/online-library-website?style=for-the-badge&color=blue)
+![GitHub issues](https://img.shields.io/github/issues/YOUR_USERNAME/online-library-website?style=for-the-badge&color=red)
+![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-In%20Development-orange?style=for-the-badge)
+
+<br/>
+
+> *"A reader lives a thousand lives before he dies."* — George R.R. Martin
+
+</div>
 
 ## 📌 Project Overview
 
@@ -100,6 +116,22 @@ Regular users can browse and borrow books.
 * Book return system
 * Admin dashboard statistics
 * Improved UI/UX design
+
+---
+
+## 🛠️ Tech Stack
+
+<div align="center">
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+
+</div>
 
 ---
 
