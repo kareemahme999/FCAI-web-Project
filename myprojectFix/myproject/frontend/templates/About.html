@@ -1,0 +1,303 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FOLIO — About Us</title>
+
+    <link rel="icon" type="image/icon" href="{% static 'images/dribbble.svg' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="{% static 'css/About.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+</head>
+
+<body>
+
+
+    <header class="header">
+
+        <div class="F-header">
+
+            <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
+            <ul>
+                <li><a href="{% url 'home' %}"><i class="bi bi-house"></i>Home</a></li>
+                <li><a href="{% url 'books' %}"><i class="bi bi-grid"></i>books</a></li>
+                <li><a id="About" href="{% url 'about' %}"><i class="bi bi-info-circle"></i>About</a></li>
+                <li><a href="{% url 'contact' %}"><i class="bi bi-envelope"></i>Contact</a></li>
+            </ul>
+
+        </div>
+
+
+        <div class="L-header">
+            <form>
+                <input id="search" type="search" placeholder="Search books,authors...">
+                <label onclick="goSearch(event)"
+                    style="color:#ffd636; padding:3px; border: solid 1px #ffd636; border-radius: 5px; cursor:pointer;">
+                    <i class="bi bi-search"></i>
+                </label>
+            </form>
+
+            <script>
+                function goSearch(e) {
+                    e.preventDefault();
+                    let value = document.getElementById("search").value;
+                    window.location.href = "{% url 'books' %}?q=" + value;
+                }
+            </script>
+            <button><a href="{% url 'my_list' %}"><i class="fa-regular fa-bookmark"></i></a></button>
+            <button><a href="{% url 'cart' %}"><i class="bi bi-bag"></i></a></button>
+            <button><a href="{% url 'user_profile' %}"><i class="fa-regular fa-circle-user"></i></a></button>
+
+
+
+        </div>
+    </header>
+
+    <main>
+
+        <section class="story-section">
+            <div>
+                <h2 class="eyebrow "><b>Our Story</b></h2>
+                <h1 class="title">We Believe A Good Book Can Change a <em>Life</em></h1>
+                <p class="intro">Your favorite bookstore founded by <b style="color: #b8842a;">CU students</b>, what
+                    started as a small corner bookshop with a handpicked selection of 200 titles. Today we're a beloved
+                    destination for readers worldwide — but our mission remains the same: connect the right book with
+                    the right reader.</p>
+            </div>
+        </section>
+
+        <section class="about-page">
+            <div class="stats-row">
+                <div class="stats">
+                    <h1 class="stats-h1">12K+</h1>
+                    <span class="stats-desc">Titles In Stock</span>
+
+                </div>
+
+                <div class="stats">
+                    <h1 class="stats-h1">340+</h1>
+                    <span class="stats-desc">Authors Featured</span>
+
+                </div>
+
+                <div class="stats">
+                    <h1 class="stats-h1">50K+</h1>
+                    <span class="stats-desc">Happy Readers</span>
+
+                </div>
+
+                <div class="stats">
+                    <h1 class="stats-h1">8</h1>
+                    <span class="stats-desc">Years of Stories</span>
+
+                </div>
+            </div>
+
+            <div>
+                <h1 class="eyebrow">What We Stand For</h1>
+                <h1 class="title">Our <em>Values</em></h1>
+                <div class="values-row">
+                    <div class="value">
+                        <span><i class="bi bi-journal-bookmark-fill"></i></span>
+                        <h1 class="value-title">Curation Over Quantity</h1>
+                        <p class="value-desc ">Every title in our store is carefully selected. We'd rather have 100
+                            great books than 10,000 mediocre ones.</p>
+                    </div>
+
+                    <div class="value">
+                        <span><i class="bi bi-tree-fill"></i></span>
+                        <h1 class="value-title">Sustainable Reading</h1>
+                        <p class="value-desc ">We partner with publishers who share our commitment to sustainable
+                            printing and fair author compensation.</p>
+                    </div>
+
+                    <div class="value">
+                        <span><i class="fa-solid fa-handshake-angle"></i></span>
+                        <h1 class="value-title">Community First</h1>
+                        <p class="value-desc ">Monthly book clubs, author readings, and a passionate community of
+                            readers who love to share great stories.</p>
+                    </div>
+
+                </div>
+
+
+                <div>
+                    <h1 class="eyebrow">The People</h1>
+                    <h1 class="title">Meet the <em>Team</em></h1>
+
+                    <div class="team-row">
+                        <div class="team-member">
+                            <span class="team-avatar"><i class="fa-solid fa-e"></i></span>
+                            <h1 class="team-member-name">Kareem Ahmed</h1>
+                            <span class="team-member-role">Founder & CEO</span>
+                            <p class="team-member-bio">Former librarian turned entrepreneur. Believes every book has its
+                                reader.</p>
+
+                        </div>
+
+                        <div class="team-member">
+                            <span class="team-avatar" style="background: linear-gradient(135deg, #4f8ef7, #7ab3ff);"><i
+                                    class="fa-solid fa-d"></i></span>
+                            <h1 class="team-member-name">Mohamed Abdelmaqsoud</h1>
+                            <span class="team-member-role">Head of Curation</span>
+                            <p class="team-member-bio">Reads 4 books a week. Still somehow has opinions about all of
+                                them.</p>
+
+                        </div>
+
+                        <div class="team-member">
+                            <span class="team-avatar" style="background:linear-gradient(135deg,#52c07a,#7ddba1);"><i
+                                    class="fa-solid fa-s"></i></span>
+                            <h1 class="team-member-name">Mahmoud Khairy</h1>
+                            <span class="team-member-role">UX Designer</span>
+                            <p class="team-member-bio">Makes sure your reading experience is as beautiful as the books.
+                            </p>
+
+                        </div>
+
+                        <div class="team-member">
+                            <span class="team-avatar" style="background:linear-gradient(135deg,#e05252,#f07a7a);"><i
+                                    class="fa-solid fa-m"></i></span>
+                            <h1 class="team-member-name">Soussana Ishak</h1>
+                            <span class="team-member-role">Community Lead</span>
+                            <p class="team-member-bio">Runs our book clubs, events, and author partnerships globally.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="Designer">
+
+
+            <h1>Designer:</h1>
+
+
+            <div class="me">
+
+
+                <div class="card" style="width: 60rem; ">
+                    <img src="{% static 'images/WhatsApp Image 2025-08-09 at 20.35.12_f161a719.jpg' %}"
+                        class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h3 class="card-title">Kareem Ahmed</h3>
+                        <p class="card-text">
+                            Computer Science student at Cairo University — Faculty of Computers and Artificial
+                            Intelligence, with hands-on experience in Front-End Development and Software Quality
+                            Assurance.<br /><br />
+                            Trained at NTI in modern front-end technologies, where I built <b
+                                style="color:var(--gold)">Dragon Fashion</b> — a fully responsive e-commerce platform
+                            using HTML5, CSS3, JavaScript & Bootstrap 5.<br /><br />
+                            Skilled in C++, Java, Python, and React, with a solid background in OOP, data structures,
+                            and software testing. Detail-oriented and committed to delivering reliable, high-quality
+                            user experiences.
+                        </p>
+                        <span><i class="bi bi-telephone-fill"></i> 20+ 1558003416</span><br />
+                        <span><i class="bi bi-envelope-at-fill"></i><a style="text-decoration: none">
+                                kareemahmed4795@gmail.com</a></span>
+                    </div>
+                </div>
+
+
+                <div class="b5">
+                    <div class="menu" id="menu">
+                        <div class="toggle" id="toggle">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <ul>
+                            <li style="--i:0;"><a href="https://www.facebook.com/kareem.ahmad.164946" target="_blank"><i
+                                        class="fab fa-facebook-f"></i></a></li>
+                            <li style="--i:1;"><a href="https://wa.me/201558003416" target="_blank"><i
+                                        class="fab fa-whatsapp"></i></a></li>
+                            <li style="--i:2;"><a href="https://twitter.com" target="_blank"><i
+                                        class="fab fa-x-twitter"></i></a></li>
+                            <li style="--i:3;"><a href="https://reddit.com" target="_blank"><i
+                                        class="fab fa-reddit-alien"></i></a></li>
+                            <li style="--i:4;"><a href="www.linkedin.com/in/kareem-ahmed-37a41433b" target="_blank"><i
+                                        class="fab fa-linkedin-in"></i></a></li>
+                            <li style="--i:5;"><a href="https://www.instagram.com/kareem_ahmed8998/" target="_blank"><i
+                                        class="fab fa-instagram"></i></a></li>
+                            <li style="--i:6;"><a href="https://github.com/kareemahme999" target="_blank"><i
+                                        class="fab fa-github"></i></a></li>
+                            <li style="--i:7;"><a href="https://youtube.com" target="_blank"><i
+                                        class="fab fa-youtube"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+
+
+        <section class="designers-section">
+            <h1>Designer:</h1>
+            <div class="designers-grid">
+
+                <!-- Card 1 -->
+                <div class="designer-me">
+                    <div class="designer-card">
+                        <img src="{% static 'images/IMG-20260215-WA0476.jpg' %}" alt="">
+                        <div class="designer-card-body">
+                            <h3>Mohamed Abdelmaqsoud Mansour</h3>
+                            <p>Computer Science student with a foundation in software testing and problem
+                                analysis.Skilled in manual testing, test case design, and defect tracking, with
+                                programming in C++, Java, and Python.Detail-oriented with strong knowledge of OOP, data
+                                structures, and SDLC, focused on delivering high-quality software.</p>
+                            <span><i class="bi bi-telephone-fill"></i> 20+ 01055105742</span>
+                            <span><i class="bi bi-envelope-at-fill"></i> mohamedabdelmasood624@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="social-wrapper">
+                        <div class="social-menu">
+                            <div class="social-toggle">
+                                <i class="fas fa-share-alt"></i>
+                            </div>
+                            <ul>
+                                <li style="--i:0;"><a href="https://www.facebook.com/profile.php?id=100012699931689"
+                                        target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                <li style="--i:1;"><a href="https://wa.me/201055105742" target="_blank"><i
+                                            class="fab fa-whatsapp"></i></a></li>
+                                <li style="--i:2;"><a href="https://twitter.com" target="_blank"><i
+                                            class="fab fa-x-twitter"></i></a></li>
+                                <li style="--i:3;"><a href="https://reddit.com" target="_blank"><i
+                                            class="fab fa-reddit-alien"></i></a></li>
+                                <li style="--i:4;"><a href="https://www.linkedin.com/in/mohamed-abdelmaqsoud/"
+                                        target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li style="--i:5;"><a href="https://www.instagram.com/mohamed_abdelmaqsood/"
+                                        target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                <li style="--i:6;"><a href="https://github.com/mohamedabdelmasood624" target="_blank"><i
+                                            class="fab fa-github"></i></a></li>
+                                <li style="--i:7;"><a href="https://youtube.com" target="_blank"><i
+                                            class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/About.js' %}"></script>
+
+    {% include 'partials/footer.html' %}
+
+</body>
+
+</html>

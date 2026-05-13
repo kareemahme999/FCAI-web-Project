@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>My Cart — FOLIO</title>
+  <link rel="icon" type="image/svg+xml" href="{% static 'images/dribbble.svg' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{% static 'css/Cart.css' %}">
+  <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="F-header">
+      <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
+      <ul>
+        <li><a href="{% url 'home' %}"><i class="bi bi-house"></i>Home</a></li>
+        <li><a href="{% url 'books' %}"><i class="bi bi-grid"></i>Books</a></li>
+        <li><a href="{% url 'about' %}"><i class="bi bi-info-circle"></i>About</a></li>
+        <li><a href="{% url 'contact' %}"><i class="bi bi-envelope"></i>Contact</a></li>
+      </ul>
+    </div>
+    <div class="L-header">
+      <form>
+        <input id="search" type="search" placeholder="Search books,authors...">
+        <label onclick="goSearch(event)" style="color:#ffd636; padding:3px; border: solid 1px #ffd636; border-radius: 5px; cursor:pointer;">
+          <i class="bi bi-search"></i>
+        </label>
+      </form>
+      <script>
+        function goSearch(e) {
+          e.preventDefault();
+          let value = document.getElementById("search").value;
+          window.location.href = "{% url 'books' %}?q=" + value;
+        }
+      </script>
+      <button><a href="{% url 'my_list' %}"><i class="fa-regular fa-bookmark"></i></a></button>
+      <button><a href="{% url 'cart' %}"><i class="bi bi-bag"></i></a></button>
+      <button><a href="{% url 'user_profile' %}"><i class="fa-regular fa-circle-user"></i></a></button>
+    </div>
+  </header>
+
+  <!-- TOP HEADER -->
+  <div class="top-header">
+    <div class="bag-label">
+      <span class="eyebrow-line"></span>
+      <span>YOUR BAG</span>
+    </div>
+    <h1 class="main-title">Shopping <em>Cart</em></h1>
+    <div class="checkout-steps">
+      <div class="step active">
+        <div class="circle">1</div><span>CART</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="circle">2</div><span>SHIPPING</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="circle">3</div><span>PAYMENT</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="circle">4</div><span>CONFIRM</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <div class="cart">
+      <div id="cart-items-list"></div>
+      <div class="cart-actions">
+        <a href="{% url 'books' %}" class="btn-ghost"><i class="bi bi-arrow-left"></i> Continue Shopping</a>
+        <button class="btn-ghost danger" onclick="clearCart()"><i class="bi bi-trash"></i> Clear Cart</button>
+      </div>
+    </div>
+
+    <div class="summary">
+      <h2>Order Summary</h2>
+      <div class="summary-row"><span>Subtotal</span><span id="subtotal-val">$0.00</span></div>
+      <div class="summary-row"><span>Shipping</span><span class="free">Free</span></div>
+      <div class="summary-row"><span>Discount</span><span class="discount" id="discount-val">−$0.00</span></div>
+      <hr class="divider" />
+      <div class="summary-row total">
+        <span>Total</span>
+        <span class="total-val" id="total-val">$0.00</span>
+      </div>
+      <button class="checkout-btn" onclick="showToast('🚚 Proceeding to checkout!')">
+        <i class="bi bi-lock"></i> Checkout Securely
+      </button>
+      <div class="trust-badges">
+        <span><i class="bi bi-shield-check"></i> SSL Secure</span>
+        <span><i class="bi bi-arrow-counterclockwise"></i> Free Returns</span>
+      </div>
+      <hr class="divider" />
+      <div class="promo">
+        <input type="text" placeholder="Promo code" class="promo-input" id="promo-input" />
+        <button class="promo-btn" onclick="applyPromo()">Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  {% include 'partials/footer.html' %}
+
+  <!-- JS at bottom so DOM is ready -->
+  <script src="{% static 'js/Cart.js' %}"></script>
+
+</body>
+</html>

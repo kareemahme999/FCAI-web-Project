@@ -1,0 +1,57 @@
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h1><i class="bi bi-dribbble"></i>FOLIO.<span>Bookstore</span></h1>
+        <p class="footer-description">Your independent bookstore, curating the finest titles across every genre. Books are not just stories — they are experiences.</p>
+      </div>
+
+      <div class="footer-column">
+        <h2>Shop</h2>
+        <ul class="footer-list">
+          <li><a href="{% url 'books' %}">New Arrivals</a></li>
+          <li><a href="{% url 'books' %}">Bestsellers</a></li>
+          <li><a href="{% url 'books' %}">Fiction</a></li>
+          <li><a href="{% url 'books' %}">Non-Fiction</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h2>Help</h2>
+        <ul class="footer-list">
+          <li><a href="{% url 'contact' %}">Contact Us</a></li>
+          <li><a href="{% url 'contact' %}">Shipping Policy</a></li>
+          <li><a href="{% url 'contact' %}">Returns</a></li>
+          <li><a href="{% url 'contact' %}">Gift Cards</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h2>Company</h2>
+        <ul class="footer-list">
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'about' %}">Careers</a></li>
+          <li><a href="{% url 'about' %}">Blog</a></li>
+          <li><a href="{% url 'contact' %}">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h2>Account</h2>
+        <ul class="footer-list">
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'user_profile' %}">Profile</a></li>
+          <li><a href="{% url 'my_list' %}">My List</a></li>
+          <li><a href="{% url 'cart' %}">Cart</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+      <p>© 2026 FOLIO Bookstore. All rights reserved.</p>
+      <p><a href="{% url 'contact' %}">Privacy</a> · <a href="{% url 'about' %}">Terms</a></p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="book store where you can buy and reading">
+    <title>Book Store</title>
+
+    <link rel="icon" href="{% static 'images/dribbble.svg' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/Books.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+</head>
+
+<body>
+
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="F-header">
+            <h1><i class="bi bi-dribbble"></i>FOLIO.</h1>
+            <ul>
+                <li><a href="{% url 'home' %}"><i class="bi bi-house"></i>Home</a></li>
+                <li><a id="books" href="{% url 'books' %}"><i class="bi bi-grid"></i>Books</a></li>
+                <li><a href="{% url 'about' %}"><i class="bi bi-info-circle"></i>About</a></li>
+                <li><a href="{% url 'contact' %}"><i class="bi bi-envelope"></i>Contact</a></li>
+            </ul>
+        </div>
+        <div class="L-header">
+            <form>
+                <input id="search" type="search" placeholder="Search books,authors...">
+                <label onclick="goSearch(event)"
+                    style="color:#ffd636; padding:3px; border: solid 1px #ffd636; border-radius: 5px; cursor:pointer;">
+                    <i class="bi bi-search"></i>
+                </label>
+            </form>
+
+            <script>
+                function goSearch(e) {
+                    e.preventDefault();
+                    let value = document.getElementById("search").value;
+                    window.location.href = "{% url 'books' %}?q=" + value;
+                }
+            </script>
+            <!-- Bookmark -->
+            <a href="{% url 'my_list' %}" class="icon-btn" title="My List">
+                <i class="bi bi-bookmark"></i>
+            </a>
+
+            <!-- Cart -->
+            <a href="{% url 'cart' %}" class="icon-btn" title="Cart" id="cart-btn" style="position:relative;">
+                <i class="bi bi-bag"></i>
+                <span id="cart-badge"
+                    style="position:absolute;top:-6px;right:-6px;background:var(--gold);color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                    0
+                </span>
+            </a>
+
+            <!-- Profile -->
+            <a href="{% url 'user_profile' %}" class="icon-btn" title="Profile">
+                <i class="bi bi-person-circle"></i>
+            </a>
+
+        </div>
+
+    </header>
+
+    <!-- MAIN -->
+    <main>
+
+        <!-- TITLE -->
+        <div class="title-section">
+            <span>Collection</span>
+            <h1>All <em>Books</em></h1>
+        </div>
+
+        <!-- SORT -->
+        <div class="sort-row">
+            <select class="sort-select">
+                <option>Sort: Featured</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest</option>
+            </select>
+        </div>
+
+        <!-- FILTERS -->
+        <aside class="filters">
+
+            <h2>Genre</h2>
+            <ul>
+                <li><input type="checkbox"> All Books</li>
+                <li><input type="checkbox"> Fiction</li>
+                <li><input type="checkbox"> Science</li>
+                <li><input type="checkbox"> History</li>
+                <li><input type="checkbox"> Psychology</li>
+                <li><input type="checkbox"> Sci-Fi</li>
+            </ul>
+
+            <h2>Price Range</h2>
+            <input type="range" min="0" max="500" value="500">
+            <div class="price-labels">
+                <span>$0</span>
+                <span>Up to $500</span>
+            </div>
+
+            <h2>Rating</h2>
+            <label class="rating-row">
+                <input type="checkbox">
+                <span class="stars">★★★★★</span>
+                <span>& up</span>
+            </label>
+            <label class="rating-row">
+                <input type="checkbox">
+                <span class="stars">★★★★☆</span>
+                <span>& up</span>
+            </label>
+            <label class="rating-row">
+                <input type="checkbox">
+                <span class="stars">★★★☆☆</span>
+                <span>& up</span>
+            </label>
+
+            <h2>Availability</h2>
+            <ul>
+                <li><input type="checkbox"> In Stock</li>
+                <li><input type="checkbox"> Pre-Order</li>
+            </ul>
+
+            <button class="apply-btn">Apply Filters</button>
+            <p class="clear">Clear All</p>
+
+        </aside>
+
+        <!-- BOOKS -->
+        <ul class="books-grid">
+            {% for book in books %}
+            <li class="book-card" data-title="{{ book.title|escape }}">
+                <div class="book-img" style="background: {{ book.color|default:'linear-gradient(145deg,#2d3142,#4f5d75)' }};">
+                    <span class="badge">{{ book.badge }}</span>
+                    {% if book.image_url %}
+                    <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                    <div style="display:none;width:100%;height:100%;border-radius:10px;background:{{ book.color|default:'linear-gradient(145deg,#2d3142,#4f5d75)' }};align-items:center;justify-content:center;color:rgba(255,255,255,0.9);font-size:16px;font-weight:700;text-align:center;padding:16px;line-height:1.3;">
+                        {{ book.title }}
+                    </div>
+                    {% else %}
+                    <div style="width:100%;height:100%;border-radius:10px;background:{{ book.color|default:'linear-gradient(145deg,#2d3142,#4f5d75)' }};display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.9);font-size:16px;font-weight:700;text-align:center;padding:16px;line-height:1.3;">
+                        {{ book.title }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="book-info">
+                    <span class="category">{{ book.genre }}</span>
+                    <h3 class="title">{{ book.title }}</h3>
+                    <p class="author">{{ book.author }}</p>
+                    <div class="rating">★★★★★</div>
+                    <div class="book-footer">
+                        <div class="price">
+                            {% if book.discount > 0 and book.old_price %}
+                            <s>${{ book.old_price|floatformat:2 }}</s>
+                            <span>${{ book.price|floatformat:2 }}</span>
+                            {% else %}
+                            <span>${{ book.price|floatformat:2 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="icons"><i class="bi bi-bookmark"></i></div>
+                    </div>
+
+                    <button class="add-to-cart"
+                        onclick="addToCart({{ book.id }}, this)"><i
+                            class="bi bi-bag-plus"></i> Add to Cart</button>
+                </div>
+            </li>
+            {% empty %}
+            <li class="book-card" style="grid-column:1/-1;text-align:center;color:var(--text3);">
+                No books are available. Add books in the admin or run migrations to seed default data.
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- PAGINATION -->
+        <div class="pagination">
+            <span class="page active">1</span>
+            <span class="page">2</span>
+            <span class="page">3</span>
+            <span class="page">4</span>
+        </div>
+
+    </main>
+    <script src="{% static 'js/Books_Link_Patch.js' %}"></script>
+    <script src="{% static 'js/Books.js' %}"></script>
+
+    {% include 'partials/footer.html' %}
+
+</body>
+
+</html>
